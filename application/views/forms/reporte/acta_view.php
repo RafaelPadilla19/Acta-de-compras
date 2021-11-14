@@ -1,3 +1,25 @@
+<?php
+
+    $numeroProductos= count($productos);
+    //echo "<p>" . $numeroProductos . " productos</p>";
+
+    $paginas= ceil($numeroProductos/5);
+
+    if(!isset($_GET['pag'])){
+        header("Location:" . base_url()."Reporte/acta/".$acta->id."?pag=1");
+    }
+    //validar si es mayor a la cantidad de paginas
+    if($_GET['pag'] > $paginas || $_GET['pag'] < 1){
+        header("Location:" . base_url()."Reporte/acta/".$acta->id."?pag=1");
+    }
+
+
+    //obtenemos los 5 productos de la pagina actual
+    $productosPagina= array_slice($productos, ($_GET['pag']-1)*5, 5);
+
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,15 +30,13 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/bootstrap/css/bootstrap.min.css">
     <title>Acta</title>
     <style>
-        /** ocultar los botones al imprimir**/
-     
-        @media print {
-            .ocultar *{
-                display: none;
-            }
+    /** ocultar los botones al imprimir**/
+
+    @media print {
+        .ocultar * {
+            display: none;
         }
-
-
+    }
     </style>
 </head>
 
@@ -42,7 +62,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($productos as $detalle) { ?>
+                        <?php foreach ($productosPagina as $detalle) { ?>
                         <tr>
                             <td><?php echo $detalle->nombre_producto; ?></td>
                             <td><?php echo $detalle->cantidad; ?></td>
@@ -90,21 +110,42 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
             <!---boton de imprimir y volver inicio-->
             <div class="ocultar d-flex justify-content-evenly mt-5">
                 <button id="imprimir" name="imprimir" class="btn btn-primary">Imprimir</button>
                 <a class="btn btn-primary" href="<?php echo base_url(); ?>">Volver</a>
             </div>
+
+            <nav aria-label="Page navigation example" class="ocultar mb-4">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item 
+                    <?php echo $_GET['pag']<=1 ? 'disabled':'' ?>">
+                    
+                    
+                        <a class="page-link" href="<?php echo base_url()."Reporte/acta/".$acta->id."?pag=".$_GET["pag"]-1 ?>" tabindex="-1" aria-disabled="true">Anterior</a>
+                    </li>
+
+                    <?php for ($i = 1; $i <= $paginas; $i++) { ?>
+                        <li class="page-item <?php echo $_GET['pag']==$i ? 'active':'' ?>"><a class="page-link" href="<?php echo base_url()."Reporte/acta/".$acta->id."?pag=".$i ?>"><?php echo $i ?></a></li>
+                    <?php } ?>
+                   
+                    <li class="page-item 
+                    <?php echo $_GET['pag']>=$paginas ? 'disabled':'' ?>">
+                    
+                        <a class="page-link" href="<?php echo base_url()."Reporte/acta/".$acta->id."?pag=".$_GET["pag"]+1 ?>" tabindex="-1" aria-disabled="true">Siguiente</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
 
     </main>
     <script>
-        //imprimir
-        document.getElementById('imprimir').onclick = function() {
-            window.print();
-        }
+    //imprimir
+    document.getElementById('imprimir').onclick = function() {
+        window.print();
+    }
     </script>
 </body>
 

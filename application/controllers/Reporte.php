@@ -64,6 +64,79 @@ class Reporte extends CI_Controller
 		$this->load->view('forms/reporte/acta_view',$data);
 	}
 
+	public function actaRecepcion($id_acta){
+		$this->load->model('Reporte_model');
+		$productos= $this->Reporte_model->getProductosPorActa($id_acta);
+		$acta= $this->Reporte_model->getActa($id_acta);
 
+		$data=[
+			'id'=>$id_acta,
+			'productos'=>$productos,
+			'acta'=>$acta,
+		];
+		$this->load->view('reportes/solicitud/solicitud',$data);
+	}
+
+	public function recibo($id_acta){
+		$this->load->model('Reporte_model');
+		$productos= $this->Reporte_model->getProductosPorActa($id_acta);
+		$acta= $this->Reporte_model->getActa($id_acta);
+
+		$data=[
+			'id'=>$id_acta,
+			'productos'=>$productos,
+			'acta'=>$acta,
+		];
+		$this->load->view('reportes/recibo/recibo',$data);
+	}
+	public function ordenCompra($id_acta){
+		$this->load->model('Reporte_model');
+		$productos= $this->Reporte_model->getProductosPorActa($id_acta);
+		$acta= $this->Reporte_model->getActa($id_acta);
+
+		$data=[
+			'id'=>$id_acta,
+			'productos'=>$productos,
+			'acta'=>$acta,
+		];
+		$this->load->view('reportes/orden/orden',$data);
+	}	
+	public function requerimiento($id_acta){
+		$this->load->model('Reporte_model');
+		$productos= $this->Reporte_model->getProductosPorActa($id_acta);
+		$acta= $this->Reporte_model->getActa($id_acta);
+
+		$data=[
+			'id'=>$id_acta,
+			'productos'=>$productos,
+			'acta'=>$acta,
+		];
+		$this->load->view('reportes/recepcion/recepcion',$data);
+	}
+
+	public function declaracion($id_acta){
+		$this->load->model('Reporte_model');
+		$productos= $this->Reporte_model->getProductosPorActa($id_acta);
+		$acta= $this->Reporte_model->getActa($id_acta);
+
+		$data=[
+			'id'=>$id_acta,
+			'productos'=>$productos,
+			'acta'=>$acta,
+		];
+		$this->load->view('reportes/declaracion/declaracion',$data);
+	}
+	public function adjudicacion($id_acta){
+		$this->load->model('Reporte_model');
+		$productos= $this->Reporte_model->getProductosPorActa($id_acta);
+		$acta= $this->Reporte_model->getActa($id_acta);
+
+		$data=[
+			'id'=>$id_acta,
+			'productos'=>$productos,
+			'acta'=>$acta,
+		];
+		$this->load->view('reportes/adjudicacion/adjudicacion',$data);
+	}
 }
 ?>

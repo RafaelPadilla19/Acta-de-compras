@@ -1,0 +1,24 @@
+.txt{
+    font-size: 11px;
+}
+.txt-table{
+    font-size:11px;
+}
+.linea{
+    border-top: 1px solid black;
+    height: 2px;
+    max-width: 60%;
+    padding: 0;
+    margin: 50px auto 0 auto;
+  }
+.lineas{
+    border-top: 1px solid black;
+    height: 2px;
+    max-width: 95%;
+    padding: 0;
+    margin: 50px auto 0 auto;
+  }
+  
+  .centrado{
+      text-align: center;
+  }
