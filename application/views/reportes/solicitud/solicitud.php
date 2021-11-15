@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/solicitud.css">
     
-    <title>Acta de recepcion</title>
+    <title>Solicitud de requerimiento</title>
     <style>
     /** ocultar los botones al imprimir**/
 
@@ -22,7 +22,7 @@
 
 <body>
 
-<main style="margin: 0 60px;">
+<main style="margin: 20px 60px;">
     <div class="d-flex justify-content-startrow g-0 text-center">
         <div class="col-2 col-md-2">
             <img src="<?php echo base_url();?>assets/img/escudo.jpeg" style="width: 80px;" alt="" class="mt-3">
@@ -46,7 +46,7 @@
         </div>
       </div>
       <h6 class="text-center fw-bold" style="margin-top:-7px;font-size: 14px;">
-        ACTA DE RECEPCIÓN DE BIENES Y SERVICIOS
+       SOLICITUD DE REQUERIMIENTO DE OBRA , BIEN O SERVICIO
     </h6>
     <table class="m-2 table table-sm table-bordered border-dark text-center txt-table">
         <thead> 
@@ -138,41 +138,7 @@
                 <td class="align-middle" colspan="5">Conos anaranjados de 70 cm con cinta reflectiva</td>
                 <td class="align-middle" colspan="2"></td>
             </tr>
-            <tr>
-                <td class="col-1 col-md-1 align-middle fw-bold">6</td>
-                <td class="col-1 col-md-1 align-middle">20</td>
-                <td class="col-1 col-md-1 align-middle">Unidad</td>
-                <td class="align-middle" colspan="5">Conos anaranjados de 70 cm con cinta reflectiva</td>
-                <td class="align-middle" colspan="2"></td>
-            </tr>
-            <tr>
-                <td class="col-1 col-md-1 align-middle fw-bold">7</td>
-                <td class="col-1 col-md-1 align-middle">20</td>
-                <td class="col-1 col-md-1 align-middle">Unidad</td>
-                <td class="align-middle" colspan="5">Conos anaranjados de 70 cm con cinta reflectiva</td>
-                <td class="align-middle" colspan="2"></td>
-            </tr>
-            <tr>
-                <td class="col-1 col-md-1 align-middle fw-bold">8</td>
-                <td class="col-1 col-md-1 align-middle">20</td>
-                <td class="col-1 col-md-1 align-middle">Unidad</td>
-                <td class="align-middle" colspan="5">Conos anaranjados de 70 cm con cinta reflectiva</td>
-                <td class="align-middle" colspan="2"></td>
-            </tr>
-            <tr>
-                <td class="col-1 col-md-1 align-middle fw-bold">9</td>
-                <td class="col-1 col-md-1 align-middle">20</td>
-                <td class="col-1 col-md-1 align-middle">Unidad</td>
-                <td class="align-middle" colspan="5">Conos anaranjados de 70 cm con cinta reflectiva</td>
-                <td class="align-middle" colspan="2"></td>
-            </tr>
-            <tr>
-                <td class="col-1 col-md-1 align-middle fw-bold">10</td>
-                <td class="col-1 col-md-1 align-middle">20</td>
-                <td class="col-1 col-md-1 align-middle">Unidad</td>
-                <td class="align-middle" colspan="5">Conos anaranjados de 70 cm con cinta reflectiva</td>
-                <td class="align-middle" colspan="2"></td>
-            </tr>
+         
             <tr>
                 <td colspan="12"></td>
             </tr>
@@ -259,6 +225,11 @@
             </tr>
         </tbody>
     </table>
+    <div class="ocultar d-flex justify-content-center my-3">
+            <button id="imprimir" name="imprimir" class="btn btn-primary me-3">Imprimir</button>
+            <a class="btn btn-primary" href="<?php echo base_url(); ?>">Volver</a>
+        </div>
+
 </main>
 
     <script>

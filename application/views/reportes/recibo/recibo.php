@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -246,4 +247,18 @@
             </tbody>
         </table>
     </div>
+    <div class="ocultar d-flex justify-content-center my-3">
+            <button id="imprimir" name="imprimir" class="btn btn-primary me-3">Imprimir</button>
+            <a class="btn btn-primary" href="<?php echo base_url(); ?>">Volver</a>
+        </div>
+
 </main>
+<script>
+    //imprimir
+    document.getElementById('imprimir').onclick = function() {
+        window.print();
+    }
+    </script>
+</body>
+
+</html>

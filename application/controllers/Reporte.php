@@ -101,7 +101,8 @@ class Reporte extends CI_Controller
 		];
 		$this->load->view('reportes/orden/orden',$data);
 	}	
-	public function requerimiento($id_acta){
+
+	public function recepcion($id_acta){
 		$this->load->model('Reporte_model');
 		$productos= $this->Reporte_model->getProductosPorActa($id_acta);
 		$acta= $this->Reporte_model->getActa($id_acta);

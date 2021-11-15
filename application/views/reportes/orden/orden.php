@@ -1,3 +1,23 @@
+<?php
+
+$numeroProductos= count($productos);
+//echo "<p>" . $numeroProductos . " productos</p>";
+
+$paginas= ceil($numeroProductos/10);
+
+if(!isset($_GET['pag'])){
+    header("Location:" . base_url()."Reporte/ordenCompra/".$acta->id."?pag=1");
+}
+//validar si es mayor a la cantidad de paginas
+if($_GET['pag'] > $paginas || $_GET['pag'] < 1){
+    header("Location:" . base_url()."Reporte/ordenCompra/".$acta->id."?pag=1");
+}
+
+
+//obtenemos los 5 productos de la pagina actual
+$productosPagina= array_slice($productos, ($_GET['pag']-1)*10, 10);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +42,7 @@
 
 <body>
 
-    <main style="margin: 0 60px;">
+    <main style="margin: 40px 60px;">
         <div class="d-flex justify-content-startrow g-0 text-center">
             <div class="col-2 col-md-2">
                 <img src="<?php echo base_url();?>assets/img/escudo.jpeg" style="width: 80px;" alt="" class="mt-3">
@@ -121,110 +141,15 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php foreach($productosPagina as $item):   ?>
                         <tr>
-                            <td scope="row">1</td>
-                            <td>jdlmdlkqnmdqw</td>
-                            <td>ndlandklwqwdfqq</td>
-                            <td>98u290</td>
-                            <td>98u290</td>
+                            <td scope="row"><?php echo $item->cantidad ?></td>
+                            <td><?php echo $item->unidad_medida ?></td>
+                            <td><?php echo $item->descripcion ?></td>
+                            <td><?php echo $item->costo_unitario?></td>
+                            <td><?php echo $item->total?></td>
                         </tr>
-                        <tr>
-                            <td scope="row">2</td>
-                            <td>jdwkandjkawn9i</td>
-                            <td>dnlwjdwwwwwwww</td>
-                            <td>ejo2jeo93eo1je</td>
-                            <td>98u290</td>
-                        </tr>
-                        <tr>
-                            <td scope="row">3</td>
-                            <td>mldkwmdwqmwdqw</td>
-                            <td>mkldwmdilqwd</td>
-                            <td>dmwldkmqwkdqwdqwd</td>
-                            <td>98u290</td>
-                        </tr>
-                        <tr>
-                            <td scope="row">4</td>
-                            <td>doiwej23p323</td>
-                            <td>lsnaclnla</td>
-                            <td>mxklsmqwdlmdow</td>
-                            <td>98u290</td>
-                        </tr>
-                        <tr>
-                            <td scope="row">5</td>
-                            <td>jdiqwjoqwj</td>
-                            <td>mlqdmñwlmkw</td>
-                            <td>mlqdmñwlmkw</td>
-                            <td>98u290</td>
-                        </tr>
-                        <tr>
-                            <td scope="row">6</td>
-                            <td>92i23211</td>
-                            <td>knkjandkje</td>
-                            <td>mxlasnjkcnsdjknckasnjkax</td>
-                            <td>98u290</td>
-                        </tr>
-                        <tr>
-                            <td scope="row">7</td>
-                            <td>92i23211</td>
-                            <td>knkjandkje</td>
-                            <td>mxlasnjkcnsdjknckasnjkax</td>
-                            <td>98u290</td>
-                        </tr>
-                        <tr>
-                            <td scope="row">8</td>
-                            <td>92i23211</td>
-                            <td>knkjandkje</td>
-                            <td>mxlasnjkcnsdjknckasnjkax</td>
-                            <td>98u290</td>
-                        </tr>
-                        <tr>
-                            <td scope="row">9</td>
-                            <td>92i23211</td>
-                            <td>knkjandkje</td>
-                            <td>mxlasnjkcnsdjknckasnjkax</td>
-                            <td>98u290</td>
-                        </tr>
-                        <tr>
-                            <td scope="row">10</td>
-                            <td>92i23211</td>
-                            <td>knkjandkje</td>
-                            <td>mxlasnjkcnsdjknckasnjkax</td>
-                            <td>98u290</td>
-                        </tr>
-                        <tr>
-                            <td scope="row">11</td>
-                            <td>92i23211</td>
-                            <td>knkjandkje</td>
-                            <td>mxlasnjkcnsdjknckasnjkax</td>
-                            <td>98u290</td>
-                        </tr>
-                        <tr>
-                            <td scope="row">12</td>
-                            <td>92i23211</td>
-                            <td>knkjandkje</td>
-                            <td>mxlasnjkcnsdjknckasnjkax</td>
-                            <td>98u290</td>
-                        </tr>
-                        <tr>
-                            <td scope="row">13</td>
-                            <td>92i23211</td>
-                            <td>knkjandkje</td>
-                            <td>mxlasnjkcnsdjknckasnjkax</td>
-                            <td>98u290</td>
-                        </tr>
-                        <tr>
-                            <td scope="row">14</td>
-                            <td>92i23211</td>
-                            <td>knkjandkje</td>
-                            <td>mxlasnjkcnsdjknckasnjkax</td>
-                            <td>98u290</td>
-                        </tr>
-                        <tr>
-                            <td colspan="3">btdbdghd sefegsgsegs</td>
-                            <th>TOTAL</th>
-                            <td>$ 80,000</td>
-                        </tr>
-                        <tr>
+                        <?php endforeach; ?>
                             <th>SON:</th>
                             <th colspan="4">TRESCIENTOS TREINTA Y TRES 33/100 DÓLARES DE LOS ESTADOS UNIDOS</th>
                         </tr>
@@ -277,4 +202,37 @@
                 </tr>
             </table>
         </div>
+        <div class="ocultar d-flex justify-content-center my-3">
+            <button id="imprimir" name="imprimir" class="btn btn-primary me-3">Imprimir</button>
+            <a class="btn btn-primary" href="<?php echo base_url(); ?>">Volver</a>
+        </div>
+        <nav aria-label="Page navigation example" class="ocultar mb-4">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item 
+                    <?php echo $_GET['pag']<=1 ? 'disabled':'' ?>">
+                    
+                    
+                        <a class="page-link" href="<?php echo base_url()."Reporte/ordenCompra/".$acta->id."?pag=".$_GET["pag"]-1 ?>" tabindex="-1" aria-disabled="true">Anterior</a>
+                    </li>
+
+                    <?php for ($i = 1; $i <= $paginas; $i++) { ?>
+                        <li class="page-item <?php echo $_GET['pag']==$i ? 'active':'' ?>"><a class="page-link" href="<?php echo base_url()."Reporte/ordenCompra/".$acta->id."?pag=".$i ?>"><?php echo $i ?></a></li>
+                    <?php } ?>
+                   
+                    <li class="page-item 
+                    <?php echo $_GET['pag']>=$paginas ? 'disabled':'' ?>">
+                    
+                        <a class="page-link" href="<?php echo base_url()."Reporte/ordenCompra/".$acta->id."?pag=".$_GET["pag"]+1 ?>" tabindex="-1" aria-disabled="true">Siguiente</a>
+                    </li>
+                </ul>
+            </nav>
     </main>
+    <script>
+    //imprimir
+    document.getElementById('imprimir').onclick = function() {
+        window.print();
+    }
+    </script>
+</body>
+
+</html>
