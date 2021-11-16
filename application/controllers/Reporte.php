@@ -64,7 +64,7 @@ class Reporte extends CI_Controller
 		$this->load->view('forms/reporte/acta_view',$data);
 	}
 
-	public function actaRecepcion($id_acta){
+	public function solicitudRequerimiento($id_acta){
 		$this->load->model('Reporte_model');
 		$productos= $this->Reporte_model->getProductosPorActa($id_acta);
 		$acta= $this->Reporte_model->getActa($id_acta);
