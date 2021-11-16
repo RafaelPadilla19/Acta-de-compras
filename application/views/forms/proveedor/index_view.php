@@ -23,16 +23,20 @@
                             <th>Direccion</th>
                             <th>Telefono</th>
                             <th>Correo</th>
+                            <th>NCR O DUI</th>
+                            <th>NIT</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="p in proveedores | filter:buscar | limitTo:10">
-                            <td>{{p.proveedorid}}</td>
+                        <tr ng-repeat="p in proveedores | filter: buscar | limitTo:10">
+                            <td>{{p.proveedor_id}}</td>
                             <td>{{p.nombre}}</td>
                             <td>{{p.direccion}}</td>
                             <td>{{p.telefono}}</td>
                             <td>{{p.correo}}</td>
+                            <td>{{p.ncr_dui}}</td>
+                            <td>{{p.nit}}</td>
                             <td>
                                 <button data-bs-toggle="modal" data-bs-target="#modal-save" class="btn btn-primary" ng-click="llenarModal(p)">Editar</button>
                                 <!-- <a href="" class="btn btn-danger">Eliminar</a> -->
@@ -70,6 +74,16 @@
                             <label for="recipient-name" class="col-form-label">Correo:</label>
                             <input type="text" ng-model="proveedor.correo" class="form-control">
                         </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="recipient-name" class="col-form-label">NCR O DUI:</label>
+                                <input type="text" ng-model="proveedor.ncr_dui" class="form-control">
+                            </div>
+                            <div class="col-6">
+                                <label for="recipient-name" class="col-form-label">NIT:</label>
+                                <input type="text" ng-model="proveedor.nit" class="form-control">
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer justify-content-center">
                         <button type="button" class="btn btn-primary" ng-click="save()">Guardar</button>
@@ -80,9 +94,6 @@
             </div>
         </div>
 </main>
-
-
-
 
 
 <script>
@@ -110,7 +121,7 @@ angular.module("app", []).controller("app-controller", function($scope, $http, $
 
     $scope.save = function() {
         
-       if($scope.proveedor.proveedorid){
+       if($scope.proveedor.proveedor_id){
             $http({
                 method: 'POST',
                 url: '<?php echo base_url(); ?>Proveedor/actualizar',
