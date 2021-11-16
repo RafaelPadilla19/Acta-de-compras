@@ -108,31 +108,31 @@
                 </tr>
                 <tr>
                     <td class="text-start fw-bold" colspan="3">NOMBRE DEL SOLICITANTE:</td>
-                    <td colspan="5">Fredy Alberto Perez</td>
+                    <td colspan="5"> <?php echo $solicitud->nombre_solicitante;?></td>
                     <td class=" fw-bold align-middle col-2" rowspan="3">FIRMA DEL SOLICITANTE:</td>
                     <td class="col-2" rowspan="3"></td>
                 </tr>
                 <tr>
                     <td class="text-start fw-bold" colspan="3">CARGO:</td>
-                    <td colspan="5">Director del CAM</td>
+                    <td colspan="5"><?php echo $solicitud->cargo_solicitante;?></td>
                 </tr>
                 <tr>
                     <td class="text-start fw-bold" colspan="3">DEPENDENCIA:</td>
-                    <td colspan="5">Cuerpo de Agentes Municipales</td>
+                    <td colspan="5"><?php echo $solicitud->dependencia_solicitante;?></td>
                 </tr>
                 <tr>
                     <td class="text-start fw-bold" colspan="3">NOMBRE DEL AUTORIZANTE:</td>
-                    <td colspan="5">Lic. Juan Carlos Carcamo Quijano</td>
+                    <td colspan="5"><?php echo $solicitud->nombre_autorizante;?></td>
                     <td class="col-1 fw-bold align-middle col-2" rowspan="3">FIRMA DEL AUTORIZANTE:</td>
                     <td class="col-2" rowspan="3"></td>
                 </tr>
                 <tr>
                     <td class="text-start fw-bold" colspan="3">CARGO:</td>
-                    <td colspan="5">Secretario Municipal</td>
+                    <td colspan="5"><?php echo $solicitud->cargo_autorizante;?></td>
                 </tr>
                 <tr>
                     <td class="text-start fw-bold" colspan="3">DEPENDENCIA:</td>
-                    <td colspan="5">Concejo Municipal</td>
+                    <td colspan="5"><?php echo $solicitud->dependencia_autorizante;?></td>
                 </tr>
                 <tr style="background-color: #AFE1B4;">
                     <td class="fw-bold align-middle">ÍTEM</td>
@@ -156,19 +156,19 @@
                 </tr>
                 <tr>
                     <td class="fw-bold" colspan="3">VALOR ESTIMADO DE LA COMPRA:</td>
-                    <td colspan="2"></td>
+                    <td colspan="2">$<?php echo $solicitud->valor_compra;?></td>
                     <td class="fw-bold" colspan="3">FORMA DE ENTREGA</td>
-                    <td colspan="3"></td>
+                    <td colspan="3"><?php echo $solicitud->forma_entrega;?></td>
                 </tr>
                 <tr>
                     <td class="fw-bold" colspan="3">LUGAR DE ENTREGA:</td>
-                    <td colspan="9"></td>
+                    <td colspan="9"><?php echo $solicitud->lugar_entrega;?></td>
                 </tr>
                 <tr>
                     <td class="fw-bold" colspan="12">JUSTIFICACIÓN O DESTINO DEL BIEN:</td>
                 </tr>
                 <tr>
-                    <td class="align-middle" colspan="12">Para señalamiento</td>
+                    <td class="align-middle" colspan="12"><?php echo $solicitud->destino_de_bien;?></td>
                 </tr>
                 <tr>
                     <th colspan="3" rowspan="2">PROPUESTA DE ADMINISTRADOR DE CONTRATO U ORDEN DE COMPRA</th>
@@ -177,23 +177,25 @@
                     <th colspan="4">DEPENDENCIA:</th>
                 </tr>
                 <tr style="height: 23px;">
-                    <td colspan="3"></td>
-                    <td colspan="2"></td>
-                    <td colspan="4"></td>
+                    <td colspan="3"><?php echo $propuesta->nombre_administrador_contrato;?></td>
+                    <td colspan="2"><?php echo $propuesta->cargo_administrador_contrato;?></td>
+                    <td colspan="4"><?php echo $propuesta->dependencia;?></td>
                 </tr>
                 <tr style="height: 23px;">
                     <td colspan="3" class="fw-bold">RECIBIDO EN UACI POR:</td>
-                    <td colspan="3">Lic Liliana Guadalupe Martinez Consuegra</td>
+                    <td colspan="3"><?php echo $propuesta->nombre_recibido_por;?></td>
                     <td colspan="6" rowspan="3"></td>
                 </tr>
                 <tr style="height: 23px;">
                     <td colspan="3" class="fw-bold">CARGO:</td>
-                    <td colspan="3">Jefe de UACI</td>
+                    <td colspan="3"><?php echo $propuesta->cargo_de_recibido;?></td>
                 </tr>
                 <tr style="height: 23px;">
                     <td colspan="3" class="fw-bold">FECHA</td>
-                    <td colspan="3"></td>
+                    <td colspan="3"><?php echo convertirFecha($propuesta->fecha);?></td>
                 </tr>
+                
+                <?php if(!empty($asignacion)) {?>
                 <tr>
                     <td class="fw-bold" colspan="12">ASIGNACION PRESUPUESTARIA</td>
                 </tr>
@@ -237,11 +239,13 @@
                     <td class="fw-bold" colspan="3">FECHA:</td>
                     <td colspan="4"></td>
                 </tr>
+                <?php } ?>
+            
             </tbody>
         </table>
         <div class="ocultar d-flex justify-content-center my-3">
             <button id="imprimir" name="imprimir" class="btn btn-primary me-3">Imprimir</button>
-            <a class="btn btn-primary" href="<?php echo base_url(); ?>">Volver</a>
+            <a class="btn btn-primary" href="<?php echo base_url()."Reporte/documentacionCompra/".$id; ?>">Volver</a>
         </div>
         <nav aria-label="Page navigation example" class="ocultar mb-4">
             <ul class="pagination justify-content-center">

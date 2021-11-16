@@ -47,7 +47,21 @@
         return $query->row();
     }
  
-    
+    public function getPropuestaOrdenCompra($id){
+        $this->db->select("*");
+        $this->db->from("propuesta_orden_de_compras");
+        $this->db->where("solicitud_id", $id);
+        $query=$this->db->get();
+        return $query->row();
+    }
+
+    public function getAsignacionPresupuestaria($id){
+        $this->db->select("*");
+        $this->db->from("asignacion_presupuestaria");
+        $this->db->where("solicitud_id", $id);
+        $query=$this->db->get();
+        return $query->row();
+    }
     
 }
 ?>

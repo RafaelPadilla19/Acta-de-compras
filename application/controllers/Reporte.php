@@ -80,12 +80,16 @@ class Reporte extends CI_Controller
 	public function solicitudRequerimiento($id){
 		$this->load->model('Reporte_model');
 		$productos= $this->Reporte_model->getProductosPorSolicitud($id);
+		$propuestaOrdenCompra= $this->Reporte_model->getPropuestaOrdenCompra($id);
 		$acta= $this->Reporte_model->getActa($id);
+		$asignacion= $this->Reporte_model->getAsignacionPresupuestaria($id);
 
 		$data=[
 			'id'=>$id,
 			'productos'=>$productos,
 			'solicitud'=>$acta,
+			'propuesta'=>$propuestaOrdenCompra,
+			'asignacion'=>$asignacion,
 		];
 		$this->load->view('reportes/solicitud/solicitud',$data);
 	}
@@ -99,6 +103,7 @@ class Reporte extends CI_Controller
 			'id'=>$id_acta,
 			'productos'=>$productos,
 			'acta'=>$acta,
+			
 		];
 		$this->load->view('reportes/recibo/recibo',$data);
 	}
