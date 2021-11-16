@@ -220,7 +220,7 @@
                 <td colspan="4">Encargada de presupuesto</td>
             </tr>
             <tr>
-                <td class="fw-bold"colspan="3">DEPENDENCIA:</td>
+                <td class="fw-bold"colspan="3">FECHA:</td>
                 <td colspan="4"></td>
             </tr>
         </tbody>
