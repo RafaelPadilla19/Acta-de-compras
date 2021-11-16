@@ -7,7 +7,7 @@
 
     public function getProveedores(){
         $this->db->from("proveedor");
-        $this->db->order_by("proveedorid", "desc");
+        $this->db->order_by("proveedor_id", "desc");
         $query = $this->db->get();
         return $query->result();
     }
@@ -18,7 +18,7 @@
     }
 
     public function actualizar($id, $data){
-        $this->db->where('proveedorid', $id);
+        $this->db->where('proveedor_id', $id);
         $this->db->update('proveedor', $data);
         return $this->db->affected_rows();
     }
