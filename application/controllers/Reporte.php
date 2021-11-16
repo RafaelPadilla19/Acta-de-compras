@@ -139,5 +139,27 @@ class Reporte extends CI_Controller
 		];
 		$this->load->view('reportes/adjudicacion/adjudicacion',$data);
 	}
+	public function insertSolicitud(){
+		$dt = file_get_contents("php://input");
+		$assocArray = json_decode($dt, true);
+		$this->load->model('Reporte_model');
+		$response = $this->Reporte_model->insert_solicitud($assocArray);
+		echo json_encode($response);
+	}
+	public function insertPropuesta(){
+		$dt = file_get_contents("php://input");
+		$assocArray = json_decode($dt, true);
+		$this->load->model('Reporte_model');
+		$response = $this->Reporte_model->insert_propuesta_orden_de_compras($assocArray);
+		echo json_encode($response);
+	}
+	
+	public function insertProducto(){
+		$dt = file_get_contents("php://input");
+		$assocArray = json_decode($dt, true);
+		$this->load->model('Reporte_model');
+		$response = $this->Reporte_model->guardarProducto($assocArray);
+		echo json_encode($response);
+	}
 }
 ?>

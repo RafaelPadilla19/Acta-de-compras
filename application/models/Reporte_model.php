@@ -15,22 +15,26 @@
         return $query->result();
     }
 
-    // guardar reporte
-    public function guardar($data){
-        $this->db->insert('acta_reporte', $data);
-        return $this->db->insert_id();
+    public function insert_solicitud($data){
+        $this->db->insert('solicitud_requerimientos', $data);
+    	return $this->db->insert_id();
+    }
+
+    public function insert_propuesta_orden_de_compras($data){
+    	$this->db->insert('propuesta_orden_de_compras', $data);
+    	return $this->db->insert_id();
     }
 
     public function guardarProducto($data){
-        $this->db->insert('producto', $data);
+        $this->db->insert('productos', $data);
         return $this->db->insert_id();
     }
 
     // traer todos los productos de una acta_reporte
-    public function getProductosPorActa($idActa){
+    public function getProductosPorSolicitud($idSolicitud){
         $this->db->select("*");
-        $this->db->from("producto");
-        $this->db->where("id_acta", $idActa);
+        $this->db->from("productos");
+        $this->db->where("solicitud_id", $idSolicitud);
         $query=$this->db->get();
         return $query->result();      
     }
