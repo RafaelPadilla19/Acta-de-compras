@@ -3,7 +3,7 @@
         <h2 class="text-capitalize text-center mb-5"><?php echo $title;?></h2>
         <!--Agregar Acta-->
 
-        <a href="<?php echo base_url(); ?>Reporte/registrar" class="btn btn-success mb-3 text-white">Agregar orden</a>
+        <a href="<?php echo base_url(); ?>Reporte/registrar" class="btn btn-success mb-3 text-white">Agregar solicitud de requerimiento</a>
 
         <!--buscar-->
         <div class="row">
@@ -18,34 +18,25 @@
                     <thead class="thead-dark">
                         <tr>
                             <th>ID</th>
-                            <th>Nombre proyecto</th>
-                            <th style="display: none;">Descripcion</th>
-                            <th style="display: none;">Ubicacion</th>
-                            <th>Documento fiscal</th>
-                            <th style="display: none;">Tipo de documento fiscal</th>
-                            <th>Representante alcaldia</th>
-                            <th>Representante proveedor</th>
-                            <th>Proveedor</th>
-                            <th>Fecha</th>
-                            <th>Monto</th>
+                            <th>Destino del bien</th>
+                            <th>Solicitante</th>
+                            <th>Autorizante</th>
+                            <th>Valor estimado</th>
+                            <th>Fecha de solicitud</th>
                             <th>Ver Acta</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="r in reportes | filter:buscar | limitTo:10">
-                            <td>{{r.id}}</td>
-                            <td>{{r.nombre_proyecto}}</td>
-                            <td style="display: none;">{{r.descripcion}}</td>
-                            <td style="display: none;">{{r.ubicacion}}</td>
-                            <td>{{r.n_documento_fiscal}}</td>
-                            <td style="display: none;">{{r.tipo_documento_fiscal}}</td>
-                            <td>{{r.nombre_admin_alcaldia}}</td>
-                            <td>{{r.nombre_representante_proveedor}}</td>
-                            <td>{{r.nombre}}</td>
+                            <td>{{r.solicitud_id}}</td>
+                            <td>{{r.destino_de_bien}}</td>
+                            <td>{{r.nombre_solicitante}}</td>
+                            <td>{{r.nombre_autorizante}}</td>
+                            <td>{{r.valor_compra}}</td>
                             <td>{{r.fecha}}</td>
-                            <td>{{r.monto_total}}</td>
+                            
                             <td>
-                                <a href="<?php echo base_url()?>Reporte/acta/{{r.id}}" class="btn btn-primary">
+                                <a href="<?php echo base_url()?>Reporte/documentacionCompra/{{r.solicitud_id}}" class="btn btn-primary">
                                     <i class="fas fa-copy"></i>
                                 </a>
                             </td>

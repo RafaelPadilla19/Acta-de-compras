@@ -8,7 +8,7 @@ class Reporte extends CI_Controller
 		
 		//array de datos
 		$data=[
-			'title' => 'Ordenes de compra',
+			'title' => 'Solicitudes de requerimeitos',
 		];
 		$this->load->view('templates/header');
 		$this->load->view('templates/menu');
@@ -27,6 +27,19 @@ class Reporte extends CI_Controller
 		$this->load->view('templates/header');
 		$this->load->view('templates/menu');
 		$this->load->view('forms/reporte/insertar_view');
+		$this->load->view('templates/footer');
+	}
+	public function documentacionCompra($id){
+		$this->load->model('Reporte_model');
+		$acta= $this->Reporte_model->getActa($id);
+		$data=[
+			'title' => 'Documentación de compra',
+			'id' => $id,
+			'solicitud' => $acta
+		];
+		$this->load->view('templates/header');
+		$this->load->view('templates/menu');
+		$this->load->view('forms/reporte/solicitud_view', $data);
 		$this->load->view('templates/footer');
 	}
 	//guardar reporte
@@ -64,15 +77,15 @@ class Reporte extends CI_Controller
 		$this->load->view('forms/reporte/acta_view',$data);
 	}
 
-	public function solicitudRequerimiento($id_acta){
+	public function solicitudRequerimiento($id){
 		$this->load->model('Reporte_model');
-		$productos= $this->Reporte_model->getProductosPorActa($id_acta);
-		$acta= $this->Reporte_model->getActa($id_acta);
+		$productos= $this->Reporte_model->getProductosPorSolicitud($id);
+		$acta= $this->Reporte_model->getActa($id);
 
 		$data=[
-			'id'=>$id_acta,
+			'id'=>$id,
 			'productos'=>$productos,
-			'acta'=>$acta,
+			'solicitud'=>$acta,
 		];
 		$this->load->view('reportes/solicitud/solicitud',$data);
 	}

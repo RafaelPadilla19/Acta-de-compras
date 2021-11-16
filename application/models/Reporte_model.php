@@ -8,9 +8,9 @@
     public function get_reportes(){
         // cambiar el valor solo de un campo
         $this->db->select("*");
-        $this->db->from("acta_reporte");
-        $this->db->join("proveedor", "proveedor.proveedorid = acta_reporte.proveedorid");
-        $this->db->order_by("id", "desc");
+        $this->db->from("solicitud_requerimientos");
+        //$this->db->join("proveedor", "proveedor.proveedorid = acta_reporte.proveedorid");
+        $this->db->order_by("solicitud_id", "desc");
         $query=$this->db->get();
         return $query->result();
     }
@@ -41,9 +41,8 @@
     //traer reporte por id
     public function getActa($id){
         $this->db->select("*");
-        $this->db->from("acta_reporte");
-        $this->db->join("proveedor", "proveedor.proveedorid = acta_reporte.proveedorid");
-        $this->db->where("id", $id);
+        $this->db->from("solicitud_requerimientos");
+        $this->db->where("solicitud_id", $id);
         $query=$this->db->get();
         return $query->row();
     }
