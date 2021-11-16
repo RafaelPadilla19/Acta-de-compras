@@ -32,8 +32,8 @@ class Proveedor extends CI_Controller
     public function actualizar(){
         $dt = file_get_contents("php://input");
 		$assocArray = json_decode($dt, true);
-		$id = $assocArray["proveedorid"];
-		unset($assocArray["proveedorid"]);
+		$id = $assocArray["proveedor_id"];
+		unset($assocArray["proveedor_id"]);
 		$this->load->model('Proveedor_model');
 		$response = $this->Proveedor_model->actualizar($id, $assocArray);
 		echo $response;
