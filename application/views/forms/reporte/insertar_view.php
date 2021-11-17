@@ -96,7 +96,7 @@
                         placeholder="Ingrese el cargo de quien lo recibe" required>
                 </div>
                 <div class="mb-3 col-4">
-                <label for="fecha" class="form-label">Fecha que recibe UACI</label>
+                    <label for="fecha" class="form-label">Fecha que recibe UACI</label>
                     <input type="date" class="form-control"  value="09-09-2019" id="fecha" ng-model="propuesta_orden_de_compras.fecha" required>
                 </div>
                 <div class="row">
