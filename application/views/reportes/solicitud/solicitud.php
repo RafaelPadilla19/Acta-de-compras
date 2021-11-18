@@ -209,7 +209,7 @@
                 </tr>
                 <tr>
                     <td class="fw-bold" colspan="3">PROYECTO O PROGRAMA:</td>
-                    <td colspan="9"></td>
+                    <td colspan="9"><?php echo $asignacion->proyecto;?></td>
                 </tr>
                 <tr>
                     <td colspan="3">ESTADO:</td>
@@ -220,24 +220,24 @@
                 </tr>
                 <tr>
                     <td class="fw-bold" colspan="7">APROBADO POR SOLICITUD DE MODIFICACIÓN PRESUPUESTARIA N°:</td>
-                    <td colspan="5"></td>
+                    <td colspan="5"><?php echo $asignacion->numero_solicitud_modificacion;?></td>
                 </tr>
                 <tr>
                     <td class="fw-bold" colspan="3">FUENTE DE FINANCIAMIENTO:</td>
-                    <td colspan="9"></td>
+                    <td colspan="9"><?php echo $asignacion->fuente_de_financiamiento;?></td>
                 </tr>
                 <tr>
                     <td class="fw-bold" colspan="3">RECIBIDO EN PRESUPUESTO POR:</td>
-                    <td colspan="4">Edith Angelica Martinez Bonilla</td>
+                    <td colspan="4"><?php echo $asignacion->recibo_en_presupuesto_por;?></td>
                     <td colspan="5" rowspan="3"></td>
                 </tr>
                 <tr>
                     <td class="fw-bold" colspan="3">CARGO:</td>
-                    <td colspan="4">Encargada de presupuesto</td>
+                    <td colspan="4"><?php echo $asignacion->cargo;?></td>
                 </tr>
                 <tr>
                     <td class="fw-bold" colspan="3">FECHA:</td>
-                    <td colspan="4"></td>
+                    <td colspan="4"><?php echo convertirFecha($asignacion->fecha);?></td>
                 </tr>
                 <?php } ?>
             
