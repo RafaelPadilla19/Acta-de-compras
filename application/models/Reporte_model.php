@@ -30,6 +30,22 @@
         return $this->db->insert_id();
     }
 
+    public function insertAsiganacionPresupuestaria($data){
+        $this->db->insert('asignacion_presupuestaria', $data);
+        $this->db->insert_id();
+        $idSolicitud=$data['solicitud_id'];
+        $estado=$data['estado'];
+
+        //actualizar estado de la solicitud_requerimientos
+        $this->db->set('estado', $estado);
+        $this->db->where('solicitud_id', $idSolicitud);
+        $this->db->update('solicitud_requerimientos');
+
+        return $this->db->insert_id();
+        
+        
+    }
+
     // traer todos los productos de una acta_reporte
     public function getProductosPorSolicitud($idSolicitud){
         $this->db->select("*");
@@ -62,6 +78,8 @@
         $query=$this->db->get();
         return $query->row();
     }
+
+ 
     
 }
 ?>

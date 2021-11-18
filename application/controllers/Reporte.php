@@ -109,7 +109,7 @@ class Reporte extends CI_Controller
 	}
 	public function ordenCompra($id_acta){
 		$this->load->model('Reporte_model');
-		$productos= $this->Reporte_model->getProductosPorActa($id_acta);
+		$productos= $this->Reporte_model->getProductosPorSolicitud($id_acta);
 		$acta= $this->Reporte_model->getActa($id_acta);
 
 		$data=[
@@ -122,7 +122,7 @@ class Reporte extends CI_Controller
 
 	public function recepcion($id_acta){
 		$this->load->model('Reporte_model');
-		$productos= $this->Reporte_model->getProductosPorActa($id_acta);
+		$productos= $this->Reporte_model->getProductosPorSolicitud($id_acta);
 		$acta= $this->Reporte_model->getActa($id_acta);
 
 		$data=[
@@ -177,6 +177,14 @@ class Reporte extends CI_Controller
 		$assocArray = json_decode($dt, true);
 		$this->load->model('Reporte_model');
 		$response = $this->Reporte_model->guardarProducto($assocArray);
+		echo json_encode($response);
+	}
+
+	public function insertAsignacionPresupuestaria(){
+		$dt = file_get_contents("php://input");
+		$assocArray = json_decode($dt, true);
+		$this->load->model('Reporte_model');
+		$response = $this->Reporte_model->insertAsiganacionPresupuestaria($assocArray);
 		echo json_encode($response);
 	}
 }

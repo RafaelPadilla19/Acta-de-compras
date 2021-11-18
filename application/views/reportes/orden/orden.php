@@ -6,11 +6,11 @@ $numeroProductos= count($productos);
 $paginas= ceil($numeroProductos/10);
 
 if(!isset($_GET['pag'])){
-    header("Location:" . base_url()."Reporte/ordenCompra/".$acta->id."?pag=1");
+    header("Location:" . base_url()."Reporte/ordenCompra/".$acta->solicitud_id."?pag=1");
 }
 //validar si es mayor a la cantidad de paginas
 if($_GET['pag'] > $paginas || $_GET['pag'] < 1){
-    header("Location:" . base_url()."Reporte/ordenCompra/".$acta->id."?pag=1");
+    header("Location:" . base_url()."Reporte/ordenCompra/".$acta->solicitud_id."?pag=1");
 }
 
 
@@ -212,17 +212,17 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*10, 10);
                     <?php echo $_GET['pag']<=1 ? 'disabled':'' ?>">
                     
                     
-                        <a class="page-link" href="<?php echo base_url()."Reporte/ordenCompra/".$acta->id."?pag=".$_GET["pag"]-1 ?>" tabindex="-1" aria-disabled="true">Anterior</a>
+                        <a class="page-link" href="<?php echo base_url()."Reporte/ordenCompra/".$acta->solicitud_id."?pag=".$_GET["pag"]-1 ?>" tabindex="-1" aria-disabled="true">Anterior</a>
                     </li>
 
                     <?php for ($i = 1; $i <= $paginas; $i++) { ?>
-                        <li class="page-item <?php echo $_GET['pag']==$i ? 'active':'' ?>"><a class="page-link" href="<?php echo base_url()."Reporte/ordenCompra/".$acta->id."?pag=".$i ?>"><?php echo $i ?></a></li>
+                        <li class="page-item <?php echo $_GET['pag']==$i ? 'active':'' ?>"><a class="page-link" href="<?php echo base_url()."Reporte/ordenCompra/".$acta->solicitud_id."?pag=".$i ?>"><?php echo $i ?></a></li>
                     <?php } ?>
                    
                     <li class="page-item 
                     <?php echo $_GET['pag']>=$paginas ? 'disabled':'' ?>">
                     
-                        <a class="page-link" href="<?php echo base_url()."Reporte/ordenCompra/".$acta->id."?pag=".$_GET["pag"]+1 ?>" tabindex="-1" aria-disabled="true">Siguiente</a>
+                        <a class="page-link" href="<?php echo base_url()."Reporte/ordenCompra/".$acta->solicitud_id."?pag=".$_GET["pag"]+1 ?>" tabindex="-1" aria-disabled="true">Siguiente</a>
                     </li>
                 </ul>
             </nav>
