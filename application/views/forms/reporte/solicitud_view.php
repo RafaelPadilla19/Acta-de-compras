@@ -16,6 +16,14 @@
                             data-bs-toggle="modal" data-bs-target="#modal-recepcion">Aprobar</button>
                         <a href="<?php echo base_url()."Reporte/solicitudRequerimiento/".$id; ?>"
                             class="btn btn-info ms-4" target="_blank">Ver</a>
+
+
+                        <?php if($solicitud->estado=="aprobado"){ ?>
+                            <button class="btn btn-success ms-4" ng-if="orden==true" >Ver Orden</button>
+                            <button class="btn btn-success ms-4" ng-if="orden==false">Crear Orden De Compra</button>
+                        <?php } ?>
+
+
                     </div>
                     <div class="card-footer text-muted">
                         <?php echo $solicitud->fecha;?>
@@ -51,7 +59,7 @@
 
                             </div>
                             <div class="row">
-                            
+
                                 <div class="mb-3 col-12">
                                     <label for="recipient-name" class="col-form-label">Recibo en presupuesto
                                         por:</label>
@@ -60,7 +68,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                            <div class="mb-3 col-6">
+                                <div class="mb-3 col-6">
                                     <label for="message-text" class="col-form-label">Fuente de financiamiento:</label>
                                     <input type="text" class="form-control" id="fuente_de_financiamiento"
                                         ng-model="asignacion_presupuestaria.fuente_de_financiamiento">
@@ -75,7 +83,8 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label class="mb-2" for="inputState">Estado</label>
-                                        <select id="inputState" class="form-select" name="estado" ng-model="asignacion_presupuestaria.estado">
+                                        <select id="inputState" class="form-select" name="estado"
+                                            ng-model="asignacion_presupuestaria.estado">
                                             <option value="aprobado">Aprobado</option>
                                             <option value="rechazado">Rechazado</option>
                                         </select>
@@ -91,7 +100,7 @@
                     </div>
                     <div class="modal-footer justify-content-center">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" ng-click="guardar()" >Guardar</button>
+                        <button type="button" class="btn btn-primary" ng-click="guardar()">Guardar</button>
                     </div>
                 </div>
             </div>
@@ -100,13 +109,14 @@
     </div>
 </main>
 <script>
-
 angular.module("app", []).controller("app-controller", function($scope, $http, $compile) {
 
 
     $scope.asignacion_presupuestaria = {};
     $scope.asignacion_presupuestaria.estado = "aprobado";
     $scope.asignacion_presupuestaria.solicitud_id = <?php echo $id;?>;
+    $scope.orden;
+    
 
     $scope.guardar = function() {
         $http({
@@ -118,12 +128,32 @@ angular.module("app", []).controller("app-controller", function($scope, $http, $
             $('#modal-recepcion').modal('hide');
             //recargar 
             location.reload();
-           
+
         }, function errorCallback(response) {
             console.log(response);
         });
     }
 
+    $scope.existeOrden = function() {
+        $http({
+            method: 'POST',
+            url: '<?php echo base_url()."Reporte/existOrdenCompra/".$id; ?>',
+        }).then(function successCallback(response) {
+            console.log(response);
+            
+            if (response.data=="true") {
+                $scope.orden=true;
+            } else {
+                $scope.orden=false;
+            }
+            console.log($scope.orden);
+        }, function errorCallback(response) {
+            console.log(response);
+        });
+        
+    }
+
+    $scope.existeOrden();
 
 });
 </script>

@@ -213,9 +213,9 @@
                 </tr>
                 <tr>
                     <td colspan="3">ESTADO:</td>
-                    <td colspan="2"></td>
+                    <td colspan="2"><?php echo $asignacion->estado=="aprobado"? "X":"" ?></td>
                     <td colspan="2">APROBADO</td>
-                    <td colspan="2"></td>
+                    <td colspan="2"><?php echo $asignacion->estado=="rechazado"? "X":"" ?></td>
                     <td colspan="3">RECHAZADO</td>
                 </tr>
                 <tr>

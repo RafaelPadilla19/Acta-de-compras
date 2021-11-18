@@ -79,7 +79,12 @@
         return $query->row();
     }
 
- 
-    
+    function getOrdenCompra($id_solicitud){
+        $this->db->select("*");
+        $this->db->from("orden_de_compra");
+        $this->db->where("solicitud_id", $id_solicitud);
+        $query=$this->db->get();
+        return $query->row();
+    }
 }
 ?>

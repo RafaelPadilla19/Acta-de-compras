@@ -187,5 +187,17 @@ class Reporte extends CI_Controller
 		$response = $this->Reporte_model->insertAsiganacionPresupuestaria($assocArray);
 		echo json_encode($response);
 	}
+
+	public function existOrdenCompra($solicitud_id){
+
+		$this->load->model('Reporte_model');
+		$response = $this->Reporte_model->getOrdenCompra($solicitud_id);
+		
+		if($response){
+			echo json_encode(true);
+		}else{
+			echo json_encode(false);
+		}
+	}
 }
 ?>
