@@ -20,7 +20,7 @@
 
                         <?php if($solicitud->estado=="aprobado"){ ?>
                             <button class="btn btn-success ms-4" ng-if="orden==true" >Ver Orden</button>
-                            <button class="btn btn-success ms-4" ng-if="orden==false">Crear Orden De Compra</button>
+                            <button data-bs-toggle="modal" data-bs-target="#modal-orden" class="btn btn-success ms-4" ng-if="orden==false">Crear Orden De Compra</button>
                         <?php } ?>
 
 
@@ -105,7 +105,87 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="modal-orden" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Orden de compra</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row">
+                            <div class="mb-3 col-6">
+                                <label for="fecha" class="form-label">Fecha de orden</label>
+                                <input type="date" class="form-control" id="fecha"
+                                    ng-model="orden_de_compra.fecha" required>
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="message-text" class="col-form-label">Lugar:</label>
+                                <input type="text" class="form-control" id="costo-unitario" ng-model="orden_de_compra.lugar">
 
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-6">
+                                <div class="form-group">
+                                    <label class="mb-2" for="inputState">proveedor_id</label>
+                                    <select id="inputState" class="form-select" name=""
+                                        ng-model="orden_de_compra.proveedorid">
+                                        <option value="">,,,</option>
+                                        <option value="">...</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3 col-6">
+                                <div class="form-group">
+                                    <label class="mb-2" for="inputState">solicitud_id</label>
+                                    <select id="inputState" class="form-select" name=""
+                                        ng-model="orden_de_compra.solicitud_id">
+                                        <option value="">...</option>
+                                        <option value="">,,,</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-6">
+                                <label for="recipient-name" class="col-form-label">Observaciones:</label>
+                                <input type="text" class="form-control" id="observaciones" ng-model="orden_de_compra.observaciones">
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="fecha_de_entrega" class="form-label">Fecha de entrega</label>
+                                <input type="date" class="form-control" id="fecha_de_entrega"
+                                    ng-model="orden_de_compra.fecha_de_entrega" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Nombre completo de jefe de UACI:</label>
+                            <input type="text" class="form-control" id="nombre_completo_jefe_uaci" ng-model="orden_de_compra.nombre_completo_jefe_uaci">
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-6">
+                                <label for="recipient-name" class="col-form-label">Telefono de Alcaldia:</label>
+                                <input type="text" class="form-control" id="telefono_alcaldia" ng-model="orden_de_compra.telefono_alcaldia">
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="recipient-name" class="col-form-label">Correo de Alcaldia:</label>
+                                <input type="text" class="form-control" id="correo_alcaldia" ng-model="orden_de_compra.correo_alcaldia">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Tipo de documento:</label>
+                            <input type="text" class="form-control" id="tipo_documento" ng-model="orden_de_compra.tipo_documento">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" ng-click="agregarOrdenCompra()">Agregar</button>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 </main>
 <script>
