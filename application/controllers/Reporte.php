@@ -32,10 +32,12 @@ class Reporte extends CI_Controller
 	public function documentacionCompra($id){
 		$this->load->model('Reporte_model');
 		$acta= $this->Reporte_model->getActa($id);
+		$orden_de_compra= $this->Reporte_model->getOrdenCompra($id);
 		$data=[
 			'title' => 'Documentación de compra',
 			'id' => $id,
-			'solicitud' => $acta
+			'solicitud' => $acta,
+			'orden_de_compra' => $orden_de_compra,
 		];
 		$this->load->view('templates/header');
 		$this->load->view('templates/menu');
@@ -96,7 +98,7 @@ class Reporte extends CI_Controller
 
 	public function recibo($id_acta){
 		$this->load->model('Reporte_model');
-		$productos= $this->Reporte_model->getProductosPorActa($id_acta);
+		$productos= $this->Reporte_model->getProductosPorSolicitud($id_acta);
 		$acta= $this->Reporte_model->getActa($id_acta);
 
 		$data=[
@@ -145,9 +147,10 @@ class Reporte extends CI_Controller
 		];
 		$this->load->view('reportes/declaracion/declaracion',$data);
 	}
+
 	public function adjudicacion($id_acta){
 		$this->load->model('Reporte_model');
-		$productos= $this->Reporte_model->getProductosPorActa($id_acta);
+		$productos= $this->Reporte_model->getProductosPorSolicitud($id_acta);
 		$acta= $this->Reporte_model->getActa($id_acta);
 
 		$data=[
@@ -198,6 +201,13 @@ class Reporte extends CI_Controller
 		}else{
 			echo json_encode(false);
 		}
+	}
+	public function insertOrdenCompra(){
+		$dt = file_get_contents("php://input");
+		$assocArray = json_decode($dt, true);
+		$this->load->model('Reporte_model');
+		$response = $this->Reporte_model->insertOrdenCompra($assocArray);
+		echo json_encode($response);
 	}
 }
 ?>

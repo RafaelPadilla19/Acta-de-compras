@@ -30,6 +30,11 @@
         return $this->db->insert_id();
     }
 
+    public function insertOrdenCompra($data){
+        $this->db->insert('orden_de_compra', $data);
+        return $this->db->insert_id();
+    }
+
     public function insertAsiganacionPresupuestaria($data){
         $this->db->insert('asignacion_presupuestaria', $data);
         $this->db->insert_id();

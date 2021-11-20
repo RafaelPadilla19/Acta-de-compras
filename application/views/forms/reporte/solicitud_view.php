@@ -19,8 +19,15 @@
 
 
                         <?php if($solicitud->estado=="aprobado"){ ?>
-                            <button class="btn btn-success ms-4" ng-if="orden==true" >Ver Orden</button>
+
+
+                            <a href="<?php echo (isset($orden_de_compra) &&  $orden_de_compra->tipo_documento=="recibo") ? base_url()."Reporte/recibo/".$id : base_url()."Reporte/ordenCompra/".$id ; ?>" class="btn btn-success ms-4" ng-if="orden==true" target="_blank">Ver Orden</a>
+
+
                             <button data-bs-toggle="modal" data-bs-target="#modal-orden" class="btn btn-success ms-4" ng-if="orden==false">Crear Orden De Compra</button>
+
+                            <a href="<?php echo base_url()."Reporte/adjudicacion/".$id; ?>" target="_blank" rel="noopener noreferrer"  class="btn btn-dark ms-4">Adjudicacion</a>
+
                         <?php } ?>
 
 
@@ -105,6 +112,8 @@
                 </div>
             </div>
         </div>
+
+        <!--modal orden de compra-->
         <div class="modal fade" id="modal-orden" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -115,12 +124,8 @@
                 <div class="modal-body">
                     <form>
                         <div class="row">
-                            <div class="mb-3 col-6">
-                                <label for="fecha" class="form-label">Fecha de orden</label>
-                                <input type="date" class="form-control" id="fecha"
-                                    ng-model="orden_de_compra.fecha" required>
-                            </div>
-                            <div class="mb-3 col-6">
+                         
+                            <div class="mb-3 col-12">
                                 <label for="message-text" class="col-form-label">Lugar:</label>
                                 <input type="text" class="form-control" id="costo-unitario" ng-model="orden_de_compra.lugar">
 
@@ -179,7 +184,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" ng-click="agregarOrdenCompra()">Agregar</button>
+                    <button type="button" class="btn btn-primary" ng-click="guardarOrderCompra()">Agregar</button>
                 </div>
             </div>
         </div>
@@ -194,7 +199,31 @@ angular.module("app", []).controller("app-controller", function($scope, $http, $
     $scope.asignacion_presupuestaria.estado = "aprobado";
     $scope.asignacion_presupuestaria.solicitud_id = <?php echo $id;?>;
     $scope.orden;
+    $scope.orden_de_compra = {};
+    $scope.orden_de_compra.lugar = "Alcaldia Municipal de San Julian Cacaluta";
+    $scope.orden_de_compra.correo_alcaldia="sanjulian.uaci2021@gmail.com"
+    $scope.orden_de_compra.telefono_alcaldia="2461-2904";
+    $scope.orden_de_compra.nombre_completo_jefe_uaci="Lorena Beatriz Romero de Aviles";
+    $scope.orden_de_compra.solicitud_id=<?php echo $id;?>;
+
+
     
+    $scope.guardarOrderCompra= function (){
+        $http({
+            method: 'POST',
+            url: '<?php echo base_url()."Reporte/insertOrdenCompra/"; ?>',
+            data: $scope.orden_de_compra
+        }).then(function successCallback(response) {
+            console.log(response);
+
+            $('#modal-orden').modal('hide');
+            window.location.reload();
+        }, function errorCallback(response) {
+            console.log(response);
+        });
+    }
+
+
 
     $scope.guardar = function() {
         $http({
