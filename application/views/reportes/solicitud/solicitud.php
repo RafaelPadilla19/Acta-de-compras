@@ -192,7 +192,7 @@
                 </tr>
                 <tr style="height: 23px;">
                     <td colspan="3" class="fw-bold">FECHA</td>
-                    <td colspan="3"><?php echo convertirFecha($propuesta->fecha);?></td>
+                    <td colspan="3"><?php echo convertirFecha($solicitud->fecha);?></td>
                 </tr>
                 
                 <?php if(!empty($asignacion)) {?>
@@ -237,7 +237,7 @@
                 </tr>
                 <tr>
                     <td class="fw-bold" colspan="3">FECHA:</td>
-                    <td colspan="4"><?php echo convertirFecha($asignacion->fecha);?></td>
+                    <td colspan="4"><?php echo convertirFecha($solicitud->fecha);?></td>
                 </tr>
                 <?php } ?>
             
