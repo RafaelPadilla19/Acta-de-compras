@@ -91,5 +91,21 @@
         $query=$this->db->get();
         return $query->row();
     }
+
+    function getAdjudicacion($id_solicitud){
+        $this->db->select("*");
+        $this->db->from("adjudicacion");
+        $this->db->where("solicitud_id", $id_solicitud);
+        $query=$this->db->get();
+        return $query->row();
+    }
+
+    function getActaDeRecepcion($id_solicitud){
+        $this->db->select("*");
+        $this->db->from("acta_de_recepcion");
+        $this->db->where("solicitud_id", $id_solicitud);
+        $query=$this->db->get();
+        return $query->row();
+    }
 }
 ?>

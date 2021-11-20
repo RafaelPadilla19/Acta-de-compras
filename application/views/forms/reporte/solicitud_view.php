@@ -10,12 +10,15 @@
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Solicitante: <?php echo $solicitud->nombre_solicitante ?></h5>
+
                         <p class="card-text">Estado: <?php echo $solicitud->estado ?>.</p>
+
                         <p class="card-text">Justificacion: <?php echo $solicitud->destino_de_bien ?>.</p>
+
                         <button class="btn btn-success <?php echo $solicitud->estado!="pendiente"? "disabled":"";?>"
                             data-bs-toggle="modal" data-bs-target="#modal-recepcion">Aprobar</button>
                         <a href="<?php echo base_url()."Reporte/solicitudRequerimiento/".$id; ?>"
-                            class="btn btn-info ms-4" target="_blank">Ver</a>
+                            class="btn btn-info ms-4" target="_blank">Ver Solitud</a>
 
 
                         <?php if($solicitud->estado=="aprobado"){ ?>
@@ -26,7 +29,14 @@
 
                             <button data-bs-toggle="modal" data-bs-target="#modal-orden" class="btn btn-success ms-4" ng-if="orden==false">Crear Orden De Compra</button>
 
-                            <a href="<?php echo base_url()."Reporte/adjudicacion/".$id; ?>" target="_blank" rel="noopener noreferrer"  class="btn btn-dark ms-4">Adjudicacion</a>
+                            <a href="<?php echo base_url()."Reporte/adjudicacion/".$id; ?>" target="_blank" rel="noopener noreferrer"  ng-if="adjudicacionExist==true" class="btn btn-dark ms-4">Ver Adjudicacion</a>
+                            <button ng-if="adjudicacionExist==false" class="btn btn-dark ms-4">Crear Adjudicacion</button>
+
+
+                            <a href="" ng-if="recepcion==true" target="_blank" rel="noopener noreferrer" class="btn btn-primary ms-4">Ver Acta de recepcion</a>
+                            <button  ng-if="recepcion==false" class="btn btn-warning ms-4">Crear Acta de recepcion</button>
+
+                            <a href="" ng-if="orden==true && adjudicacion==true && recepcion==true" class="btn btn-dark ms-4">Ver declaracion</a>
 
                         <?php } ?>
 
@@ -206,6 +216,10 @@ angular.module("app", []).controller("app-controller", function($scope, $http, $
     $scope.orden_de_compra.nombre_completo_jefe_uaci="Lorena Beatriz Romero de Aviles";
     $scope.orden_de_compra.solicitud_id=<?php echo $id;?>;
 
+    $scope.adjudicacionExist;
+    $scope.recepcion;
+
+
 
     
     $scope.guardarOrderCompra= function (){
@@ -261,6 +275,48 @@ angular.module("app", []).controller("app-controller", function($scope, $http, $
     }
 
     $scope.existeOrden();
+
+    $scope.existeAdjudicacion= function () {
+        $http({
+            method: 'POST',
+            url: '<?php echo base_url()."Reporte/existAdjudicacion/".$id; ?>',
+        }).then(function successCallback(response) {
+            console.log(response);
+            
+            if (response.data=="true") {
+                $scope.adjudicacionExist=true;
+            } else {
+                $scope.adjudicacionExist=false;
+            }
+            console.log($scope.adjudicacion);
+        }, function errorCallback(response) {
+            console.log(response);
+        });
+      }
+
+        $scope.existeAdjudicacion();
+
+    $scope.existActaRecepcion= function () {
+        $http({
+            method: 'POST',
+            url: '<?php echo base_url()."Reporte/existActaRecepcion/".$id; ?>',
+        }).then(function successCallback(response) {
+            console.log(response);
+            
+            if (response.data=="true") {
+                $scope.recepcion=true;
+            } else {
+                $scope.recepcion=false;
+            }
+            console.log($scope.recepcion);
+        }, function errorCallback(response) {
+            console.log(response);
+        });
+    }
+    
+    $scope.existActaRecepcion();
+
+
 
     $scope.proveedores = [];
     function get_proveedores() {

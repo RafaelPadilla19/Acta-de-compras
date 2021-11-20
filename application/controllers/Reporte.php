@@ -202,6 +202,31 @@ class Reporte extends CI_Controller
 			echo json_encode(false);
 		}
 	}
+
+	public function existAdjudicacion($solicitud_id){
+
+		$this->load->model('Reporte_model');
+		$response = $this->Reporte_model->getAdjudicacion($solicitud_id);
+		
+		if($response){
+			echo json_encode(true);
+		}else{
+			echo json_encode(false);
+		}
+	}
+
+	public function existActaRecepcion($solicitud_id){
+
+		$this->load->model('Reporte_model');
+		$response = $this->Reporte_model->getActaDeRecepcion($solicitud_id);
+		
+		if($response){
+			echo json_encode(true);
+		}else{
+			echo json_encode(false);
+		}
+	}
+
 	public function insertOrdenCompra(){
 		$dt = file_get_contents("php://input");
 		$assocArray = json_decode($dt, true);
