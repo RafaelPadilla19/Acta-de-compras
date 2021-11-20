@@ -129,21 +129,23 @@
                         <div class="row">
                             <div class="mb-3 col-6">
                                 <div class="form-group">
-                                    <label class="mb-2" for="inputState">proveedor_id</label>
+                                    <label class="mb-2" for="inputState">Proveedores</label>
                                     <select id="inputState" class="form-select" name=""
-                                        ng-model="orden_de_compra.proveedorid">
-                                        <option value="">,,,</option>
-                                        <option value="">...</option>
+                                        ng-model="orden_de_compra.proveedor_id">
+                                        <option value="">Seleccione un proveedor</option>
+                                        <option ng-repeat="p in proveedores" value="{{p.proveedor_id}}">{{p.nombre}}</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="mb-3 col-6">
                                 <div class="form-group">
-                                    <label class="mb-2" for="inputState">solicitud_id</label>
+                                    <label class="mb-2" for="inputState">Tipo de documento:</label>
                                     <select id="inputState" class="form-select" name=""
-                                        ng-model="orden_de_compra.solicitud_id">
-                                        <option value="">...</option>
-                                        <option value="">,,,</option>
+                                        ng-model="orden_de_compra.tipo_documento">
+                                        <option value="">Seleccione un proveedor</option>
+                                        <option value="recibo">Recibo</option>
+                                        <option value="factura">Factura</option>
+                                        <option value="credito_fiscal">Credito fiscal</option>
                                     </select>
                                 </div>
                             </div>
@@ -172,10 +174,6 @@
                                 <label for="recipient-name" class="col-form-label">Correo de Alcaldia:</label>
                                 <input type="text" class="form-control" id="correo_alcaldia" ng-model="orden_de_compra.correo_alcaldia">
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Tipo de documento:</label>
-                            <input type="text" class="form-control" id="tipo_documento" ng-model="orden_de_compra.tipo_documento">
                         </div>
                     </form>
                 </div>
@@ -234,6 +232,16 @@ angular.module("app", []).controller("app-controller", function($scope, $http, $
     }
 
     $scope.existeOrden();
+
+    $scope.proveedores = [];
+    function get_proveedores() {
+        $http.get("<?php echo base_url(); ?>Proveedor/getProveedores").then(function(response) {
+            $scope.proveedores = response.data;
+            
+        });
+    }
+
+    get_proveedores();
 
 });
 </script>
