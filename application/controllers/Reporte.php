@@ -125,7 +125,7 @@ class Reporte extends CI_Controller
 	public function recepcion($id_acta){
 		$this->load->model('Reporte_model');
 		$productos= $this->Reporte_model->getProductosPorSolicitud($id_acta);
-		$acta= $this->Reporte_model->getActa($id_acta);
+		$acta= $this->Reporte_model->getSolicitudRequeimiento_OrdenCompra_Proveedor($id_acta);
 
 		$data=[
 			'id'=>$id_acta,
@@ -137,12 +137,10 @@ class Reporte extends CI_Controller
 
 	public function declaracion($id_acta){
 		$this->load->model('Reporte_model');
-		$productos= $this->Reporte_model->getProductosPorActa($id_acta);
-		$acta= $this->Reporte_model->getActa($id_acta);
+		$acta= $this->Reporte_model->getSolicitudRequeimiento_OrdenCompra_Proveedor($id_acta);
 
 		$data=[
 			'id'=>$id_acta,
-			'productos'=>$productos,
 			'acta'=>$acta,
 		];
 		$this->load->view('reportes/declaracion/declaracion',$data);
@@ -151,12 +149,14 @@ class Reporte extends CI_Controller
 	public function adjudicacion($id_acta){
 		$this->load->model('Reporte_model');
 		$productos= $this->Reporte_model->getProductosPorSolicitud($id_acta);
-		$acta= $this->Reporte_model->getActa($id_acta);
+		$acta= $this->Reporte_model->getSolicitudRequeimiento_OrdenCompra_Proveedor($id_acta);
+	
 
 		$data=[
 			'id'=>$id_acta,
 			'productos'=>$productos,
 			'acta'=>$acta,
+			
 		];
 		$this->load->view('reportes/adjudicacion/adjudicacion',$data);
 	}
@@ -234,5 +234,23 @@ class Reporte extends CI_Controller
 		$response = $this->Reporte_model->insertOrdenCompra($assocArray);
 		echo json_encode($response);
 	}
+
+	public function insertAdjudicacion(){
+		$dt = file_get_contents("php://input");
+		$assocArray = json_decode($dt, true);
+		$this->load->model('Reporte_model');
+		$response = $this->Reporte_model->insertAdjudicacion($assocArray);
+		echo json_encode($response);
+	}
+
+	public function insertActaRecepcion(){
+		$dt = file_get_contents("php://input");
+		$assocArray = json_decode($dt, true);
+		$this->load->model('Reporte_model');
+		$response = $this->Reporte_model->insertActaDeRecepcion($assocArray);
+		echo json_encode($response);
+	}
+
+
 }
 ?>

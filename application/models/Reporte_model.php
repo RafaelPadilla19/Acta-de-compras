@@ -107,5 +107,26 @@
         $query=$this->db->get();
         return $query->row();
     }
+
+    function insertActaDeRecepcion($data){
+        $this->db->insert('acta_de_recepcion', $data);
+        return $this->db->insert_id();
+    }
+
+    function insertAdjudicacion($data){
+        $this->db->insert('adjudicacion', $data);
+        return $this->db->insert_id();
+    }
+
+    function getSolicitudRequeimiento_OrdenCompra_Proveedor($solicitud_id){
+        $this->db->select("*");
+        $this->db->from("solicitud_requerimientos");
+        $this->db->join("orden_de_compra", "orden_de_compra.solicitud_id = solicitud_requerimientos.solicitud_id");
+        $this->db->join("proveedor", "proveedor.proveedor_id = orden_de_compra.proveedor_id");
+        $this->db->where("solicitud_requerimientos.solicitud_id", $solicitud_id);
+        $query=$this->db->get();
+        return $query->row();
+    
+    }
 }
 ?>
