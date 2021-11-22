@@ -194,8 +194,8 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*10, 10);
                 <tr>
                     <th>CARGO: </th>
                     <td><?php echo $solicitud->cargo_solicitante?></td>
-                    <td>Ninguna</td>
-                    <td>Ninguna</td>
+                    <td>AMSJ-ADJ2021</td>
+                    <td><?php echo $solicitud->amsj?></td>
                 </tr>
                 <tr>
                     <th>FUENTE DE FINANCIMIENTO: </th>
@@ -205,7 +205,7 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*10, 10);
                     <th>TELÉFONO: </th>
                     <td><?php echo $orden->telefono_alcaldia?></td>
                     <td>CORREO ELECTRONICO</td>
-                    <td><?php echo $orden->correo_alcaldia?></td>
+                    <td class="text-primary"><?php echo $orden->correo_alcaldia?></td>
                 </tr>
             </table>
         </div>

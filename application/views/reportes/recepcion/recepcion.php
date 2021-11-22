@@ -291,7 +291,7 @@
                     </li>
 
                     <?php for ($i = 1; $i <= $paginas; $i++) { ?>
-                        <li class="page-item <?php echo $_GET['pag']==$i ? 'active':'' ?>"><a class="page-link" href="<?php echo base_url()."Reporte/ordenCompra/".$acta->solicitud_id."?pag=".$i ?>"><?php echo $i ?></a></li>
+                        <li class="page-item <?php echo $_GET['pag']==$i ? 'active':'' ?>"><a class="page-link" href="<?php echo base_url()."Reporte/recepcion/".$acta->solicitud_id."?pag=".$i ?>"><?php echo $i ?></a></li>
                     <?php } ?>
                    
                     <li class="page-item 
