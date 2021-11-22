@@ -1,4 +1,7 @@
 <?php
+
+   
+
     //funcion fecha a letra
     function convertirFecha($strFehca)
     {
@@ -9,8 +12,8 @@
         return $formatoEsperado;
     }
 
-
-
+    $anio_actual = date('Y');
+    
 
     $numeroProductos= count($productos);
     //echo "<p>" . $numeroProductos . " productos</p>";
