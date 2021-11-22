@@ -104,7 +104,7 @@
                 <tr>
                     <td class="text-start fw-bold" colspan="3">FECHA: (D-M-A)</td>
                     <td colspan="5" style="margin: 0;"><?php echo convertirFecha($solicitud->fecha);?></td>
-                    <td colspan="4">205</td>
+                    <td colspan="4"><?php echo $solicitud->amsj;?></td>
                 </tr>
                 <tr>
                     <td class="text-start fw-bold" colspan="3">NOMBRE DEL SOLICITANTE:</td>

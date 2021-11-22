@@ -85,6 +85,7 @@ class Reporte extends CI_Controller
 		$propuestaOrdenCompra= $this->Reporte_model->getPropuestaOrdenCompra($id);
 		$acta= $this->Reporte_model->getActa($id);
 		$asignacion= $this->Reporte_model->getAsignacionPresupuestaria($id);
+		$solicitud = $this->Reporte_model->getSolicitudRequeimiento_OrdenCompra_Proveedor($id);
 
 		$data=[
 			'id'=>$id,
@@ -92,6 +93,7 @@ class Reporte extends CI_Controller
 			'solicitud'=>$acta,
 			'propuesta'=>$propuestaOrdenCompra,
 			'asignacion'=>$asignacion,
+			'solicitud'=>$solicitud,
 		];
 		$this->load->view('reportes/solicitud/solicitud',$data);
 	}
@@ -138,6 +140,7 @@ class Reporte extends CI_Controller
 		$acta= $this->Reporte_model->getSolicitudRequeimiento_OrdenCompra_Proveedor($id_acta);
 		$adjudicacion=$this->Reporte_model->getAdjudicacion($id_acta);
 		$asignacion= $this->Reporte_model->getAsignacionPresupuestaria($id_acta);
+		$recepcion = $this->Reporte_model->getActaDeRecepcion($id_acta);
 
 		$data=[
 			'id'=>$id_acta,
@@ -145,6 +148,7 @@ class Reporte extends CI_Controller
 			'acta'=>$acta,
 			'adjudicacion'=>$adjudicacion,
 			'asignacion'=>$asignacion,
+			'recepcion'=>$recepcion,
 		];
 		$this->load->view('reportes/recepcion/recepcion',$data);
 	}

@@ -106,8 +106,8 @@
                                 En la Alcaldía Municipal de San Julián, ubicada entre 1a y 3a Calle Poniente, Barrio el
                                 Centro, Municipio de San Julián,
                                 Departamento de Sonsonate A las: <span
-                                    class="fw-bold text-decoration-underline">15:40:00</span> del día: <span
-                                    class="fw-bold text-decoration-underline">martes, 12 de octubre de 2021</span>
+                                    class="fw-bold text-decoration-underline"><?php echo substr(($recepcion->hora),11);?></span> del día: <span
+                                    class="fw-bold text-decoration-underline"><?php echo convertirFecha($acta->fecha);?></span>
                             </p>
                             <p>
                                 Reunidos con el proposito de hacer entrega formal por parte del proveedor: <span

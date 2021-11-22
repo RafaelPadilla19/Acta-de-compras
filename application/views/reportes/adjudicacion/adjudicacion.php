@@ -93,7 +93,7 @@
                 <tr>
                     <td>FECHA</td>
                     <td><?php echo convertirFecha($acta->fecha);?></td>
-                    <td>205</td>
+                    <td><?php echo $acta->amsj;?></td>
                 </tr>
             </tbody>
         </table>
