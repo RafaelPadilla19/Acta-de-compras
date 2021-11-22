@@ -1,4 +1,12 @@
 <?php
+        function convertirNumeroLetra($n){
+            $formatterES = new NumberFormatter("es-ES", NumberFormatter::SPELLOUT);
+            $izquierda = intval(floor($n));
+            $derecha = intval(($n - floor($n)) * 100);
+            return $formatterES->format($izquierda) . " punto " . $formatterES->format($derecha);
+        }
+
+
     function convertirFecha($strFehca)
     {
         $fechaAArray=explode('-',$strFehca);
@@ -103,7 +111,7 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*10, 10);
                     <tr>
                         <td><?php echo $solicitud->nombre?></td>
                         <td>$ <?php echo $solicitud->valor_compra?></td>
-                        <td>QUINIENTOS DIECISIETE 00/100 DÓLARES DE LOS ESTADOS UNIDOS</td>
+                        <td><?php echo strtoupper(convertirNumeroLetra($solicitud->valor_compra)); ?> DÓLARES DE LOS ESTADOS UNIDOS</td>
                     </tr>
                 </tbody>
             </table>

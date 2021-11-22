@@ -80,6 +80,9 @@ class Reporte extends CI_Controller
 	}
 
 	public function solicitudRequerimiento($id){
+
+		$this->validarSessionReporte();
+
 		$this->load->model('Reporte_model');
 		$productos= $this->Reporte_model->getProductosPorSolicitud($id);
 		$propuestaOrdenCompra= $this->Reporte_model->getPropuestaOrdenCompra($id);
@@ -270,6 +273,14 @@ class Reporte extends CI_Controller
 		echo json_encode($response);
 	}
 
+	public function validarSessionReporte(){
+		if($this->session->userdata("usuario") == null){
+			if(!($this->uri->segment(1) == "Usuario" && $this->uri->segment(2) == "logear"))
+				{
+					return redirect("Usuario/logear");
+				}
+		}
+	}
 
 }
 ?>
