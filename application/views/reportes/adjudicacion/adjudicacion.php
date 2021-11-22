@@ -1,4 +1,10 @@
 <?php
+    function convertirNumeroLetra($n){
+        $formatterES = new NumberFormatter("es-ES", NumberFormatter::SPELLOUT);
+        $izquierda = intval(floor($n));
+        $derecha = intval(($n - floor($n)) * 100);
+        return $formatterES->format($izquierda) . " punto " . $formatterES->format($derecha);
+    }
 //funcion fecha a letra
     function convertirFecha($strFehca)
     {
@@ -153,7 +159,7 @@
                     <tr>
                         <td><?php echo $acta->nombre;?></td>
                         <td><?php echo $acta->valor_compra?></td>
-                        <td>QUINIENTOS DIECISIETE 00/100 DÓLARES DE LOS ESTADOS UNIDOS</td>
+                        <td><?php echo strtoupper(convertirNumeroLetra($acta->valor_compra)); ?> DÓLARES DE LOS ESTADOS UNIDOS</td>
                     </tr>
                 </tbody>
             </table>
@@ -165,10 +171,10 @@
             pública. ADJUDIQUESE.
         </p>
         <p class="text-start txt">
-            El requerimiento AMSJ <span class="fw-bold">205</span> con un monto de <span class="fw-bold">$ 517.00</span>
+            El requerimiento AMSJ <span class="fw-bold"><?php echo $acta->amsj;?></span> con un monto de <span class="fw-bold">$ <?php echo $acta->valor_compra?></span>
         </p>
         <p class="text-start txt px-4 ms-1">
-            QUINIENTOS DIECISIETE 00/100 DÓLARES DE LOS ESTADOS UNIDOS
+        <?php echo strtoupper(convertirNumeroLetra($acta->valor_compra)); ?> DÓLARES DE LOS ESTADOS UNIDOS
         </p>
         <p class="text-start txt">
             A la persona natural: <span class="fw-bold ms-1"> <?php echo $acta->nombre?></span>

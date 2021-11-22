@@ -1,4 +1,10 @@
 <?php  
+    function convertirNumeroLetra($n){
+        $formatterES = new NumberFormatter("es-ES", NumberFormatter::SPELLOUT);
+        $izquierda = intval(floor($n));
+        $derecha = intval(($n - floor($n)) * 100);
+        return $formatterES->format($izquierda) . " punto " . $formatterES->format($derecha);
+    }
     function convertirFecha($strFehca)
     {
         $fechaAArray=explode('-',$strFehca);
@@ -100,7 +106,7 @@
     </div>
     <p class="txt">
         Recibí de la Tesorería de San Julián, Departamento de Sonsonate, la cantidad de 
-        <span class="fw-bold text-uppercase">Trescientos treinta y tres 33/100 dolares de los estados unidos de america</span>
+        <span class="fw-bold text-uppercase"><?php echo strtoupper(convertirNumeroLetra($solicitud->valor_compra)); ?> dolares de los estados unidos de america</span>
         en concepto de:
     </p>
     <div class="table-responsive mb-1">
@@ -135,11 +141,6 @@
                     <th scope="row" class="col-2" colspan="2"></th>
                     <td rowspan="2" class="">$$</td>
                     <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th scope="row" class="col-2" colspan="2"></th>
-                    <td></td>
                     <td>$ <?php echo $solicitud->valor_compra?></td>
                 </tr>
             </tbody>
@@ -154,7 +155,7 @@
                 </tr>
                 <tr>
                     <th scope="row" style="padding: 20px 0 20px 0;">PROYECTO O PROGRAMA</th>
-                    <td><?php echo $asignacion->proyecto?></td>
+                    <td class="align-middle"><?php echo $asignacion->proyecto?></td>
                 </tr>
             </tbody>
         </table>
@@ -218,14 +219,14 @@
         </div>
     </div>
     <div class="table-responsive mb-1">
-        <table class="table border-dark table-sm table-bordered text-center txt-table">
+        <table class="table border-dark table-sm table-bordered text-center txt-table align-middle">
             <thead>
                 <tr class="border-dark mx-auto" style="padding: 30px 0 30px 0;">
                     <th class="">AM5J-ADI2021-</th>
-                    <td class=""></td>
+                    <td class=""><?php echo $solicitud->amsj?></td>
                     <td class="col-7" colspan="7"></td>
                     <th class="">AM5J-ADI2021-</th>
-                    <td class=""></td>
+                    <td class=""><?php echo $solicitud->amsj?></td>
                 </tr>
             </thead>
             <tbody>

@@ -1,11 +1,10 @@
 <?php
-        function convertirNumeroLetra($n){
-            $formatterES = new NumberFormatter("es-ES", NumberFormatter::SPELLOUT);
-            $izquierda = intval(floor($n));
-            $derecha = intval(($n - floor($n)) * 100);
-            return $formatterES->format($izquierda) . " punto " . $formatterES->format($derecha);
-        }
-
+    function convertirNumeroLetra($n){
+        $formatterES = new NumberFormatter("es-ES", NumberFormatter::SPELLOUT);
+        $izquierda = intval(floor($n));
+        $derecha = intval(($n - floor($n)) * 100);
+        return $formatterES->format($izquierda) . " punto " . $formatterES->format($derecha);
+    }
 
     function convertirFecha($strFehca)
     {
@@ -166,7 +165,7 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*10, 10);
                         </tr>
                         <?php endforeach; ?>
                             <th>SON:</th>
-                            <th colspan="4">TRESCIENTOS TREINTA Y TRES 33/100 DÓLARES DE LOS ESTADOS UNIDOS</th>
+                            <th colspan="4"><?php echo strtoupper(convertirNumeroLetra($solicitud->valor_compra)); ?> DÓLARES DE LOS ESTADOS UNIDOS</th>
                         </tr>
                     </tbody>
                 </table>
@@ -178,11 +177,11 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*10, 10);
                 </tr>
                 <tr>
                     <th class="col-4">LUGAR DE ENTREGA: </th>
-                    <th class="col-8"><?php echo $solicitud->lugar_entrega?></th>
+                    <td class="col-8"><?php echo $solicitud->lugar_entrega?></td>
                 </tr>
                 <tr>
                     <th class="col-4">FECHA DE ENTREGA: </th>
-                    <th class="col-8"><?php echo $orden->fecha_de_entrega?></th>
+                    <td class="col-8"><?php echo $orden->fecha_de_entrega?></td>
                 </tr>
             </table>
             <div class="centrado txt pt-1">
