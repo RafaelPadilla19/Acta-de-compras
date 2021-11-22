@@ -1,5 +1,5 @@
 <?php
-    //funcion fecha a letra
+//funcion fecha a letra
     function convertirFecha($strFehca)
     {
         $fechaAArray=explode('-',$strFehca);
@@ -92,7 +92,7 @@
             <tbody>
                 <tr>
                     <td>FECHA</td>
-                    <td>martes, 12 de octubre de 2021</td>
+                    <td><?php echo convertirFecha($acta->fecha);?></td>
                     <td>205</td>
                 </tr>
             </tbody>
@@ -101,7 +101,7 @@
             <tbody>
                 <tr>
                     <td>PROYECTO PROGRAMA</td>
-                    <td>Programa de Seguridad Municipal</td>
+                    <td><?php echo $asignacion->proyecto;?></td>
                 </tr>
             </tbody>
         </table>
@@ -125,40 +125,11 @@
                 <tbody>
                     <tr>
                         <th scope="row">1</th>
-                        <td>jdlmdlkqnmdqw</td>
-                        <td>ndlandklwqwdfqq</td>
-                        <td>98u290</td>
+                        <td><?php echo $acta->nit?></td>
+                        <td><?php echo $acta->nombre?></td>
+                        <td><?php echo $acta->valor_compra?></td>
                     </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>jdwkandjkawn9i</td>
-                        <td>dnlwjdwwwwwwww</td>
-                        <td>ejo2jeo93eo1je</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>mldkwmdwqmwdqw</td>
-                        <td>mkldwmdilqwd</td>
-                        <td>dmwldkmqwkdqwdqwd</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>doiwej23p323</td>
-                        <td>lsnaclnla</td>
-                        <td>mxklsmqwdlmdow</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td>jdiqwjoqwj</td>
-                        <td>mlqdmñwlmkw</td>
-                        <td>mlqdmñwlmkw</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">6</th>
-                        <td>92i23211</td>
-                        <td>knkjandkje</td>
-                        <td>mxlasnjkcnsdjknckasnjkax</td>
-                    </tr>
+                  
                 </tbody>
             </table>
 
@@ -181,7 +152,7 @@
                 <tbody>
                     <tr>
                         <td><?php echo $acta->nombre;?></td>
-                        <td>$ 517.00</td>
+                        <td><?php echo $acta->valor_compra?></td>
                         <td>QUINIENTOS DIECISIETE 00/100 DÓLARES DE LOS ESTADOS UNIDOS</td>
                     </tr>
                 </tbody>
@@ -200,11 +171,11 @@
             QUINIENTOS DIECISIETE 00/100 DÓLARES DE LOS ESTADOS UNIDOS
         </p>
         <p class="text-start txt">
-            A la persona natural: <span class="fw-bold ms-1"> ALMACENES VIDRÍ S.A. DE V.C.</span>
+            A la persona natural: <span class="fw-bold ms-1"> <?php echo $acta->nombre?></span>
         </p>
         <p class="text-start txt">
-            NIT: <span class="fw-bold"><ins>1908120983</ins></span> NCR O DUI: <span
-                class="fw-bold"><ins>98712873-2</ins></span>
+            NIT: <span class="fw-bold"><ins><?php echo $acta->nit?></ins></span> NCR O DUI: <span
+                class="fw-bold"><ins><ins><?php echo $acta->ncr_dui?></ins></span>
         </p>
         <div class="d-flex justify-content-startrow pt-5">
             <div class="centrado txt">
@@ -218,7 +189,7 @@
             <div class="centrado txt col-6">
                 <div class="linea"></div>
                 <p>
-                <div>Gabriel Omon Serrano Hernandez</div>
+                <div>Gabriel Omón Serrano Hernandez</div>
                 <div>Alcalde</div>
                 </p>
             </div>

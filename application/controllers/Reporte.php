@@ -113,11 +113,15 @@ class Reporte extends CI_Controller
 		$this->load->model('Reporte_model');
 		$productos= $this->Reporte_model->getProductosPorSolicitud($id_acta);
 		$acta= $this->Reporte_model->getActa($id_acta);
+		$solicitud= $this->Reporte_model->getSolicitudRequeimiento_OrdenCompra_Proveedor($id_acta);
+		$orden= $this->Reporte_model->getOrdenCompra($id_acta);
 
 		$data=[
 			'id'=>$id_acta,
 			'productos'=>$productos,
 			'acta'=>$acta,
+			'solicitud'=>$solicitud,
+			'orden'=>$orden,
 		];
 		$this->load->view('reportes/orden/orden',$data);
 	}	
@@ -126,11 +130,15 @@ class Reporte extends CI_Controller
 		$this->load->model('Reporte_model');
 		$productos= $this->Reporte_model->getProductosPorSolicitud($id_acta);
 		$acta= $this->Reporte_model->getSolicitudRequeimiento_OrdenCompra_Proveedor($id_acta);
+		$adjudicacion=$this->Reporte_model->getAdjudicacion($id_acta);
+		$asignacion= $this->Reporte_model->getAsignacionPresupuestaria($id_acta);
 
 		$data=[
 			'id'=>$id_acta,
 			'productos'=>$productos,
 			'acta'=>$acta,
+			'adjudicacion'=>$adjudicacion,
+			'asignacion'=>$asignacion,
 		];
 		$this->load->view('reportes/recepcion/recepcion',$data);
 	}
@@ -150,12 +158,13 @@ class Reporte extends CI_Controller
 		$this->load->model('Reporte_model');
 		$productos= $this->Reporte_model->getProductosPorSolicitud($id_acta);
 		$acta= $this->Reporte_model->getSolicitudRequeimiento_OrdenCompra_Proveedor($id_acta);
-	
+		$asignacion= $this->Reporte_model->getAsignacionPresupuestaria($id_acta);
 
 		$data=[
 			'id'=>$id_acta,
 			'productos'=>$productos,
 			'acta'=>$acta,
+			'asignacion'=>$asignacion,
 			
 		];
 		$this->load->view('reportes/adjudicacion/adjudicacion',$data);

@@ -1,5 +1,12 @@
 <?php
-
+ function convertirFecha($strFehca)
+ {
+     $fechaAArray=explode('-',$strFehca);
+     $miFecha=mktime(0,0,0,$fechaAArray[1],$fechaAArray[2],$fechaAArray[0]);
+     setlocale(LC_TIME, 'es_ES.UTF-8');
+     $formatoEsperado=strftime("%d de %B de %Y", $miFecha);
+     return $formatoEsperado;
+ }
     $numeroProductos= count($productos);
     //echo "<p>" . $numeroProductos . " productos</p>";
 
@@ -80,15 +87,15 @@
                 <thead>
                     <tr>
                         <th class="col-1">FECHA</th>
-                        <td class="col-4">martes, 12 de octubre de 2021</td>
+                        <td class="col-4"><?php echo convertirFecha($acta->fecha);?></td>
                         <th>AMSJ-AR2021</th>
-                        <td>205</td>
+                        <td><?php echo $acta->nombre?></td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <th scope="row" class="col-3" >PROYECTO PROGRAMA</th>
-                        <td colspan="3" >Programa de Seguridad Municipal</td>
+                        <td colspan="3" ><?php echo $asignacion->proyecto;?></td>
                     </tr>
                     <tr>
                         <th scope="row" colspan="4" style="height: 15px;"></th>
@@ -104,7 +111,7 @@
                             </p>
                             <p>
                                 Reunidos con el proposito de hacer entrega formal por parte del proveedor: <span
-                                    class="fw-bold text-decoration-underline">ALMACENES VIDRI S.A DE C.V.</span>
+                                    class="fw-bold text-decoration-underline"><?php echo $acta->nombre?></span>
                             </p>
                             <p>
                                 De los bienes o servicios prestados, correspondiente a la forma de contratación por
@@ -127,7 +134,7 @@
                                     </p>
                                 </div>
                                 <div class="col-3 col-md-3">
-                                    <p class="text-center fw-bold">205 AMSJ-OC2021
+                                    <p class="text-center fw-bold"><?php echo $acta->amsj;?> AMSJ-OC2021
                                     <div class="linea" style="max-width: 80%;margin-top: -10px;"></div>
                                     </p>
                                 </div>
@@ -135,7 +142,7 @@
                                     de fecha:
                                 </p>
                                 <div class="col-2 col-md-2">
-                                    <p class="text-center fw-bold">12/10/2021
+                                    <p class="text-center fw-bold"><?php echo $acta->fecha;?>
                                     <div class="linea" style="max-width: 90%;margin-top: -10px;"></div>
                                     </p>
                                 </div>
@@ -147,7 +154,7 @@
                                     </p>
                                 </div>
                                 <div class="col-6 col-md-6">
-                                    <p class="text-center fw-bold">ALMACENES VIDRI S.A DE C.V.
+                                    <p class="text-center fw-bold"><?php echo $acta->nombre?>
                                     <div class="linea" style="margin-top: -10px;"></div>
                                     </p>
                                 </div>
@@ -159,7 +166,7 @@
                                     </p>
                                 </div>
                                 <div class="col-6 col-md-6">
-                                    <p class="text-center fw-bold">Fredy Alberto Perez
+                                    <p class="text-center fw-bold"><?php echo $adjudicacion->administrador_de_contrato_u_orden_de_compra;?>
                                     <div class="linea" style="margin-top: -10px;"></div>
                                     </p>
                                 </div>
@@ -171,7 +178,7 @@
                                     </p>
                                 </div>
                                 <div class="col-6 col-md-6">
-                                    <p class="text-center fw-bold">Cuerpo de Agentes Municipales
+                                    <p class="text-center fw-bold"><?php echo $acta->departamento_solicitante;?>
                                     <div class="linea" style="margin-top: -10px;"></div>
                                     </p>
                                 </div>
@@ -183,7 +190,7 @@
                                     </p>
                                 </div>
                                 <div class="col-6 col-md-6">
-                                    <p class="text-center fw-bold">Fredy Alberto Perez
+                                    <p class="text-center fw-bold"><?php echo $adjudicacion->administrador_de_contrato_u_orden_de_compra;?>
                                     <div class="linea" style="margin-top: -10px;"></div>
                                     </p>
                                 </div>
@@ -242,9 +249,9 @@
                                 <div class="col-5 col-md-5">
                                     <div class="linea" style="margin-left: 0;"></div>
                                     <p>
-                                    <div>ALMACENES VIDRI S.A DE C.V.</div>
-                                    <div>002-7</div>
-                                    <div>0210-1911-71-001-6</div>
+                                    <div><?php echo $acta->nombre?></div>
+                                    <div><?php echo $acta->ncr_dui?></div>
+                                    <div><?php echo $acta->nit?></div>
                                     </p>
                                 </div>
                                 <div class="col-1 col-md-1">
