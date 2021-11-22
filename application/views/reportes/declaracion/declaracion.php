@@ -31,9 +31,9 @@
             <p class="text-end">DUI O NCR: </p>
         </div>
         <div class="col-9">
-            <p class="fw-bold"> ALMACENES VIDRI S.A DE C.V</p>
-            <p class="text-start fw-bold ms-2">0210-191171-0016</p>
-            <p class="text-start fw-bold ms-2">002-7</p>
+            <p class="fw-bold"><?php echo $acta->nombre?></p>
+            <p class="text-start fw-bold ms-2"><?php echo $acta->nit?></p>
+            <p class="text-start fw-bold ms-2"><?php echo $acta->ncr_dui?></p>
         </div>
         <div class="col-1">
             <p>con:</p>
@@ -52,9 +52,9 @@
         <div class="centrado txt">
             <div class="linea"></div>
             <p>
-                <div>Nombre: <span>ALMACENES VIDRI S.A DE C.V.</span></div></p>
-                <p class="text-start">DUI O NCR: 002-7</p>
-                <p class="text-start">NIT: 0210-191171-0016</p>                
+                <div>Nombre: <span><?php echo $acta->nombre?></span></div></p>
+                <p class="text-start">DUI O NCR: <?php echo $acta->ncr_dui?></p>
+                <p class="text-start">NIT: <?php echo $acta->nit?></p>                
             
         </div>
     </div>

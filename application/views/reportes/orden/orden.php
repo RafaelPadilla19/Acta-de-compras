@@ -1,5 +1,12 @@
 <?php
-
+    function convertirFecha($strFehca)
+    {
+        $fechaAArray=explode('-',$strFehca);
+        $miFecha=mktime(0,0,0,$fechaAArray[1],$fechaAArray[2],$fechaAArray[0]);
+        setlocale(LC_TIME, 'es_ES.UTF-8');
+        $formatoEsperado=strftime("%d de %B de %Y", $miFecha);
+        return $formatoEsperado;
+    }
 $numeroProductos= count($productos);
 //echo "<p>" . $numeroProductos . " productos</p>";
 
@@ -77,8 +84,8 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*10, 10);
             <tbody>
                 <tr>
                     <td>FECHA</td>
-                    <td>martes, 12 de octubre de 2021</td>
-                    <td>205</td>
+                    <td><?php echo convertirFecha($solicitud->fecha);?></td>
+                    <td><?php echo $solicitud->amsj;?></td>
                 </tr>
             </tbody>
         </table>
@@ -94,8 +101,8 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*10, 10);
                 </thead>
                 <tbody>
                     <tr>
-                        <td>ALMACENES VIDRÍ S.A DE C.V.</td>
-                        <td>$ 517.00</td>
+                        <td><?php echo $solicitud->nombre?></td>
+                        <td>$ <?php echo $solicitud->valor_compra?></td>
                         <td>QUINIENTOS DIECISIETE 00/100 DÓLARES DE LOS ESTADOS UNIDOS</td>
                     </tr>
                 </tbody>
@@ -104,9 +111,9 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*10, 10);
                 <thead>
                     <tr>
                         <th>LUGAR</th>
-                        <td>Alcaldía de San Julián Cacaluta</td>
+                        <td><?php echo $solicitud->lugar?></td>
                         <th>NIT</th>
-                        <td>098291733-9</td>
+                        <td><?php echo $solicitud->nit?></td>
                     </tr>
                 </thead>
                 <tbody>
@@ -114,7 +121,7 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*10, 10);
                         <th scope="row">NOMBRE</th>
                         <td>Mario Enrique Maza Figueroa</td>
                         <th>NCR O DUI</td>
-                        <td>3224420437</td>
+                        <td><?php echo $solicitud->ncr_dui?></td>
                     </tr>
                     <tr>
                         <th scope="row">DIRECCIÓN</th>
@@ -163,7 +170,7 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*10, 10);
                 </tr>
                 <tr>
                     <th class="col-4">LUGAR DE ENTREGA: </th>
-                    <th class="col-8">Alcaldía Municipal de San Julián Cacaluta</th>
+                    <th class="col-8"><?php echo $solicitud->lugar_entrega?></th>
                 </tr>
                 <tr>
                     <th class="col-4">FECHA DE ENTREGA: </th>
@@ -180,13 +187,13 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*10, 10);
             <table class="table border-dark table-sm table-bordered text-center txt-table">
                 <tr>
                     <th>SOLICITANTE: </th>
-                    <td>Ninguna</td>
+                    <td><?php echo $solicitud->nombre_solicitante?></td>
                     <td>Ninguna</td>
                     <td>Ninguna</td>
                 </tr>
                 <tr>
                     <th>CARGO: </th>
-                    <td>Ninguna</td>
+                    <td><?php echo $solicitud->cargo_solicitante?></td>
                     <td>Ninguna</td>
                     <td>Ninguna</td>
                 </tr>
@@ -196,9 +203,9 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*10, 10);
                 </tr>
                 <tr>
                     <th>TELÉFONO: </th>
-                    <td>2461-2904</td>
+                    <td><?php echo $orden->telefono_alcaldia?></td>
                     <td>CORREO ELECTRONICO</td>
-                    <td>sanjulian.uaci2021@gmail.com</td>
+                    <td><?php echo $orden->correo_alcaldia?></td>
                 </tr>
             </table>
         </div>
