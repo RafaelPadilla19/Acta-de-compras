@@ -119,13 +119,13 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*10, 10);
                 <tbody>
                     <tr>
                         <th scope="row">NOMBRE</th>
-                        <td>Mario Enrique Maza Figueroa</td>
+                        <td><?php echo $solicitud->nombre?></td>
                         <th>NCR O DUI</td>
                         <td><?php echo $solicitud->ncr_dui?></td>
                     </tr>
                     <tr>
                         <th scope="row">DIRECCIÓN</th>
-                        <td colspan="3">Cantón Petacas, Caserío El Sauce, San Julián</td>
+                        <td colspan="3"><?php echo $solicitud->direccion?></td>
                     </tr>
                 </tbody>
             </table>
@@ -134,7 +134,7 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*10, 10);
                     <thead>
                         <tr>
                             <th scope="col" class="border-end-0">PROYECTO PROGRAMA</th>
-                            <td colspan="5" class="border-start-0">KCANIKQWDNIDMWAKLDMQW NKWNDKANWDNAW</td>
+                            <td colspan="5" class="border-start-0"><?php echo $asignacion->proyecto?></td>
                         </tr>
                         <tr>
                             <th scope="row" colspan="5"></th>
@@ -174,7 +174,7 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*10, 10);
                 </tr>
                 <tr>
                     <th class="col-4">FECHA DE ENTREGA: </th>
-                    <th class="col-8">miércoles, 6 de Octubre de 2021</th>
+                    <th class="col-8"><?php echo $orden->fecha_de_entrega?></th>
                 </tr>
             </table>
             <div class="centrado txt pt-1">
@@ -188,8 +188,8 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*10, 10);
                 <tr>
                     <th>SOLICITANTE: </th>
                     <td><?php echo $solicitud->nombre_solicitante?></td>
-                    <td>Ninguna</td>
-                    <td>Ninguna</td>
+                    <td>AMSJ 2021</td>
+                    <td><?php echo $solicitud->amsj?></td>
                 </tr>
                 <tr>
                     <th>CARGO: </th>
@@ -198,8 +198,8 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*10, 10);
                     <td>Ninguna</td>
                 </tr>
                 <tr>
-                    <th>FUENTE DE NACIMIENTO: </th>
-                    <th colspan="3">miércoles, 6 de Octubre de 2021</th>
+                    <th>FUENTE DE FINANCIMIENTO: </th>
+                    <th colspan="3"><?php echo $asignacion->fuente_de_financiamiento?></th>
                 </tr>
                 <tr>
                     <th>TELÉFONO: </th>

@@ -89,7 +89,7 @@
                         <th class="col-1">FECHA</th>
                         <td class="col-4"><?php echo convertirFecha($acta->fecha);?></td>
                         <th>AMSJ-AR2021</th>
-                        <td><?php echo $acta->nombre?></td>
+                        <td><?php echo $acta->amsj;?></td>
                     </tr>
                 </thead>
                 <tbody>

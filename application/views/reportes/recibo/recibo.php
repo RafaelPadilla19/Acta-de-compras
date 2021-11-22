@@ -1,4 +1,35 @@
+<?php  
+    function convertirFecha($strFehca)
+    {
+        $fechaAArray=explode('-',$strFehca);
+        $miFecha=mktime(0,0,0,$fechaAArray[1],$fechaAArray[2],$fechaAArray[0]);
+        setlocale(LC_TIME, 'es_ES.UTF-8');
+        $formatoEsperado=strftime("%d de %B de %Y", $miFecha);
+        return $formatoEsperado;
+    }
+    $numeroProductos= count($productos);
+    //echo "<p>" . $numeroProductos . " productos</p>";
 
+    $paginas= ceil($numeroProductos/5);
+
+    if(!isset($_GET['pag'])){
+        header("Location:" . base_url()."Reporte/recibo/".$id."?pag=1");
+    }
+    //validar si es mayor a la cantidad de paginas
+    if($_GET['pag'] > $paginas || $_GET['pag'] < 1){
+        header("Location:" . base_url()."Reporte/recibo/".$id."?pag=1");
+    }
+
+
+    //obtenemos los 5 productos de la pagina actual
+    $productosPagina= array_slice($productos, ($_GET['pag']-1)*5, 5);
+
+    $productosPagina= array_slice($productos, ($_GET['pag']-1)*5, 5);
+    function valorItem($item){
+        $valor = (($_GET['pag'] * 5)-5) + $item;
+        return $valor;
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -63,7 +94,7 @@
         </div>
         <div class="col-2 col-md-2">
             <h6 class="m-2 mb-2 fw-bold txt">
-                333.33
+            <?php echo $solicitud->valor_compra?>
             </h6>
         </div>
     </div>
@@ -84,43 +115,32 @@
                 </tr>
             </thead>
             <tbody>
+            <?php foreach($productosPagina as $item ):   ?>
                 <tr>
-                    <th scope="row">1</th>
-                    <td>SERVICIO</td>
-                    <td>MANO DE OBRA POR ELABORACIÓN DE TRES MURALES Y TRES LOGOS</td>
-                    <td>$ 333.33</td>
-                    <td>$ 333.33</td>
+                    <th scope="row"><?php echo $item->cantidad;?></th>
+                    <td><?php echo $item->unidad_medida;?></td>
+                    <td><?php echo $item->descripcion; ?></td>
+                    <td>$ <?php echo $item->costo_unitario;?></td>
+                    <td>$ <?php echo $item->total; ?></td>
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>jdwkandjkawn9i</td>
-                    <td>dnlwjdwwwwwwww</td>
-                    <td>$ 333.33</td>
-                    <td>$ 333.33</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>mldkwmdwqmwdqw</td>
-                    <td>mkldwmdilqwd</td>
-                    <td>$ 333.33</td>
-                    <td>$ 333.33</td>
-                </tr>
+                <?php endforeach; ?>
+               
                 <tr>
                     <th scope="row" class="col-2" colspan="2"></th>
                     <th>Renta 10%</th>
-                    <td>$ 333.33</td>
-                    <td>$ 333.33</td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <th scope="row" class="col-2" colspan="2"></th>
                     <td rowspan="2" class="">$$</td>
-                    <td>$ 333.33</td>
-                    <td>$ 333.33</td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <th scope="row" class="col-2" colspan="2"></th>
-                    <td>$ 333.33</td>
-                    <td>$ 333.33</td>
+                    <td></td>
+                    <td>$ <?php echo $solicitud->valor_compra?></td>
                 </tr>
             </tbody>
         </table>
@@ -130,15 +150,15 @@
             <tbody class="aling">
                 <tr>
                     <th scope="row" style="padding: 30px 0 30px 0;">JUSTIFICACIÓN</th>
-                    <td>Pago de mano de obra de la elaboración de tres logos de 1.50 de diametro y tres murales de 3*1 mts, en el edificio UMUSEC.</td>
+                    <td><?php echo $solicitud->destino_de_bien?></td>
                 </tr>
                 <tr>
                     <th scope="row" style="padding: 20px 0 20px 0;">PROYECTO O PROGRAMA</th>
-                    <td>REMODELACIÓN Y AMPLIACIÓN DEL EDIFICIO MUNICIPAL EX LUDOTECA, MUNICIPIO DE SAN JULIAN (ADICIONAL)</td>
+                    <td><?php echo $asignacion->proyecto?></td>
                 </tr>
             </tbody>
         </table>
-        <p class="txt text-end">San Julián, 6 de Octubre de 2021</p>
+        <p class="txt text-end">San Julián, <?php echo convertirFecha($solicitud->fecha);?></p>
     </div>
     <div class="d-flex justify-content-startrow g-0 text-center">
         <div class="col-4 col-md-4">
@@ -156,10 +176,10 @@
             <div class="centrado txt">     
                 <p style="width: 999px;">
                     <div class="linea"></div>
-                    <div>Mario Enrique Maza Figueroa</div>
-                    <div>Cantón Petacas, Caserio El Sauce, San Julián</div>
-                    <div>0312-270490-102-9</div>
-                    <div>04375765-4</div>
+                    <div><?php echo $solicitud->nombre?></div>
+                    <div><?php echo $solicitud->direccion?></div>
+                    <div><?php echo $solicitud->nit?></div>
+                    <div><?php echo $solicitud->ncr_dui?></div>
                 </p>
             </div>
         </div>
@@ -250,8 +270,33 @@
     <div class="ocultar d-flex justify-content-center my-3">
             <button id="imprimir" name="imprimir" class="btn btn-primary me-3">Imprimir</button>
             <a class="btn btn-primary" href="<?php echo base_url(); ?>">Volver</a>
-        </div>
+    </div>
+    <nav aria-label="Page navigation example" class="ocultar mb-4">
+        <ul class="pagination justify-content-center">
+            <li class="page-item 
+                <?php echo $_GET['pag']<=1 ? 'disabled':'' ?>">
 
+
+                <a class="page-link"
+                    href="<?php echo base_url()."Reporte/recibo/".$id."?pag=".$_GET["pag"]-1 ?>"
+                    tabindex="-1" aria-disabled="true">Anterior</a>
+            </li>
+
+            <?php for ($i = 1; $i <= $paginas; $i++) { ?>
+            <li class="page-item <?php echo $_GET['pag']==$i ? 'active':'' ?>"><a class="page-link"
+                    href="<?php echo base_url()."Reporte/recibo/".$id."?pag=".$i ?>"><?php echo $i ?></a>
+            </li>
+            <?php } ?>
+
+            <li class="page-item 
+                <?php echo $_GET['pag']>=$paginas ? 'disabled':'' ?>">
+
+                <a class="page-link"
+                    href="<?php echo base_url()."Reporte/recibo/".$id."?pag=".$_GET["pag"]+1 ?>"
+                    tabindex="-1" aria-disabled="true">Siguiente</a>
+            </li>
+        </ul>
+    </nav>
 </main>
 <script>
     //imprimir
