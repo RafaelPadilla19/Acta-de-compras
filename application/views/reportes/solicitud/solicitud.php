@@ -257,8 +257,7 @@
 
 
                     <a class="page-link"
-                        href="<?php echo base_url()."Reporte/solicitudRequerimiento/".$id."?pag=".$_GET["pag"]-1 ?>"
-                        tabindex="-1" aria-disabled="true">Anterior</a>
+                        href="<?php echo base_url()."Reporte/solicitudRequerimiento/".$id."?pag=".((int)$_GET["pag"]-1);?>" tabindex="-1" aria-disabled="true">Anterior</a> 
                 </li>
 
                 <?php for ($i = 1; $i <= $paginas; $i++) { ?>
@@ -271,7 +270,11 @@
                     <?php echo $_GET['pag']>=$paginas ? 'disabled':'' ?>">
 
                     <a class="page-link"
+<<<<<<< HEAD
                         href="<?php echo base_url()."Reporte/solicitudRequerimiento/".$id."?pag=".(int)$_GET["pag"]+1 ?>"
+=======
+                        href="<?php echo base_url()."Reporte/solicitudRequerimiento/".$id."?pag=".((int)$_GET["pag"]+1) ?>"
+>>>>>>> dd5f6a62bb7632d580e83b86544418d65671735a
                         tabindex="-1" aria-disabled="true">Siguiente</a>
                 </li>
             </ul>

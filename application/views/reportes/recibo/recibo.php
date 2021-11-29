@@ -279,7 +279,7 @@
 
 
                 <a class="page-link"
-                    href="<?php echo base_url()."Reporte/recibo/".$id."?pag=".$_GET["pag"]-1 ?>"
+                    href="<?php echo base_url()."Reporte/recibo/".$id."?pag=".((int)$_GET["pag"]-1); ?>"
                     tabindex="-1" aria-disabled="true">Anterior</a>
             </li>
 
@@ -293,7 +293,7 @@
                 <?php echo $_GET['pag']>=$paginas ? 'disabled':'' ?>">
 
                 <a class="page-link"
-                    href="<?php echo base_url()."Reporte/recibo/".$id."?pag=".$_GET["pag"]+1 ?>"
+                    href="<?php echo base_url()."Reporte/recibo/".$id."?pag=".((int)$_GET["pag"]+1); ?>"
                     tabindex="-1" aria-disabled="true">Siguiente</a>
             </li>
         </ul>

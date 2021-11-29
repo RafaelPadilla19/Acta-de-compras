@@ -287,7 +287,7 @@
                     <?php echo $_GET['pag']<=1 ? 'disabled':'' ?>">
                     
                     
-                        <a class="page-link" href="<?php echo base_url()."Reporte/recepcion/".$acta->solicitud_id."?pag=".$_GET["pag"]-1 ?>" tabindex="-1" aria-disabled="true">Anterior</a>
+                        <a class="page-link" href="<?php echo base_url()."Reporte/recepcion/".$acta->solicitud_id."?pag=".((int)$_GET["pag"]-1); ?>" tabindex="-1" aria-disabled="true">Anterior</a>
                     </li>
 
                     <?php for ($i = 1; $i <= $paginas; $i++) { ?>
@@ -297,7 +297,7 @@
                     <li class="page-item 
                     <?php echo $_GET['pag']>=$paginas ? 'disabled':'' ?>">
                     
-                        <a class="page-link" href="<?php echo base_url()."Reporte/recepcion/".$acta->solicitud_id."?pag=".$_GET["pag"]+1 ?>" tabindex="-1" aria-disabled="true">Siguiente</a>
+                        <a class="page-link" href="<?php echo base_url()."Reporte/recepcion/".$acta->solicitud_id."?pag=".((int)$_GET["pag"]+1); ?>" tabindex="-1" aria-disabled="true">Siguiente</a>
                     </li>
                 </ul>
             </nav>
