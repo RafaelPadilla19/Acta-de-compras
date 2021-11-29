@@ -181,7 +181,7 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*10, 10);
                 </tr>
                 <tr>
                     <th class="col-4">FECHA DE ENTREGA: </th>
-                    <td class="col-8"><?php echo $orden->fecha_de_entrega?></td>
+                    <td class="col-8"><?php echo convertirFecha($orden->fecha_de_entrega)?></td>
                 </tr>
             </table>
             <div class="centrado txt pt-1">
