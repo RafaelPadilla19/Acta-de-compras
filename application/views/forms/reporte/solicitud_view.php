@@ -1,3 +1,4 @@
+
 <main class="" ng-app="app" ng-controller="app-controller">
     <div class="container  pt-4">
         <h3 class="text-capitalize text-center mb-5"><?php echo $title;?></h3>
@@ -112,11 +113,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-6">
-                                    <label for="fecha" class="form-label">Fecha</label>
-                                    <input type="date" class="form-control" value="09-09-2019" id="fecha"
-                                        ng-model="asignacion_presupuestaria.fecha" required>
-                                </div>
+                               
                             </div>
                         </form>
                     </div>

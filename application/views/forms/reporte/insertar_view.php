@@ -19,6 +19,10 @@
                     <input type="text" class="form-control" value="09-09-2019" id="fecha"
                         ng-model="solicitud_requerimientos.amsj" required>
                 </div>
+                <div class="mb-3 col-4">
+                    <label for="fecha" class="form-label">Departamento del solicitante</label>
+                    <input type="text" class="form-control" ng-model="solicitud_requerimientos.departamento_solicitante" required>
+                </div>
             </div>
             <div class="row">
                 <div class="mb-3 col-4">
@@ -122,11 +126,7 @@
                         ng-model="propuesta_orden_de_compras.cargo_de_recibido"
                         placeholder="Ingrese el cargo de quien lo recibe" required>
                 </div>
-                <div class="mb-3 col-4">
-                    <label for="fecha" class="form-label">Fecha que recibe UACI</label>
-                    <input type="date" class="form-control" value="09-09-2019" id="fecha"
-                        ng-model="propuesta_orden_de_compras.fecha" required>
-                </div>
+              
                 <div class="row">
                     <!---Boton Guardar orden de compre alineado hacia abajo-->
                     <div class="mb-3 col-2 mt-4">
@@ -281,7 +281,7 @@ angular.module("app", []).controller("app-controller", function($scope, $http, $
                 }).then(function succes(response) {
                     console.log(response.data);
                     if (i == parseInt($scope.productos.length) - 1) {
-                        window.location.href = "<?php echo base_url(); ?>Reporte/acta/" +
+                        window.location.href = "<?php echo base_url(); ?>Reporte/documentacionCompra/" +
                         id;
                     }
                 });

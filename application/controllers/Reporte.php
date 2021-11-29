@@ -88,7 +88,6 @@ class Reporte extends CI_Controller
 		$propuestaOrdenCompra= $this->Reporte_model->getPropuestaOrdenCompra($id);
 		$acta= $this->Reporte_model->getActa($id);
 		$asignacion= $this->Reporte_model->getAsignacionPresupuestaria($id);
-		$solicitud = $this->Reporte_model->getSolicitudRequeimiento_OrdenCompra_Proveedor($id);
 
 		$data=[
 			'id'=>$id,
@@ -96,7 +95,6 @@ class Reporte extends CI_Controller
 			'solicitud'=>$acta,
 			'propuesta'=>$propuestaOrdenCompra,
 			'asignacion'=>$asignacion,
-			'solicitud'=>$solicitud,
 		];
 		$this->load->view('reportes/solicitud/solicitud',$data);
 	}
