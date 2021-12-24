@@ -217,7 +217,12 @@ $year_actual = $year_actual->format('Y');
         }
 
         const validarCamposVacios = () => {
-            if ($scope.solicitud_requerimientos.fecha == null || $scope.solicitud_requerimientos.amsj==null || $scope.solicitud_requerimientos.departamento_solicitante==null ) {
+            if ($scope.solicitud_requerimientos.fecha == null || $scope.solicitud_requerimientos.amsj==null || $scope.solicitud_requerimientos.departamento_solicitante==null ||
+            solicitud_requerimientos.nombre_solicitante == null || solicitud_requerimientos.dependencia_solicitante == null || solicitud_requerimientos.cargo_solicitante== null ||
+            solicitud_requerimientos.nombre_autorizante == null || solicitud_requerimientos.dependencia_autorizante == null || solicitud_requerimientos.cargo_autorizante== null ||
+            solicitud_requerimientos.valor_compra == null || solicitud_requerimientos.forma_entrega == null || solicitud_requerimientos.lugar_entrega == null ||
+            solicitud_requerimientos.destino_de_bien == null || propuesta_orden_de_compras.nombre_administrador_contrato == null || propuesta_orden_de_compras.cargo_administrador_contrato ||
+            propuesta_orden_de_compras.dependencia == null || propuesta_orden_de_compras.nombre_recibido_por == null || propuesta_orden_de_compras.cargo_de_recibido == null) {
                 
                 alert("Por favor llene todos los campos");
                 return false;
