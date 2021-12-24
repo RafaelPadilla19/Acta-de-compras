@@ -263,15 +263,24 @@
                                 </div>
                                 <div class="col-5 col-md-5">
                                     <div class="linea" style="margin-left: 0;"></div>
-                                    <p>
-                                    <div>Fredy Alberto Perez</div>
-                                    <div>Director del CAM</div>
-                                    <div>Administrador de Contrato u Orden de Compra</div>
-                                    <div>Conforme Al Solicitante</div>
-                                    </p>
+                                        <p>
+                                            <div><?php echo $adjudicacion->administrador_de_contrato_u_orden_de_compra?></div>
+                                            <div><?php echo $adjudicacion->cargo_de_administrador_de_contrato?></div>
+                                            <div>Administrador de Contrato u Orden de Compra</div>
+                                            <div>Conforme Al Solicitante</div>
+                                        </p>
                                 </div>
                             </div>
-
+                            <div class="d-flex justify-content-startrow g-0 text-start fw-bold ">
+                                <div class="col-6"></div>
+                                <div class="col-1 fw-bold">NOMBRE:</div>                               
+                                <div class="col-5 col-md-5">
+                                    <div class="linea" style="margin-left: 0;"></div>
+                                    <p>
+                                        <?php echo $acta->nombre_solicitante?>
+                                    </p>
+                                </div>                                
+                            </div>
                         </td>
                     </tr>
                 </tbody>

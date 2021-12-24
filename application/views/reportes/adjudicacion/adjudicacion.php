@@ -187,9 +187,9 @@
             <div class="centrado txt">
                 <div class="linea"></div>
                 <p>
-                <div>Fredy Alberto Perez</div>
-                <div>Administrador de Contrato u Orden de Compra</div>
-                <div>Director del CAM</div>
+                    <!-- <div>//Fredy Alberto Perez</div> -->
+                    <div><?php echo $adjudicacion->administrador_de_contrato_u_orden_de_compra?></div>
+                    <div>Administrador de Contrato u Orden de Compra</div>
                 </p>
             </div>
             <div class="centrado txt col-6">
