@@ -286,7 +286,12 @@
         $scope.recepcion;
 
         const aceptacion_rechazo_validacion = () => {
-            if ($scope.) {
+            if ($scope.asignacion_presupuestaria.proyecto==null ||
+            $scope.asignacion_presupuestaria.numero_solicitud_modificacion==null ||
+            $scope.asignacion_presupuestaria.recibo_en_presupuesto_por==null ||
+            $scope.asignacion_presupuestaria.fuente_de_financiamiento==null ||
+            $scope.asignacion_presupuestaria.cargo==null ||
+            $scope.asignacion_presupuestaria.estado==null) {
 
                 alert("LLene todos los campos");
                 return false;
@@ -294,44 +299,79 @@
 
         }
 
+        const validar_campos_orden_compra = () => {
+            if($scope.orden_de_compra.lugar == null ||
+            $scope.orden_de_compra.proveedor_id==null ||
+            $scope.orden_de_compra.tipo_documento==null ||
+            $scope.orden_de_compra.observaciones==null ||
+            $scope.orden_de_compra.fecha_de_entrega==null ||
+            $scope.orden_de_compra.nombre_completo_jefe_uaci==null ||
+            $scope.orden_de_compra.telefono_alcaldia==null ||
+            $scope.orden_de_compra.correo_alcaldia==null){
+                alert("Llene todos los campos");
+                return false;
+            }
+        }
+
+        const validar_campos_adjudicacion = () => {
+            if($scope.adjudicacion.administrador_de_contrato_u_orden_de_compra==null ||
+            $scope.adjudicacion.cargo_de_administrador_de_contrato==null){
+                alert("Llene todos los campos");
+                return false;
+            }
+        }
+
+        const validar_campos_acta_de_recepcion = () => {
+            if($scope.acta_de_recepcion.hora== null ||
+            $scope.acta_de_recepcion.numero_factura==null){
+                alert("Llene todos los campos");
+                return false;
+            }
+        }
 
         $scope.guardarAdjudicacion = function() {
-            $http({
-                method: 'POST',
-                url: '<?php echo base_url() . "Reporte/insertAdjudicacion/"; ?>',
-                data: $scope.adjudicacion
-            }).then(function(response) {
-                alert("Se ha guardado la adjudicacion");
-                $('#modal-adjudicacion').modal('hide');
-                window.location.reload();
-            });
+            if(!(validar_campos_adjudicacion()==false)){
+                $http({
+                    method: 'POST',
+                    url: '<?php echo base_url() . "Reporte/insertAdjudicacion/"; ?>',
+                    data: $scope.adjudicacion
+                }).then(function(response) {
+                    alert("Se ha guardado la adjudicacion");
+                    $('#modal-adjudicacion').modal('hide');
+                    window.location.reload();
+                });
+            } 
         }
 
         $scope.guardarActaRecepcion = function() {
-            $http({
-                method: 'POST',
-                url: '<?php echo base_url() . "Reporte/insertActaRecepcion/"; ?>',
-                data: $scope.acta_de_recepcion
-            }).then(function(response) {
-                alert("Se ha guardado la acta de recepcion");
-                $('#modal-recepcion').modal('hide');
-                window.location.reload();
-            });
+            if(!(validar_campos_acta_de_recepcion()==false)){
+                $http({
+                    method: 'POST',
+                    url: '<?php echo base_url() . "Reporte/insertActaRecepcion/"; ?>',
+                    data: $scope.acta_de_recepcion
+                }).then(function(response) {
+                    alert("Se ha guardado la acta de recepcion");
+                    $('#modal-recepcion').modal('hide');
+                    window.location.reload();
+                });
+            }  
         }
 
         $scope.guardarOrderCompra = function() {
-            $http({
-                method: 'POST',
-                url: '<?php echo base_url() . "Reporte/insertOrdenCompra/"; ?>',
-                data: $scope.orden_de_compra
-            }).then(function successCallback(response) {
-                console.log(response);
+            if(!(validar_campos_orden_compra()==false)){
+                $http({
+                    method: 'POST',
+                    url: '<?php echo base_url() . "Reporte/insertOrdenCompra/"; ?>',
+                    data: $scope.orden_de_compra
+                }).then(function successCallback(response) {
+                    console.log(response);
 
-                $('#modal-orden').modal('hide');
-                window.location.reload();
-            }, function errorCallback(response) {
-                console.log(response);
-            });
+                    $('#modal-orden').modal('hide');
+                    window.location.reload();
+                }, function errorCallback(response) {
+                    console.log(response);
+                });
+            }
         }
 
 

@@ -16,7 +16,7 @@
     $numeroProductos= count($productos);
     //echo "<p>" . $numeroProductos . " productos</p>";
 
-    $paginas= ceil($numeroProductos/5);
+    $paginas= ceil($numeroProductos/4);
 
     if(!isset($_GET['pag'])){
         header("Location:" . base_url()."Reporte/recibo/".$id."?pag=1");
@@ -28,11 +28,11 @@
 
 
     //obtenemos los 5 productos de la pagina actual
-    $productosPagina= array_slice($productos, ($_GET['pag']-1)*5, 5);
+    $productosPagina= array_slice($productos, ($_GET['pag']-1)*4, 4);
 
-    $productosPagina= array_slice($productos, ($_GET['pag']-1)*5, 5);
+    $productosPagina= array_slice($productos, ($_GET['pag']-1)*4, 4);
     function valorItem($item){
-        $valor = (($_GET['pag'] * 5)-5) + $item;
+        $valor = (($_GET['pag'] * 4)-4) + $item;
         return $valor;
     }
 ?>
@@ -59,7 +59,7 @@
 </head>
 
 <body>
-<main style="margin: 0 60px;">
+<main style="margin: 20px 60px;">
     <div class="d-flex justify-content-startrow g-0 text-center border">
         <div class="col-2 col-md-2">
         <img src="<?php echo base_url();?>assets/img/escudo.jpeg" style="width: 80px;" alt="" class="mt-3">
@@ -146,15 +146,15 @@
             </tbody>
         </table>
     </div>
-    <div class="table-responsive mb-1">
+    <div class="table-responsive">
         <table class="table border-dark table-bordered text-center txt-table">
             <tbody class="aling">
                 <tr>
-                    <th scope="row" style="padding: 30px 0 30px 0;">JUSTIFICACIÓN</th>
+                    <th scope="row" style="padding: 20px 0 20px 0;">JUSTIFICACIÓN</th>
                     <td><?php echo $solicitud->destino_de_bien?></td>
                 </tr>
                 <tr>
-                    <th scope="row" style="padding: 20px 0 20px 0;">PROYECTO O PROGRAMA</th>
+                    <th scope="row" style="padding: 15px 0 15px 0;">PROYECTO O PROGRAMA</th>
                     <td class="align-middle"><?php echo $asignacion->proyecto?></td>
                 </tr>
             </tbody>

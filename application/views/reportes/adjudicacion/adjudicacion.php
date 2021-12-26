@@ -62,7 +62,7 @@
 </head>
 
 <body>
-    <main style="margin: 0 60px;">
+    <main style="margin: 20px 60px;">
         <div class="d-flex justify-content-startrow g-0 text-center">
             <div class="col-2 col-md-2">
                 <img src="<?php echo base_url();?>assets/img/escudo.jpeg" style="width: 80px;" alt="" class="mt-3">

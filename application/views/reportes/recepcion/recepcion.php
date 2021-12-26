@@ -10,7 +10,7 @@
     $numeroProductos= count($productos);
     //echo "<p>" . $numeroProductos . " productos</p>";
 
-    $paginas= ceil($numeroProductos/10);
+    $paginas= ceil($numeroProductos/8);
 
     if(!isset($_GET['pag'])){
         header("Location:" . base_url()."Reporte/recepcion/".$acta->solicitud_id."?pag=1");
@@ -22,10 +22,10 @@
 
 
     //obtenemos los 5 productos de la pagina actual
-    $productosPagina= array_slice($productos, ($_GET['pag']-1)*10, 10);
+    $productosPagina= array_slice($productos, ($_GET['pag']-1)*8, 8);
 
     function valorItem($item){
-      $valor = (($_GET['pag'] * 10)-10) + $item;
+      $valor = (($_GET['pag'] * 8)-8) + $item;
         return $valor;
     }
 

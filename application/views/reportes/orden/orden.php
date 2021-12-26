@@ -1,5 +1,4 @@
 <?php
-var_dump($solicitud);
     function convertirNumeroLetra($n){
         $formatterES = new NumberFormatter("es-ES", NumberFormatter::SPELLOUT);
         $izquierda = intval(floor($n));
