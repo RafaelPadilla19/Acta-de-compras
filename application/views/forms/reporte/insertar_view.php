@@ -14,11 +14,11 @@ $year_actual = $year_actual->format('Y');
                     <input type="date" class="form-control"  id="fecha" ng-model="solicitud_requerimientos.fecha" required>
                 </div>
                 <div class="mb-3 col-4">
-                    <label for="fecha" class="form-label">AMSJ<?php echo $year_actual ?></label>
+                    <label for="" class="form-label">AMSJ<?php echo $year_actual ?></label>
                     <input type="text" class="form-control"  ng-model="solicitud_requerimientos.amsj" required>
                 </div>
                 <div class="mb-3 col-4">
-                    <label for="fecha" class="form-label">Departamento del solicitante</label>
+                    <label for="" class="form-label">Departamento del solicitante</label>
                     <input type="text" class="form-control" ng-model="solicitud_requerimientos.departamento_solicitante" required>
                 </div>
             </div>
@@ -55,7 +55,7 @@ $year_actual = $year_actual->format('Y');
             <div class="row mb-3">
                 <div class="mb-3 col-2">
                     <label for="valor_compra" class="form-label">Valor de la compra</label>
-                    <input type="text" required class="form-control" id="valor_compra" ng-model="solicitud_requerimientos.valor_compra" placeholder="" disabled>
+                    <input type="text" required class="form-control" id="valor_compra" ng-model="solicitud_requerimientos.valor_compra" readonly>
                 </div>
                 <div class="mb-3 col-3">
                     <label for="forma_entrega" class="form-label">Forma de entrega</label>
@@ -217,14 +217,30 @@ $year_actual = $year_actual->format('Y');
         }
 
         const validarCamposVacios = () => {
-            if ($scope.solicitud_requerimientos.fecha == null || $scope.solicitud_requerimientos.amsj==null || $scope.solicitud_requerimientos.departamento_solicitante==null ||
-            solicitud_requerimientos.nombre_solicitante == null || solicitud_requerimientos.dependencia_solicitante == null || solicitud_requerimientos.cargo_solicitante== null ||
-            solicitud_requerimientos.nombre_autorizante == null || solicitud_requerimientos.dependencia_autorizante == null || solicitud_requerimientos.cargo_autorizante== null ||
-            solicitud_requerimientos.valor_compra == null || solicitud_requerimientos.forma_entrega == null || solicitud_requerimientos.lugar_entrega == null ||
-            solicitud_requerimientos.destino_de_bien == null || propuesta_orden_de_compras.nombre_administrador_contrato == null || propuesta_orden_de_compras.cargo_administrador_contrato ||
-            propuesta_orden_de_compras.dependencia == null || propuesta_orden_de_compras.nombre_recibido_por == null || propuesta_orden_de_compras.cargo_de_recibido == null) {
+            if ($scope.solicitud_requerimientos.fecha == null || 
+            $scope.solicitud_requerimientos.amsj==null || 
+            $scope.solicitud_requerimientos.departamento_solicitante==null ||
+            $scope.solicitud_requerimientos.nombre_solicitante == null || 
+            $scope.solicitud_requerimientos.dependencia_solicitante == null || 
+            $scope.solicitud_requerimientos.cargo_solicitante== null ||
+            $scope.solicitud_requerimientos.nombre_autorizante == null || 
+            $scope.solicitud_requerimientos.dependencia_autorizante == null || 
+            $scope.solicitud_requerimientos.cargo_autorizante== null ||
+            $scope.solicitud_requerimientos.valor_compra == null || 
+            $scope.solicitud_requerimientos.forma_entrega == null || 
+            $scope.solicitud_requerimientos.lugar_entrega == null ||
+            $scope.solicitud_requerimientos.destino_de_bien == null || 
+            $scope.propuesta_orden_de_compras.nombre_administrador_contrato == null || 
+            $scope.propuesta_orden_de_compras.cargo_administrador_contrato == null ||
+            $scope.propuesta_orden_de_compras.dependencia == null || 
+            $scope.propuesta_orden_de_compras.nombre_recibido_por == null || 
+            $scope.propuesta_orden_de_compras.cargo_de_recibido == null) {
                 
                 alert("Por favor llene todos los campos");
+                console.log($scope.solicitud_requerimientos);
+                console.log($scope.propuesta_orden_de_compras);
+
+
                 return false;
 
             }
