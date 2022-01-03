@@ -1,9 +1,25 @@
 <?php
+    //covertir decimal del dinero a fraccion ejemplo 110.50 a 50/100
+    function convertDecimal($number){
+        $numerEntero=floor($number);
+        $numerDecimal=$number-$numerEntero;
+        $numerDecimal=round($numerDecimal*100);
+        if($numerDecimal==0){
+            $numerDecimal="00";
+        }
+        if($numerDecimal<10){
+            $numerDecimal="0".$numerDecimal;
+        }
+        return $numerDecimal.'/100';
+    }
+
+    
     function convertirNumeroLetra($n){
         $formatterES = new NumberFormatter("es-ES", NumberFormatter::SPELLOUT);
         $izquierda = intval(floor($n));
         $derecha = intval(($n - floor($n)) * 100);
-        return $formatterES->format($izquierda) . " punto " . $formatterES->format($derecha);
+        //return $formatterES->format($izquierda) . " punto " . $formatterES->format($derecha);
+        return $formatterES->format($izquierda);
     }
 
     function convertirFecha($strFehca)
@@ -155,17 +171,17 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*10, 10);
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach($productosPagina as $item):   ?>
+                        <?php for($i=0; $i<10;$i++):   ?>
                         <tr>
-                            <td scope="row"><?php echo $item->cantidad ?></td>
-                            <td><?php echo $item->unidad_medida ?></td>
-                            <td><?php echo $item->descripcion ?></td>
-                            <td><?php echo $item->costo_unitario?></td>
-                            <td><?php echo $item->total?></td>
+                            <td scope="row"><?php echo (isset($productosPagina[$i]->cantidad))?$productosPagina[$i]->cantidad:"<p></p>"; ?></td>
+                            <td><?php echo (isset($productosPagina[$i]->unidad_medida))?$productosPagina[$i]->unidad_medida:""; ?></td>
+                            <td><?php echo (isset($productosPagina[$i]->descripcion))?$productosPagina[$i]->descripcion:""; ?></td>
+                            <td><?php echo (isset($productosPagina[$i]->costo_unitario))?$productosPagina[$i]->costo_unitario:""; ?></td>
+                            <td><?php echo (isset($productosPagina[$i]->total))?$productosPagina[$i]->total:""; ?></td>
                         </tr>
-                        <?php endforeach; ?>
+                        <?php endfor; ?>
                             <th>SON:</th>
-                            <th colspan="4"><?php echo strtoupper(convertirNumeroLetra($solicitud->valor_compra)); ?> DÓLARES DE LOS ESTADOS UNIDOS</th>
+                            <th colspan="4"><?php echo strtoupper(convertirNumeroLetra($solicitud->valor_compra))." ". convertDecimal($solicitud->valor_compra) ; ?> DÓLARES DE LOS ESTADOS UNIDOS</th>
                         </tr>
                     </tbody>
                 </table>
