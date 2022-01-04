@@ -159,7 +159,7 @@
                 </tr>
                 <tr>
                     <td class="fw-bold" colspan="3">VALOR ESTIMADO DE LA COMPRA:</td>
-                    <td colspan="2">$<?php echo $solicitud->valor_compra;?></td>
+                    <td colspan="2"><?php //echo $solicitud->valor_compra;?></td>
                     <td class="fw-bold" colspan="3">FORMA DE ENTREGA</td>
                     <td colspan="3"><?php echo $solicitud->forma_entrega;?></td>
                 </tr>

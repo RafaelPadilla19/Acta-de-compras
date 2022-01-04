@@ -13,7 +13,7 @@
 
                         <p class="card-text">Estado: <?php echo $solicitud->estado ?>.</p>
 
-                        <p class="card-text">Justificacion: <?php echo $solicitud->destino_de_bien ?>.</p>
+                        <p class="card-text">Justificación: <?php echo $solicitud->destino_de_bien ?>.</p>
 
                         <button class="btn btn-success <?php echo $solicitud->estado != "pendiente" ? "disabled" : ""; ?>" data-bs-toggle="modal" data-bs-target="#modal-aceptacion">Aprobar</button>
                         <a href="<?php echo base_url() . "Reporte/solicitudRequerimiento/" . $id; ?>" class="btn btn-info ms-4" target="_blank">Ver Solitud</a>
@@ -32,10 +32,10 @@
                             <button ng-if="adjudicacionExist==false" data-bs-toggle="modal" data-bs-target="#modal-adjudicacion" class="btn btn-dark ms-4">Crear Adjudicacion</button>
 
 
-                            <a href="<?php echo base_url() . "Reporte/recepcion/" . $id; ?>" ng-if="recepcion==true" target="_blank" rel="noopener noreferrer" class="btn btn-primary ms-4">Ver Acta de recepcion</a>
-                            <button ng-if="recepcion==false" data-bs-toggle="modal" data-bs-target="#modal-recepcion" class="btn btn-warning ms-4">Crear Acta de recepcion</button>
+                            <a href="<?php echo base_url() . "Reporte/recepcion/" . $id; ?>" ng-if="recepcion==true" target="_blank" rel="noopener noreferrer" class="btn btn-primary ms-4">Ver Acta de recepción</a>
+                            <button ng-if="recepcion==false" data-bs-toggle="modal" data-bs-target="#modal-recepcion" class="btn btn-warning ms-4">Crear Acta de recepción</button>
 
-                            <a href="<?php echo base_url() . "Reporte/declaracion/" . $id; ?>" ng-if="orden==true && adjudicacionExist==true && recepcion==true" target="_blank" rel="noopener noreferrer" class="btn btn-secondary ms-4">Ver declaracion</a>
+                            <a href="<?php echo base_url() . "Reporte/declaracion/" . $id; ?>" ng-if="orden==true && adjudicacionExist==true && recepcion==true" target="_blank" rel="noopener noreferrer" class="btn btn-secondary ms-4">Ver declaración</a>
 
                         <?php } ?>
 
@@ -192,7 +192,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Adjudicacion</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Adjudicación</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -200,7 +200,7 @@
                             <div class="row">
 
                                 <div class="mb-3 col-12">
-                                    <label for="message-text" class="col-form-label">Nombre de administradord de orden
+                                    <label for="message-text" class="col-form-label">Nombre de administrador de orden
                                         de compra:</label>
                                     <input type="text" class="form-control" id="costo-unitario" ng-model="adjudicacion.administrador_de_contrato_u_orden_de_compra">
 
@@ -210,7 +210,7 @@
                             <div class="row">
 
                                 <div class="mb-3 col-12">
-                                    <label for="message-text" class="col-form-label">Cargo administradord de orden
+                                    <label for="message-text" class="col-form-label">Cargo administrador de orden
                                         de compra:</label>
                                     <input type="text" class="form-control" id="costo-unitario" ng-model="adjudicacion.cargo_de_administrador_de_contrato">
 
