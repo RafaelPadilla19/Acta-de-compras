@@ -1,7 +1,12 @@
 <?php
     
    
+    function validarItem($item,$length,$i){
+        //validar si esta indefinido
+        return "a";
 
+
+    }
     //funcion fecha a letra
     function convertirFecha($strFehca)
     {
@@ -144,15 +149,15 @@
                     <td class="fw-bold align-middle" colspan="5">OBRA, BIEN O SEVICIO SOLICITADO</td>
                     <td class="fw-bold align-middle" colspan="2">Cifra presupuestaria</td>
                 </tr>
-                <?php foreach($productosPagina as $clave=>$item ):   ?>
+                <?php for($i=0; $i<5; $i++):   ?>
                 <tr>
-                    <td class="col-1 col-md-1 align-middle fw-bold"><?php echo valorItem($clave+1) ?></td>
-                    <td class="col-1 col-md-1 align-middle"><?php echo $item->cantidad; ?></td>
-                    <td class="col-1 col-md-1 align-middle"><?php echo $item->unidad_medida; ?></td>
-                    <td class="align-middle" colspan="5"><?php echo $item->nombre_producto; ?></td>
-                    <td class="align-middle" colspan="2">$<?php echo $item->cifra_presupuestada; ?></td>
+                    <td class="col-1 col-md-1 align-middle fw-bold"><?php echo valorItem($i+1) ?></td>
+                    <td class="col-1 col-md-1 align-middle"><?php echo (isset($productosPagina[$i]->cantidad))?$productosPagina[$i]->cantidad:""; ?></td>
+                    <td class="col-1 col-md-1 align-middle"><?php echo (isset($productosPagina[$i]->unidad_medida))?$productosPagina[$i]->unidad_medida:""; ?></td>
+                    <td class="align-middle" colspan="5"><?php echo (isset($productosPagina[$i]->nombre_producto))?$productosPagina[$i]->nombre_producto:""; ?></td>
+                    <td class="align-middle" colspan="2"><?php echo (isset($productosPagina[$i]->cifra_presupuestada))?$productosPagina[$i]->cifra_presupuestada:""; ?></td>
                 </tr>
-                <?php endforeach; ?>
+                <?php endfor; ?>
 
                 <tr>
                     <td colspan="12"></td>
