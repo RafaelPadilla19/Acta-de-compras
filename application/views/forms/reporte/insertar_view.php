@@ -40,7 +40,7 @@ $year_actual = $year_actual->format('Y');
             <div class="row">
                 <div class="mb-3 col-4">
                     <label for="nombre_autorizante" class="form-label">Nombre del autorizante</label>
-                    <input type="text" class="form-control" id="nombre_autorizante" ng-model="solicitud_requerimientos.nombre_autorizante" placeholder="Ingrese el nombre del autorizante" required>
+                    <input type="text" class="form-control" id="nombre_autorizante" ng-model="solicitud_requerimientos.nombre_autorizante" placeholder="Ingrese el nombre del autorizante" readonly>
                 </div>
                 <div class="mb-3 col-4">
                     <label for="dependencia_autorizante" class="form-label">Dependencia del autorizante</label>
@@ -209,6 +209,11 @@ $year_actual = $year_actual->format('Y');
         $scope.producto = {};
         $scope.solicitud_requerimientos = {};
         $scope.propuesta_orden_de_compras = {};
+        $scope.solicitud_requerimientos.nombre_autorizante="Lcdo. Juan Carlos Cárcamo Quijano";
+        $scope.solicitud_requerimientos.cargo_autorizante="Secretario Municipal";
+        $scope.solicitud_requerimientos.dependencia_autorizante="Concejo Municipal";
+        //Lugar de entrega alcaldia municipal de san julian
+
 
         $scope.test = function() {
             console.log($scope.solicitud_requerimientos);

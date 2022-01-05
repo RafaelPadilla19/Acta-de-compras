@@ -191,12 +191,14 @@
                 </tr>
                 <tr style="height: 23px;">
                     <td colspan="3" class="fw-bold">RECIBIDO EN UACI POR:</td>
-                    <td colspan="3"><?php echo $propuesta->nombre_recibido_por;?></td>
+                    <td colspan="3"><?php //echo $propuesta->nombre_recibido_por;?>Lcda. Lorena Beatriz Romero de Aviles
+</td>
                     <td colspan="6" rowspan="3"></td>
                 </tr>
                 <tr style="height: 23px;">
                     <td colspan="3" class="fw-bold">CARGO:</td>
-                    <td colspan="3"><?php echo $propuesta->cargo_de_recibido;?></td>
+                    <td colspan="3"><?php //echo $propuesta->cargo_de_recibido;?>Jefe de UACI
+</td>
                 </tr>
                 <tr style="height: 23px;">
                     <td colspan="3" class="fw-bold">FECHA</td>
