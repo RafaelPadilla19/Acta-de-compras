@@ -66,7 +66,7 @@
                                 <div class="mb-3 col-12">
                                     <label for="message-text" class="col-form-label">Aprobado por solicitud de
                                         modificación presupuestaria N°:</label>
-                                    <input type="text" class="form-control" id="numero_solicitud_modificacion" ng-model="asignacion_presupuestaria.numero_solicitud_modificacion">
+                                    <input type="text" class="form-control" id="numero_solicitud_modificacion" ng-model="asignacion_presupuestaria.numero_solicitud_modificacion" placeholder="Opcional">
 
                                 </div>
 
@@ -82,7 +82,7 @@
                             <div class="row">
                                 <div class="mb-3 col-6">
                                     <label for="message-text" class="col-form-label">Fuente de financiamiento:</label>
-                                    <input type="text" class="form-control" id="fuente_de_financiamiento" ng-model="asignacion_presupuestaria.fuente_de_financiamiento">
+                                    <input type="text" class="form-control" id="fuente_de_financiamiento" ng-model="asignacion_presupuestaria.fuente_de_financiamiento" placeholder="Opcional">
                                 </div>
                                 <div class="mb-3 col-6">
                                     <label for="message-text" class="col-form-label">Cargo:</label>
@@ -92,19 +92,24 @@
                             <div class="row">
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label class="mb-2" for="inputState">Estado</label>
+                                        <label class="mb-2" for="inputState">Estado</label><br>
                                         <select id="inputState" class="form-select" name="estado" ng-model="asignacion_presupuestaria.estado">
                                             <option value="aprobado">Aprobado</option>
                                             <option value="rechazado">Rechazado</option>
                                         </select>
                                     </div>
                                 </div>
-
+                                <div class="col-6">
+                                    <div class="form-group">
+                                    <label class="mb-2" for="fechaJus">Fecha de asignacion(Opcional):</label>
+                                    <input type="date" class="form-control" id="fechaJus" ng-model="asignacion_presupuestaria.fecha">
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                         <button type="button" class="btn btn-primary" ng-click="guardar()">Guardar</button>
                     </div>
                 </div>
@@ -268,6 +273,9 @@
 
         $scope.asignacion_presupuestaria = {};
         $scope.asignacion_presupuestaria.estado = "aprobado";
+        $scope.asignacion_presupuestaria.recibo_en_presupuesto_por="Edith Angelica Martinez Bonilla";
+
+
         $scope.asignacion_presupuestaria.solicitud_id = <?php echo $id; ?>;
         $scope.orden;
         $scope.orden_de_compra = {};
@@ -275,6 +283,7 @@
         $scope.orden_de_compra.correo_alcaldia = "sanjulian.uaci2021@gmail.com"
         $scope.orden_de_compra.telefono_alcaldia = "2461-2904";
         $scope.orden_de_compra.nombre_completo_jefe_uaci = "Lorena Beatriz Romero de Aviles";
+        $scope.asignacion_presupuestaria.cargo="Encargada de Presupuesto"
         $scope.orden_de_compra.solicitud_id = <?php echo $id; ?>;
         $scope.adjudicacion = {};
         $scope.adjudicacion.solicitud_id = <?php echo $id; ?>;
@@ -287,9 +296,9 @@
 
         const aceptacion_rechazo_validacion = () => {
             if ($scope.asignacion_presupuestaria.proyecto==null ||
-            $scope.asignacion_presupuestaria.numero_solicitud_modificacion==null ||
+            //$scope.asignacion_presupuestaria.numero_solicitud_modificacion==null ||
             $scope.asignacion_presupuestaria.recibo_en_presupuesto_por==null ||
-            $scope.asignacion_presupuestaria.fuente_de_financiamiento==null ||
+            //$scope.asignacion_presupuestaria.fuente_de_financiamiento==null ||
             $scope.asignacion_presupuestaria.cargo==null ||
             $scope.asignacion_presupuestaria.estado==null) {
 
