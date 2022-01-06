@@ -29,6 +29,15 @@ class Reporte extends CI_Controller
 		$this->load->view('forms/reporte/insertar_view');
 		$this->load->view('templates/footer');
 	}
+
+	public function agregarOrden(){
+
+		$this->load->view('templates/header');
+		$this->load->view('templates/menu');
+		$this->load->view('reportes/orden/insertar_orden_view');
+		$this->load->view('templates/footer');
+	}
+
 	public function documentacionCompra($id){
 		$this->load->model('Reporte_model');
 		$acta= $this->Reporte_model->getActa($id);

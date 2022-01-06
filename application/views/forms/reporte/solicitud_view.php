@@ -26,7 +26,7 @@
 
 
                             <button data-bs-toggle="modal" data-bs-target="#modal-orden" class="btn btn-success ms-4" ng-if="orden==false">Crear Orden De Compra</button>
-
+                            <a href="<?php echo base_url(); ?>Reporte/agregarOrden" class="btn btn-success ms-4" data-bs-target="#modal-orden">Crear Orden de Compra</a>
                             <a href="<?php echo base_url() . "Reporte/adjudicacion/" . $id; ?>" target="_blank" rel="noopener noreferrer" ng-if="adjudicacionExist==true" class="btn btn-dark ms-4">Ver
                                 Adjudicacion</a>
                             <button ng-if="adjudicacionExist==false" data-bs-toggle="modal" data-bs-target="#modal-adjudicacion" class="btn btn-dark ms-4">Crear Adjudicacion</button>
@@ -144,7 +144,7 @@
                                     <div class="form-group">
                                         <label class="mb-2" for="inputState">Tipo de documento:</label>
                                         <select id="inputState" class="form-select" name="" ng-model="orden_de_compra.tipo_documento">
-                                            <option value="">Seleccione un proveedor</option>
+                                            <option value="">Seleccione un tipo de documento</option>
                                             <option value="recibo">Recibo</option>
                                             <option value="factura">Factura</option>
                                             <option value="credito_fiscal">Credito fiscal</option>
