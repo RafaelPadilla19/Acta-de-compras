@@ -72,7 +72,8 @@
             </div>
         </form>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <a href = "<?php echo base_url() . "Reporte/documentacionCompra/". $id; ?>" class="btn btn-secondary">Cancelar</a>
+            <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button> -->
             <button type="button" class="btn btn-primary" ng-click="guardarOrderCompra()">Guardar</button>
         </div>
         <hr>

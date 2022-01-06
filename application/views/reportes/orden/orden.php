@@ -13,7 +13,18 @@
         return $numerDecimal.'/100';
     }
 
-    
+    function convertirFecha($strFehca)
+    {
+        //validar si la fecha es null
+        if ($strFehca == null || $strFehca=='0000-00-00') {
+            return null;
+        }
+        $fechaAArray = explode('-', $strFehca);
+        $miFecha = mktime(0, 0, 0, $fechaAArray[1], $fechaAArray[2], $fechaAArray[0]);
+        setlocale(LC_TIME, 'es_ES.UTF-8');
+        $formatoEsperado = strftime("%d de %B de %Y", $miFecha);
+        return $formatoEsperado;
+    }
 
     
     function convertirNumeroLetra($n){
@@ -24,14 +35,6 @@
         return $formatterES->format($izquierda);
     }
 
-    function convertirFecha($strFehca)
-    {
-        $fechaAArray=explode('-',$strFehca);
-        $miFecha=mktime(0,0,0,$fechaAArray[1],$fechaAArray[2],$fechaAArray[0]);
-        setlocale(LC_TIME, 'es_ES.UTF-8');
-        $formatoEsperado=strftime("%d de %B de %Y", $miFecha);
-        return $formatoEsperado;
-    }
 $numeroProductos= count($productos);
 //echo "<p>" . $numeroProductos . " productos</p>";
 
@@ -161,13 +164,13 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*10, 10);
                         <tr>
                             <td scope="row"><?php echo (isset($productosPagina[$i]->cantidad))?$productosPagina[$i]->cantidad:"<p></p>"; ?></td>
                             <td><?php echo (isset($productosPagina[$i]->unidad_medida))?$productosPagina[$i]->unidad_medida:""; ?></td>
-                            <td><?php echo (isset($productosPagina[$i]->descripcion))?$productosPagina[$i]->descripcion:""; ?></td>
+                            <td><?php echo (isset($productosPagina[$i]->nombre_producto))?$productosPagina[$i]->nombre_producto:""; ?></td>
                             <td><?php echo (isset($productosPagina[$i]->costo_unitario))?$productosPagina[$i]->costo_unitario:""; ?></td>
                             <td><?php echo (isset($productosPagina[$i]->total))?$productosPagina[$i]->total:""; ?></td>
                         </tr>
                         <?php endfor; ?>
                             <th>SON:</th>
-                            <th colspan="4"><?php echo strtoupper(convertirNumeroLetra($solicitud->valor_compra))." ". convertDecimal($solicitud->valor_compra) ; ?> DÓLARES DE LOS ESTADOS UNIDOS</th>
+                            <th colspan="4"><?php echo strtoupper(convertirNumeroLetra($orden->total))." ". convertDecimal($solicitud->valor_compra) ; ?> DÓLARES DE LOS ESTADOS UNIDOS</th>
                         </tr>
                     </tbody>
                 </table>
@@ -175,7 +178,7 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*10, 10);
             <table class="table border-dark table-sm table-bordered text-center txt-table mb-3">
                 <tr>
                     <th class="col-4">OBSERVACIONES: </th>
-                    <td class="col-8">Ninguna</td>
+                    <td class="col-8"><?php echo $orden->observaciones?></td>
                 </tr>
                 <tr>
                     <th class="col-4">LUGAR DE ENTREGA: </th>
@@ -183,7 +186,7 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*10, 10);
                 </tr>
                 <tr>
                     <th class="col-4">FECHA DE ENTREGA: </th>
-                    <td class="col-8"><?php echo convertirFecha($orden->fecha_de_entrega)?></td>
+                    <td class="col-8"><?php echo (convertirFecha($orden->fecha_de_entrega)!==null)?convertirFecha($orden->fecha_de_entrega):"";?></td>
                 </tr>
             </table>
             <div class="centrado txt pt-1">

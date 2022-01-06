@@ -247,13 +247,25 @@
                             </div>
 
                             <div class="row">
-
                                 <div class="mb-3 col-12">
                                     <label for="message-text" class="col-form-label">Cargo administrador de orden
                                         de compra:</label>
                                     <input type="text" class="form-control" id="costo-unitario"
                                         ng-model="adjudicacion.cargo_de_administrador_de_contrato">
-
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 col-12">
+                                <label for="message-text" class="col-form-label">Nombre completo:</label>
+                                    <input type="text" class="form-control" id="representante_de_alcaldia"
+                                        ng-model="adjudicacion.representante_de_alcaldia">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 col-12">
+                                <label for="message-text" class="col-form-label">Cargo:</label>
+                                    <input type="text" class="form-control" id="costo-unitario"
+                                        ng-model="adjudicacion.cargo_de_representante" placeholder="Ej: Alcalde, Interino">
                                 </div>
                             </div>
                         </form>
@@ -281,6 +293,13 @@
                                 <div class="mb-3 col-12">
                                     <label for="message-text" class="col-form-label">Hora:</label>
                                     <input type="time" class="form-control" id="" ng-model="acta_de_recepcion.hora">
+                                </div>
+                            </div>
+                            <div class="row">
+                            <div class="mb-3 col-12">
+                                    <label for="fecha" class="form-label">Fecha</label>
+                                    <input type="date" class="form-control" id="fecha"
+                                        ng-model="acta_de_recepcion.fecha" required>
                                 </div>
                             </div>
 
@@ -312,6 +331,7 @@ angular.module("app", []).controller("app-controller", function($scope, $http, $
     $scope.asignacion_presupuestaria.estado = "aprobado";
     $scope.asignacion_presupuestaria.recibo_en_presupuesto_por = "Edith Angelica Martinez Bonilla";
 
+    
 
     $scope.asignacion_presupuestaria.solicitud_id = <?php echo $id; ?>;
     $scope.orden;
@@ -327,6 +347,8 @@ angular.module("app", []).controller("app-controller", function($scope, $http, $
     $scope.acta_de_recepcion = {};
     $scope.acta_de_recepcion.solicitud_id = <?php echo $id; ?>;
 
+    $scope.adjudicacion.representante_de_alcaldia = "Gabriel Omón Serrano Hernandez";
+    $scope.adjudicacion.cargo_de_representante = "Alcalde";
 
     $scope.adjudicacionExist;
     $scope.recepcion;
@@ -361,7 +383,9 @@ angular.module("app", []).controller("app-controller", function($scope, $http, $
 
     const validar_campos_adjudicacion = () => {
         if ($scope.adjudicacion.administrador_de_contrato_u_orden_de_compra == null ||
-            $scope.adjudicacion.cargo_de_administrador_de_contrato == null) {
+            $scope.adjudicacion.cargo_de_administrador_de_contrato == null ||
+            $scope.adjudicacion.representante_de_alcaldia == null ||
+            $scope.adjudicacion.cargo_de_representante == null) {
             alert("Llene todos los campos");
             return false;
         }
@@ -369,7 +393,8 @@ angular.module("app", []).controller("app-controller", function($scope, $http, $
 
     const validar_campos_acta_de_recepcion = () => {
         if ($scope.acta_de_recepcion.hora == null ||
-            $scope.acta_de_recepcion.numero_factura == null) {
+            $scope.acta_de_recepcion.numero_factura == null ||
+            $scope.acta_de_recepcion.fecha == null) {
             alert("Llene todos los campos");
             return false;
         }

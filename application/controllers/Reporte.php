@@ -30,14 +30,6 @@ class Reporte extends CI_Controller
 		$this->load->view('templates/footer');
 	}
 
-	public function agregarOrden(){
-
-		$this->load->view('templates/header');
-		$this->load->view('templates/menu');
-		$this->load->view('reportes/orden/insertar_orden_view');
-		$this->load->view('templates/footer');
-	}
-
 	public function documentacionCompra($id){
 		$this->load->model('Reporte_model');
 		$acta= $this->Reporte_model->getActa($id);
@@ -71,14 +63,27 @@ class Reporte extends CI_Controller
 		echo json_encode($response);
 	}
 	
-	
+	public function acta($id_acta){
+		//validar sessio usuario
+		if(!$this->session->userdata('usuario')){
+			redirect('Usuario/logear');
+		}
+		$this->load->model('Reporte_model');
+		$productos= $this->Reporte_model->getProductosPorActa($id_acta);
+		$acta= $this->Reporte_model->getActa($id_acta);
 
+		$data=[
+			'id'=>$id_acta,
+			'productos'=>$productos,
+			'acta'=>$acta,
+		];
+		$this->load->view('forms/reporte/acta_view',$data);
+	}
 	public function getProductosPorIdActa($id_acta){
 		$this->load->model('Reporte_model');
 		$productos= $this->Reporte_model->getProductosPorSolicitud($id_acta);
 		echo json_encode($productos);
 	}
-
 	public function solicitudRequerimiento($id){
 
 		$this->validarSessionReporte();
@@ -116,7 +121,6 @@ class Reporte extends CI_Controller
 		];
 		$this->load->view('reportes/recibo/recibo',$data);
 	}
-
 	public function agregarOrden($id){
 
 		$this->validarSessionReporte();
@@ -129,7 +133,6 @@ class Reporte extends CI_Controller
 		$this->load->view('reportes/orden/insertar_orden_view',$data);
 		$this->load->view('templates/footer');
 	}
-
 	public function ordenCompra($id_acta){
 		$this->load->model('Reporte_model');
 		$productos= $this->Reporte_model->getProductosPorSolicitud($id_acta);
@@ -215,16 +218,6 @@ class Reporte extends CI_Controller
 		$assocArray = json_decode($dt, true);
 		$this->load->model('Reporte_model');
 		$response = $this->Reporte_model->guardarProducto($assocArray);
-		echo json_encode($response);
-	}
-
-	//actulizar producto
-	public function updateProducto(){
-		$dt = file_get_contents("php://input");
-		$assocArray = json_decode($dt, true);
-		$id=$assocArray['producto_id'];
-		$this->load->model('Reporte_model');
-		$response = $this->Reporte_model->actualizarProducto($assocArray,$id);
 		echo json_encode($response);
 	}
 

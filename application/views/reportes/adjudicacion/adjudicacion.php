@@ -195,8 +195,8 @@
             <div class="centrado txt col-6">
                 <div class="linea"></div>
                 <p>
-                <div>Gabriel Omón Serrano Hernandez</div>
-                <div>Alcalde</div>
+                <div><?php echo $adjudicacion->representante_de_alcaldia?></div>
+                <div><?php echo $adjudicacion->cargo_de_representante?></div>
                 </p>
             </div>
 

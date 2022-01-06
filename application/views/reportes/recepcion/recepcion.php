@@ -196,7 +196,7 @@
                                 </div>
                             </div>
                             <p style="margin-bottom: -3px;">Se hace constar que el bien o servicio recibido cumple con
-                                las condiciones y es´pecificaciones técnicas, y previamente definidas
+                                las condiciones y especificaciones técnicas, y previamente definidas
                                 con el contrato u orden de compra, las cuales se detllam a continuación:
                             </p>
                         </td>
