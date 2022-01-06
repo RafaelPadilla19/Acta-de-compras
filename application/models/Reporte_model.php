@@ -29,6 +29,12 @@
         $this->db->insert('productos', $data);
         return $this->db->insert_id();
     }
+    //actualizar producto
+    public function actualizarProducto($data, $id){
+        unset($data['producto_id']);
+        $this->db->where('producto_id', $id);
+        $this->db->update('productos', $data);
+    }
 
     public function insertOrdenCompra($data){
         $this->db->insert('orden_de_compra', $data);

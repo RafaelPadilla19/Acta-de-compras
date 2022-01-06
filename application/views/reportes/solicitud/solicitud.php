@@ -209,7 +209,7 @@ function valorItem($item)
                 </tr>
                 <tr style="height: 23px;">
                     <td colspan="3" class="fw-bold">FECHA</td>
-                    <td colspan="3"><?php echo (convertirFecha($propuesta->fecha_recibido)!==null)?convertirFecha($propuesta->fecha_recibido):"";; ?></td>
+                    <td colspan="3"><?php echo (convertirFecha($propuesta->fecha_recibido)!==null)?convertirFecha($propuesta->fecha_recibido):""; ?></td>
                 </tr>
 
                 <?php if (!empty($asignacion)) { ?>
