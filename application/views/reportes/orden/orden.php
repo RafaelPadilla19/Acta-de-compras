@@ -7,11 +7,13 @@
         if($numerDecimal==0){
             $numerDecimal="00";
         }
-        if($numerDecimal<10){
+        if($numerDecimal<10 && $numerDecimal>0){
             $numerDecimal="0".$numerDecimal;
         }
         return $numerDecimal.'/100';
     }
+
+    
 
     
     function convertirNumeroLetra($n){
@@ -113,23 +115,7 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*10, 10);
             </tbody>
         </table>
         <div class="table-responsive">
-            <table class="table table-sm border-dark table-bordered txt-table text-center">
-                <thead>
-                    <tr>
-                        <th>OFERENTE</th>
-                        <th>MONTO</th>
-                        <th>CANTIDAD DE LETRAS</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><?php echo $solicitud->nombre?></td>
-                        <td>$ <?php echo $solicitud->valor_compra?></td>
-                        <td><?php echo strtoupper(convertirNumeroLetra($solicitud->valor_compra)); ?> DÓLARES DE LOS ESTADOS UNIDOS</td>
-                    </tr>
-                </tbody>
-            </table>
+           
             <table class="table table-sm border-dark table-bordered txt-table text-center">
                 <thead>
                     <tr>
