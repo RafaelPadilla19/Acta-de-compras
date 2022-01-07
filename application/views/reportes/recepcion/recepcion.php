@@ -1,10 +1,14 @@
 <?php
  function convertirFecha($strFehca)
  {
-     $fechaAArray=explode('-',$strFehca);
-     $miFecha=mktime(0,0,0,$fechaAArray[1],$fechaAArray[2],$fechaAArray[0]);
+     //validar si la fecha es null
+     if ($strFehca == null || $strFehca=='0000-00-00') {
+         return null;
+     }
+     $fechaAArray = explode('-', $strFehca);
+     $miFecha = mktime(0, 0, 0, $fechaAArray[1], $fechaAArray[2], $fechaAArray[0]);
      setlocale(LC_TIME, 'es_ES.UTF-8');
-     $formatoEsperado=strftime("%d de %B de %Y", $miFecha);
+     $formatoEsperado = strftime("%d de %B de %Y", $miFecha);
      return $formatoEsperado;
  }
     $numeroProductos= count($productos);
@@ -87,7 +91,7 @@
                 <thead>
                     <tr>
                         <th class="col-1">FECHA</th>
-                        <td class="col-4"><?php echo convertirFecha($acta->fecha);?></td>
+                        <td class="col-4"><?php echo (convertirFecha($recepcion->fecha)!==null)?convertirFecha($recepcion->fecha):"";?></td>
                         <th>AMSJ-AR2021</th>
                         <td><?php echo $acta->amsj;?></td>
                     </tr>
@@ -107,7 +111,7 @@
                                 Centro, Municipio de San Julián,
                                 Departamento de Sonsonate A las: <span
                                     class="fw-bold text-decoration-underline"><?php echo substr(($recepcion->hora),11);?></span> del día: <span
-                                    class="fw-bold text-decoration-underline"><?php echo convertirFecha($acta->fecha);?></span>
+                                    class="fw-bold text-decoration-underline"><?php echo (convertirFecha($recepcion->fecha)!==null)?convertirFecha($recepcion->fecha):"";?></span>
                             </p>
                             <p>
                                 Reunidos con el proposito de hacer entrega formal por parte del proveedor: <span
@@ -117,19 +121,20 @@
                                 De los bienes o servicios prestados, correspondiente a la forma de contratación por
                                 Libre Gestión por medio de:
                             </p>
-                            <div class="d-flex justify-content-startrow g-0">
+                            <div class="d-flex justify-content-startrow g-0 mb-2">
                                 <div class="col-6 col-md-6">
                                     <p>
-                                        Factura o Recibo presentado N°
+                                        Factura o Recibo presentado N°: <span class="fw-bold text-decoration-underline"><?php echo $recepcion->numero_factura;?></span>
                                     </p>
                                 </div>
                                 <div class="col-6 col-md-6">
+                                    
                                     <div class="linea"></div>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-startrow g-0" style="margin-top: -10px;">
                                 <div class="col-6 col-md-6">
-                                    <p>
+                                    <p class="">
                                         De conformidad a la Orden de Compra
                                     </p>
                                 </div>
@@ -142,7 +147,7 @@
                                     de fecha:
                                 </p>
                                 <div class="col-2 col-md-2">
-                                    <p class="text-center fw-bold"><?php echo $acta->fecha;?>
+                                    <p class="text-center fw-bold"><?php echo $recepcion->fecha!==null?$recepcion->fecha:"";?>
                                     <div class="linea" style="max-width: 90%;margin-top: -10px;"></div>
                                     </p>
                                 </div>
@@ -196,7 +201,7 @@
                                 </div>
                             </div>
                             <p style="margin-bottom: -3px;">Se hace constar que el bien o servicio recibido cumple con
-                                las condiciones y es´pecificaciones técnicas, y previamente definidas
+                                las condiciones y especificaciones técnicas, y previamente definidas
                                 con el contrato u orden de compra, las cuales se detllam a continuación:
                             </p>
                         </td>
