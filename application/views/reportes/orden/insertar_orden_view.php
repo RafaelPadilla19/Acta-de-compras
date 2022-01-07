@@ -91,7 +91,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="p in productos">
+                    <tr ng-repeat="p in productos track by $index">
+
                         <td>{{p.nombre_producto}}</td>
                         <td>{{p.cantidad}}</td>
                         <td>{{p.unidad_medida}}</td>
@@ -258,40 +259,17 @@ angular.module("app", []).controller("app-controller", function($scope, $http, $
     }
 
 
-    $scope.agregarProducto = function() {
-        //total = cantidad * costo dos decimales
-
-        $scope.producto.total = ($scope.producto.cantidad * $scope.producto.costo_unitario).toFixed(2);
-
-
-        $scope.productos = [...$scope.productos, angular.copy($scope.producto)];
-        console.log($scope.productos);
-
-        //sumar a monto total
-
-        $scope.solicitud_requerimientos.valor_compra = $scope.productos.reduce((total, producto) => total +
-            parseFloat(producto.total), 0).toFixed(2);
-        //cerrar modal
-
-        $('#modal-prod').modal('hide');
-    }
     $scope.modificarProducto= function () {
 
         $scope.producto.total = ($scope.producto.cantidad * $scope.producto.costo_unitario).toFixed(2);
 
-        $scope.productos = $scope.productos.map(producto => {
-            if (producto.id == $scope.producto.id) {
-                return $scope.producto;
-            } else {
-                return producto;
-            }
-        });
         console.log($scope.productos);
 
-        //sumar a monto total
+        //actualizar a monto total
 
-        $scope.orden_de_compra.total= $scope.productos.reduce((total, producto) => total +
-            parseFloat(producto.total), 0).toFixed(2);
+        $scope.orden_de_compra.total= $scope.productos.reduce((total, producto) => {
+            return total + parseFloat(producto.total);
+        }, 0);
 
 
         if(validarCampoCostoUnitario()==false){
