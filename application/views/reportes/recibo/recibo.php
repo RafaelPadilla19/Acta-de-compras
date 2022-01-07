@@ -100,7 +100,7 @@
         </div>
         <div class="col-2 col-md-2">
             <h6 class="m-2 mb-2 fw-bold txt">
-            <?php echo $solicitud->valor_compra?>
+            <?php echo $orden->total?>
             </h6>
         </div>
     </div>
@@ -121,27 +121,27 @@
                 </tr>
             </thead>
             <tbody>
-            <?php foreach($productosPagina as $item ):   ?>
+            <?php for($i=0; $i<4;$i++):   ?>
                 <tr>
-                    <th scope="row"><?php echo $item->cantidad;?></th>
-                    <td><?php echo $item->unidad_medida;?></td>
-                    <td><?php echo $item->descripcion; ?></td>
-                    <td>$ <?php echo $item->costo_unitario;?></td>
-                    <td>$ <?php echo $item->total; ?></td>
+                    <th scope="row"><?php echo (isset($productosPagina[$i]->cantidad))?$productosPagina[$i]->cantidad:"<p></p>"; ?></th>
+                    <td><?php echo (isset($productosPagina[$i]->unidad_medida))?$productosPagina[$i]->unidad_medida:""; ?></td>
+                    <td><?php echo (isset($productosPagina[$i]->descripcion))?$productosPagina[$i]->descripcion:""; ?></td>
+                    <td>$ <?php echo (isset($productosPagina[$i]->costo_unitario))?$productosPagina[$i]->costo_unitario:""; ?></td>
+                    <td>$ <?php echo (isset($productosPagina[$i]->total))?$productosPagina[$i]->total:""; ?></td>
                 </tr>
-                <?php endforeach; ?>
+                <?php endfor; ?>
                
                 <tr>
                     <th scope="row" class="col-2" colspan="2"></th>
-                    <th>Renta 10%</th>
+                    <th class="">Renta 10%</th>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
                     <th scope="row" class="col-2" colspan="2"></th>
-                    <td rowspan="2" class="">$$</td>
+                    <td rowspan="2" class="fw-bold">LIQUIDO A PAGAR</td>
                     <td></td>
-                    <td>$ <?php echo $solicitud->valor_compra?></td>
+                    <td>$ <?php echo $orden->total?></td>
                 </tr>
             </tbody>
         </table>

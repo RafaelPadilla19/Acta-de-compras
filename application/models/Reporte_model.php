@@ -73,6 +73,7 @@
         $query=$this->db->get();
         return $query->row();
     }
+
  
     public function getPropuestaOrdenCompra($id){
         $this->db->select("*");

@@ -262,10 +262,15 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="mb-3 col-12">
-                                <label for="message-text" class="col-form-label">Cargo:</label>
+                                <div class="mb-3 col-6">
+                                    <label for="message-text" class="col-form-label">Cargo:</label>
                                     <input type="text" class="form-control" id="costo-unitario"
                                         ng-model="adjudicacion.cargo_de_representante" placeholder="Ej: Alcalde, Interino">
+                                </div>
+                                <div class="mb-3 col-6">
+                                    <label for="fecha" class="form-label">Fecha:</label>
+                                    <input type="date" class="form-control" id="fecha"
+                                        ng-model="adjudicacion.fecha" required>
                                 </div>
                             </div>
                         </form>
@@ -385,7 +390,9 @@ angular.module("app", []).controller("app-controller", function($scope, $http, $
         if ($scope.adjudicacion.administrador_de_contrato_u_orden_de_compra == null ||
             $scope.adjudicacion.cargo_de_administrador_de_contrato == null ||
             $scope.adjudicacion.representante_de_alcaldia == null ||
-            $scope.adjudicacion.cargo_de_representante == null) {
+            $scope.adjudicacion.cargo_de_representante == null
+            // $scope.adjudicacion.cargo_de_representante == null
+            ) {
             alert("Llene todos los campos");
             return false;
         }
@@ -394,7 +401,8 @@ angular.module("app", []).controller("app-controller", function($scope, $http, $
     const validar_campos_acta_de_recepcion = () => {
         if ($scope.acta_de_recepcion.hora == null ||
             $scope.acta_de_recepcion.numero_factura == null
-            //$scope.acta_de_recepcion.fecha == null) {
+            //$scope.acta_de_recepcion.fecha == null
+            ){
             alert("Llene todos los campos");
             return false;
         }

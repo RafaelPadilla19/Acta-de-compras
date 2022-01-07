@@ -121,19 +121,20 @@
                                 De los bienes o servicios prestados, correspondiente a la forma de contratación por
                                 Libre Gestión por medio de:
                             </p>
-                            <div class="d-flex justify-content-startrow g-0">
+                            <div class="d-flex justify-content-startrow g-0 mb-2">
                                 <div class="col-6 col-md-6">
                                     <p>
-                                        Factura o Recibo presentado N°
+                                        Factura o Recibo presentado N°: <span class="fw-bold text-decoration-underline"><?php echo $recepcion->numero_factura;?></span>
                                     </p>
                                 </div>
                                 <div class="col-6 col-md-6">
+                                    
                                     <div class="linea"></div>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-startrow g-0" style="margin-top: -10px;">
                                 <div class="col-6 col-md-6">
-                                    <p>
+                                    <p class="">
                                         De conformidad a la Orden de Compra
                                     </p>
                                 </div>
@@ -146,7 +147,7 @@
                                     de fecha:
                                 </p>
                                 <div class="col-2 col-md-2">
-                                    <p class="text-center fw-bold"><?php echo $acta->fecha;?>
+                                    <p class="text-center fw-bold"><?php echo $recepcion->fecha!==null?$recepcion->fecha:"";?>
                                     <div class="linea" style="max-width: 90%;margin-top: -10px;"></div>
                                     </p>
                                 </div>

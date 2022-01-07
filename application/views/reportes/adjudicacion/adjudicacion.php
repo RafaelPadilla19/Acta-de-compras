@@ -1,19 +1,37 @@
 <?php
+ //covertir decimal del dinero a fraccion ejemplo 110.50 a 50/100
+    function convertDecimal($number){
+        $numerEntero=floor($number);
+        $numerDecimal=$number-$numerEntero;
+        $numerDecimal=round($numerDecimal*100);
+        if($numerDecimal==0){
+            $numerDecimal="00";
+        }
+        if($numerDecimal<10 && $numerDecimal>0){
+            $numerDecimal="0".$numerDecimal;
+        }
+        return $numerDecimal.'/100';
+    }
     function convertirNumeroLetra($n){
         $formatterES = new NumberFormatter("es-ES", NumberFormatter::SPELLOUT);
         $izquierda = intval(floor($n));
         $derecha = intval(($n - floor($n)) * 100);
-        return $formatterES->format($izquierda) . " punto " . $formatterES->format($derecha);
+        //return $formatterES->format($izquierda) . " punto " . $formatterES->format($derecha);
+        return $formatterES->format($izquierda);
     }
 //funcion fecha a letra
-    function convertirFecha($strFehca)
-    {
-        $fechaAArray=explode('-',$strFehca);
-        $miFecha=mktime(0,0,0,$fechaAArray[1],$fechaAArray[2],$fechaAArray[0]);
-        setlocale(LC_TIME, 'es_ES.UTF-8');
-        $formatoEsperado=strftime("%d de %B de %Y", $miFecha);
-        return $formatoEsperado;
+function convertirFecha($strFehca)
+{
+    //validar si la fecha es null
+    if ($strFehca == null || $strFehca=='0000-00-00') {
+        return null;
     }
+    $fechaAArray = explode('-', $strFehca);
+    $miFecha = mktime(0, 0, 0, $fechaAArray[1], $fechaAArray[2], $fechaAArray[0]);
+    setlocale(LC_TIME, 'es_ES.UTF-8');
+    $formatoEsperado = strftime("%d de %B de %Y", $miFecha);
+    return $formatoEsperado;
+}
 /* 
     $numeroProductos= count($productos);
     //echo "<p>" . $numeroProductos . " productos</p>";
@@ -98,7 +116,7 @@
             <tbody>
                 <tr>
                     <td>FECHA</td>
-                    <td><?php echo convertirFecha($acta->fecha);?></td>
+                    <td><?php echo (convertirFecha($adjudicacion->fecha)!==null)?convertirFecha($adjudicacion->fecha):"";?></td>
                     <td><?php echo $acta->amsj;?></td>
                 </tr>
             </tbody>
@@ -133,9 +151,26 @@
                         <th scope="row">1</th>
                         <td><?php echo $acta->nit?></td>
                         <td><?php echo $acta->nombre?></td>
-                        <td><?php echo $acta->valor_compra?></td>
+                        <td><?php echo $orden->total?></td>
                     </tr>
-                  
+                    <tr>
+                        <th scope="row">2</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
 
@@ -158,8 +193,8 @@
                 <tbody>
                     <tr>
                         <td><?php echo $acta->nombre;?></td>
-                        <td><?php echo $acta->valor_compra?></td>
-                        <td><?php echo strtoupper(convertirNumeroLetra($acta->valor_compra)); ?> DÓLARES DE LOS ESTADOS UNIDOS</td>
+                        <td><?php echo $orden->total?></td>
+                        <td><?php echo strtoupper(convertirNumeroLetra($orden->total))." ". convertDecimal($orden->total) ; ?> DÓLARES DE LOS ESTADOS UNIDOS</td>
                     </tr>
                 </tbody>
             </table>
@@ -171,10 +206,10 @@
             pública. ADJUDIQUESE.
         </p>
         <p class="text-start txt">
-            El requerimiento AMSJ <span class="fw-bold"><?php echo $acta->amsj;?></span> con un monto de <span class="fw-bold">$ <?php echo $acta->valor_compra?></span>
+            El requerimiento AMSJ <span class="fw-bold"><?php echo $acta->amsj;?></span> con un monto de <span class="fw-bold">$ <?php echo $orden->total?></span>
         </p>
         <p class="text-start txt px-4 ms-1">
-        <?php echo strtoupper(convertirNumeroLetra($acta->valor_compra)); ?> DÓLARES DE LOS ESTADOS UNIDOS
+        <?php echo strtoupper(convertirNumeroLetra($orden->total))." ". convertDecimal($orden->total) ; ?> DÓLARES DE LOS ESTADOS UNIDOS
         </p>
         <p class="text-start txt">
             A la persona natural: <span class="fw-bold ms-1"> <?php echo $acta->nombre?></span>
