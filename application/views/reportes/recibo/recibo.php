@@ -1,10 +1,25 @@
 <?php  
+    //covertir decimal del dinero a fraccion ejemplo 110.50 a 50/100
+    function convertDecimal($number){
+        $numerEntero=floor($number);
+        $numerDecimal=$number-$numerEntero;
+        $numerDecimal=round($numerDecimal*100);
+        if($numerDecimal==0){
+            $numerDecimal="00";
+        }
+        if($numerDecimal<10 && $numerDecimal>0){
+            $numerDecimal="0".$numerDecimal;
+        }
+        return $numerDecimal.'/100';
+    }
     function convertirNumeroLetra($n){
         $formatterES = new NumberFormatter("es-ES", NumberFormatter::SPELLOUT);
         $izquierda = intval(floor($n));
         $derecha = intval(($n - floor($n)) * 100);
-        return $formatterES->format($izquierda) . " punto " . $formatterES->format($derecha);
+        //return $formatterES->format($izquierda) . " punto " . $formatterES->format($derecha);
+        return $formatterES->format($izquierda);
     }
+
     function convertirFecha($strFehca)
     {
         $fechaAArray=explode('-',$strFehca);
@@ -106,7 +121,7 @@
     </div>
     <p class="txt">
         Recibí de la Tesorería de San Julián, Departamento de Sonsonate, la cantidad de 
-        <span class="fw-bold text-uppercase"><?php echo strtoupper(convertirNumeroLetra($solicitud->valor_compra)); ?> dolares de los estados unidos de america</span>
+        <span class="fw-bold text-uppercase"><?php echo strtoupper(convertirNumeroLetra($solicitud->total))." ". convertDecimal($solicitud->total) ; ?> dolares de los estados unidos de america</span>
         en concepto de:
     </p>
     <div class="table-responsive mb-1">
