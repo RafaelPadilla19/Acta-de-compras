@@ -1,10 +1,14 @@
 <?php
  function convertirFecha($strFehca)
  {
-     $fechaAArray=explode('-',$strFehca);
-     $miFecha=mktime(0,0,0,$fechaAArray[1],$fechaAArray[2],$fechaAArray[0]);
+     //validar si la fecha es null
+     if ($strFehca == null || $strFehca=='0000-00-00') {
+         return null;
+     }
+     $fechaAArray = explode('-', $strFehca);
+     $miFecha = mktime(0, 0, 0, $fechaAArray[1], $fechaAArray[2], $fechaAArray[0]);
      setlocale(LC_TIME, 'es_ES.UTF-8');
-     $formatoEsperado=strftime("%d de %B de %Y", $miFecha);
+     $formatoEsperado = strftime("%d de %B de %Y", $miFecha);
      return $formatoEsperado;
  }
     $numeroProductos= count($productos);
@@ -87,7 +91,7 @@
                 <thead>
                     <tr>
                         <th class="col-1">FECHA</th>
-                        <td class="col-4"><?php echo convertirFecha($acta->fecha);?></td>
+                        <td class="col-4"><?php echo (convertirFecha($recepcion->fecha)!==null)?convertirFecha($recepcion->fecha):"";?></td>
                         <th>AMSJ-AR2021</th>
                         <td><?php echo $acta->amsj;?></td>
                     </tr>
@@ -107,7 +111,7 @@
                                 Centro, Municipio de San Julián,
                                 Departamento de Sonsonate A las: <span
                                     class="fw-bold text-decoration-underline"><?php echo substr(($recepcion->hora),11);?></span> del día: <span
-                                    class="fw-bold text-decoration-underline"><?php echo convertirFecha($acta->fecha);?></span>
+                                    class="fw-bold text-decoration-underline"><?php echo (convertirFecha($recepcion->fecha)!==null)?convertirFecha($recepcion->fecha):"";?></span>
                             </p>
                             <p>
                                 Reunidos con el proposito de hacer entrega formal por parte del proveedor: <span

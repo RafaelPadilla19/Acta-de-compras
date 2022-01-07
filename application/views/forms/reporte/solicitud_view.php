@@ -393,8 +393,8 @@ angular.module("app", []).controller("app-controller", function($scope, $http, $
 
     const validar_campos_acta_de_recepcion = () => {
         if ($scope.acta_de_recepcion.hora == null ||
-            $scope.acta_de_recepcion.numero_factura == null ||
-            $scope.acta_de_recepcion.fecha == null) {
+            $scope.acta_de_recepcion.numero_factura == null
+            //$scope.acta_de_recepcion.fecha == null) {
             alert("Llene todos los campos");
             return false;
         }
