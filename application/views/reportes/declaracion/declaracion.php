@@ -24,7 +24,10 @@
 <body>
 
 <main class="pt-2" style="margin: 0 60px;font-size:12px;">
-    <div class="d-flex justify-content-startrow g-0 text-center pt-5">
+    <h6 class="text-center mb-2 fw-bold">
+        DECLARACIÓN JURADA
+    </h6>
+    <div class="d-flex justify-content-startrow g-0 text-center pt-2">
         <div class="col-2">
             <p class="text-end">Yo</p>
             <p class="text-end">NIT: </p>

@@ -80,7 +80,7 @@ function convertirFecha($strFehca)
 </head>
 
 <body>
-    <main style="margin: 20px 60px;">
+    <main style="margin: 5px 40px;">
         <div class="d-flex justify-content-startrow g-0 text-center">
             <div class="col-2 col-md-2">
                 <img src="<?php echo base_url();?>assets/img/escudo.jpeg" style="width: 80px;" alt="" class="mt-3">
@@ -124,7 +124,7 @@ function convertirFecha($strFehca)
         <table class="m-2 table table-sm table-bordered border-dark text-center txt-table mb-2">
             <tbody>
                 <tr>
-                    <td>PROYECTO PROGRAMA</td>
+                    <td class="col-3">PROYECTO PROGRAMA</td>
                     <td><?php echo $asignacion->proyecto;?></td>
                 </tr>
             </tbody>
@@ -132,7 +132,7 @@ function convertirFecha($strFehca)
         <p class="mb-2 txt">
             La unida de Adquisiciones y Contrataciones Institucionales UACI, de la Alcaldía Municipal de San Julián
             Departamento de Sonsonate, con base en el
-            requerimiento n° 205 presentada por la unidad solicitante: Cuerpo de Agentes Municipales cumpliendo con lo
+            requerimiento n° 205 presentada por la unidad solicitante: <span class="fw-bold"><?php echo $acta->departamento_solicitante;?></span> cumpliendo con lo
             establecido
             en el art. 10 inciso "e" de la LACAP, presentando el /los oferentes para dicha adquisición o contratación.
         </p>
@@ -215,10 +215,10 @@ function convertirFecha($strFehca)
             A la persona natural: <span class="fw-bold ms-1"> <?php echo $acta->nombre?></span>
         </p>
         <p class="text-start txt">
-            NIT: <span class="fw-bold"><ins><?php echo $acta->nit?></ins></span> NCR O DUI: <span
+            NIT: <span class="fw-bold"><ins style="margin-right:20px;"><?php echo $acta->nit?></ins></span> NCR O DUI: <span
                 class="fw-bold"><ins><ins><?php echo $acta->ncr_dui?></ins></span>
         </p>
-        <div class="d-flex justify-content-startrow pt-5">
+        <div class="d-flex justify-content-startrow pt-2">
             <div class="centrado txt">
                 <div class="linea"></div>
                 <p>

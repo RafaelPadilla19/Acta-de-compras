@@ -90,22 +90,22 @@
             <table class="table border-dark table-sm table-bordered text-center txt-table">
                 <thead>
                     <tr>
-                        <th class="col-1">FECHA</th>
+                        <th class="col-3">FECHA</th>
                         <td class="col-4"><?php echo (convertirFecha($recepcion->fecha)!==null)?convertirFecha($recepcion->fecha):"";?></td>
-                        <th>AMSJ-AR2021</th>
-                        <td><?php echo $acta->amsj;?></td>
+                        <th class="col-3">AMSJ-AR2021</th>
+                        <td class="col-2"><?php echo $acta->amsj;?></td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <th scope="row" class="col-3" >PROYECTO PROGRAMA</th>
-                        <td colspan="3" ><?php echo $asignacion->proyecto;?></td>
+                        <td colspan="9" ><?php echo $asignacion->proyecto;?></td>
                     </tr>
                     <tr>
-                        <th scope="row" colspan="4" style="height: 15px;"></th>
+                        <th scope="row" colspan="12" style="height: 15px;"></th>
                     </tr>
                     <tr>
-                        <td colspan="4" class="text-start txt">
+                        <td colspan="12" class="text-start txt">
                             <p class="txt">
                                 En la Alcaldía Municipal de San Julián, ubicada entre 1a y 3a Calle Poniente, Barrio el
                                 Centro, Municipio de San Julián,
@@ -121,15 +121,16 @@
                                 De los bienes o servicios prestados, correspondiente a la forma de contratación por
                                 Libre Gestión por medio de:
                             </p>
-                            <div class="d-flex justify-content-startrow g-0 mb-2">
+                            <div class="d-flex justify-content-startrow g-0 ">
                                 <div class="col-6 col-md-6">
                                     <p>
-                                        Factura o Recibo presentado N°: <span class="fw-bold text-decoration-underline"><?php echo $recepcion->numero_factura;?></span>
+                                        Factura o Recibo presentado N°: <span class="fw-bold text-decoration-underline"><?php //echo $recepcion->numero_factura;?></span>
                                     </p>
                                 </div>
                                 <div class="col-6 col-md-6">
-                                    
-                                    <div class="linea"></div>
+                                    <p class="text-center fw-bold"><?php echo $recepcion->numero_factura;?>
+                                    <div class="linea" style="margin-top: -7px;"></div>
+                                    </p>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-startrow g-0" style="margin-top: -10px;">
@@ -143,7 +144,7 @@
                                     <div class="linea" style="max-width: 80%;margin-top: -10px;"></div>
                                     </p>
                                 </div>
-                                <p class="col-1 col-md-">
+                                <p class="col-1 col-md-1">
                                     de fecha:
                                 </p>
                                 <div class="col-2 col-md-2">
@@ -207,25 +208,25 @@
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" colspan="4" style="height: 15px;"></th>
+                        <th scope="row" colspan="12" style="height: 15px;"></th>
                     </tr>
-                    <tr>
-                        <td scope="row" class="col-1 col-md-1">ITEM</td>
-                        <td class="col-1 col-md-1">CANTIDAD</td>
-                        <td class="col-2 col-md-2">UNIDAD DE MEDIDA</td>
-                        <td class="col-6 col-md-8">DESCRIPCIÓN</td>
+                    <tr class="col-12">
+                        <th>ITEM</th>
+                        <th>CANTIDAD</th>
+                        <th>UNIDAD DE MEDIDA</th>
+                        <th>DESCRIPCIÓN</th>
                     </tr>
                     <tr>
                     <?php foreach($productosPagina as $clave=>$item ):   ?>
                         <th scope="row"><?php echo valorItem($clave+1) ?></th>
                         <td><?php echo $item->cantidad; ?></td>
                         <td><?php echo $item->unidad_medida; ?></td>
-                        <td><?php echo $item->descripcion; ?></td>
+                        <td><?php echo $item->nombre_producto; ?></td>
                     </tr>
                     <?php endforeach; ?>
                     
                     <tr>
-                        <td scope="row" colspan="4">En cumplimiento a los Arts. 82 Bis literal e), y 77 RELACAP y no
+                        <td scope="row" colspan="12">En cumplimiento a los Arts. 82 Bis literal e), y 77 RELACAP y no
                             habiendo más que hacer constar, firmamos y
                             ratificamos la presente acta.
                         </td>

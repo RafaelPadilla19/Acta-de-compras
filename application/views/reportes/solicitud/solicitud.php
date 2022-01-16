@@ -26,7 +26,7 @@ $anio_actual = date('Y');
 $numeroProductos = count($productos);
 //echo "<p>" . $numeroProductos . " productos</p>";
 
-$paginas = ceil($numeroProductos / 5);
+$paginas = ceil($numeroProductos / 4);
 
 if (!isset($_GET['pag'])) {
     header("Location:" . base_url() . "Reporte/solicitudRequerimiento/" . $id . "?pag=1");
@@ -38,11 +38,11 @@ if ($_GET['pag'] > $paginas || $_GET['pag'] < 1) {
 
 
 //obtenemos los 5 productos de la pagina actual
-$productosPagina = array_slice($productos, ($_GET['pag'] - 1) * 5, 5);
+$productosPagina = array_slice($productos, ($_GET['pag'] - 1) * 4, 4);
 
 function valorItem($item)
 {
-    $valor = (($_GET['pag'] * 5) - 5) + $item;
+    $valor = (($_GET['pag'] * 4) - 4) + $item;
     return $valor;
 }
 
@@ -72,7 +72,7 @@ function valorItem($item)
 
 <body>
 
-    <main style="margin: 20px 60px;">
+    <main style="margin: 0px 40px;">
         <div class="d-flex justify-content-startrow g-0 text-center">
             <div class="col-2 col-md-2">
                 <img src="<?php echo base_url(); ?>assets/img/escudo.jpeg" style="width: 80px;" alt="" class="mt-3">
@@ -115,36 +115,36 @@ function valorItem($item)
             <tbody>
                 <tr>
                     <td class="text-start fw-bold" colspan="3">FECHA: (D-M-A)</td>
-                    <td colspan="5" style="margin: 0;"><?php echo convertirFecha($solicitud->fecha); ?></td>
+                    <td colspan="3" style="margin: 0;"><?php echo convertirFecha($solicitud->fecha); ?></td>
                     <td colspan="4"><?php echo $solicitud->amsj; ?></td>
                 </tr>
                 <tr>
                     <td class="text-start fw-bold" colspan="3">NOMBRE DEL SOLICITANTE:</td>
-                    <td colspan="5"> <?php echo $solicitud->nombre_solicitante; ?></td>
+                    <td colspan="3"> <?php echo $solicitud->nombre_solicitante; ?></td>
                     <td class=" fw-bold align-middle col-2" rowspan="3">FIRMA DEL SOLICITANTE:</td>
-                    <td class="col-2" rowspan="3"></td>
+                    <td class="col-2" rowspan="3" colspan="3"></td>
                 </tr>
                 <tr>
                     <td class="text-start fw-bold" colspan="3">CARGO:</td>
-                    <td colspan="5"><?php echo $solicitud->cargo_solicitante; ?></td>
+                    <td colspan="3"><?php echo $solicitud->cargo_solicitante; ?></td>
                 </tr>
                 <tr>
                     <td class="text-start fw-bold" colspan="3">DEPENDENCIA:</td>
-                    <td colspan="5"><?php echo $solicitud->dependencia_solicitante; ?></td>
+                    <td colspan="3"><?php echo $solicitud->dependencia_solicitante; ?></td>
                 </tr>
                 <tr>
                     <td class="text-start fw-bold" colspan="3">NOMBRE DEL AUTORIZANTE:</td>
-                    <td colspan="5"><?php echo $solicitud->nombre_autorizante; ?></td>
+                    <td colspan="3"><?php echo $solicitud->nombre_autorizante; ?></td>
                     <td class="col-1 fw-bold align-middle col-2" rowspan="3">FIRMA DEL AUTORIZANTE:</td>
-                    <td class="col-2" rowspan="3"></td>
+                    <td class="col-2" rowspan="3" colspan="3"></td>
                 </tr>
                 <tr>
                     <td class="text-start fw-bold" colspan="3">CARGO:</td>
-                    <td colspan="5"><?php echo $solicitud->cargo_autorizante; ?></td>
+                    <td colspan="3"><?php echo $solicitud->cargo_autorizante; ?></td>
                 </tr>
                 <tr>
                     <td class="text-start fw-bold" colspan="3">DEPENDENCIA:</td>
-                    <td colspan="5"><?php echo $solicitud->dependencia_autorizante; ?></td>
+                    <td colspan="3"><?php echo $solicitud->dependencia_autorizante; ?></td>
                 </tr>
                 <tr style="background-color: #AFE1B4;">
                     <td class="fw-bold align-middle">ÍTEM</td>
@@ -153,7 +153,7 @@ function valorItem($item)
                     <td class="fw-bold align-middle" colspan="5">OBRA, BIEN O SEVICIO SOLICITADO</td>
                     <td class="fw-bold align-middle" colspan="2">Cifra presupuestaria</td>
                 </tr>
-                <?php for ($i = 0; $i < 5; $i++) :   ?>
+                <?php for ($i = 0; $i < 4; $i++) :   ?>
                     <tr>
                         <td class="col-1 col-md-1 align-middle fw-bold"><?php echo valorItem($i + 1) ?></td>
                         <td class="col-1 col-md-1 align-middle"><?php echo (isset($productosPagina[$i]->cantidad)) ? $productosPagina[$i]->cantidad : ""; ?></td>
@@ -162,10 +162,10 @@ function valorItem($item)
                         <td class="align-middle" colspan="2"><?php echo (isset($productosPagina[$i]->cifra_presupuestada)) ? "" : ""; ?></td>
                     </tr>
                 <?php endfor; ?>
-
+<!-- 
                 <tr>
                     <td colspan="12"></td>
-                </tr>
+                </tr> -->
                 <tr>
                     <td class="fw-bold" colspan="3">VALOR ESTIMADO DE LA COMPRA:</td>
                     <td colspan="2"><?php //echo $solicitud->valor_compra;

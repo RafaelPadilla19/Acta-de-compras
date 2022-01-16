@@ -8,7 +8,7 @@ class Reporte extends CI_Controller
 		
 		//array de datos
 		$data=[
-			'title' => 'Solicitudes de requerimeitos',
+			'title' => 'Solicitudes de requerimientos',
 		];
 		$this->load->view('templates/header');
 		$this->load->view('templates/menu');

@@ -38,7 +38,7 @@
 $numeroProductos= count($productos);
 //echo "<p>" . $numeroProductos . " productos</p>";
 
-$paginas= ceil($numeroProductos/10);
+$paginas= ceil($numeroProductos/8);
 
 if(!isset($_GET['pag'])){
     header("Location:" . base_url()."Reporte/ordenCompra/".$acta->solicitud_id."?pag=1");
@@ -50,7 +50,7 @@ if($_GET['pag'] > $paginas || $_GET['pag'] < 1){
 
 
 //obtenemos los 5 productos de la pagina actual
-$productosPagina= array_slice($productos, ($_GET['pag']-1)*10, 10);
+$productosPagina= array_slice($productos, ($_GET['pag']-1)*8, 8);
 ?>
 
 <!DOCTYPE html>
@@ -77,7 +77,7 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*10, 10);
 
 <body>
 
-    <main style="margin: 40px 60px;">
+    <main style="margin: 10px 40px;">
         <div class="d-flex justify-content-startrow g-0 text-center">
             <div class="col-2 col-md-2">
                 <img src="<?php echo base_url();?>assets/img/escudo.jpeg" style="width: 80px;" alt="" class="mt-3">
@@ -146,21 +146,21 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*10, 10);
                     <thead>
                         <tr>
                             <th scope="col" class="border-end-0">PROYECTO PROGRAMA</th>
-                            <td colspan="5" class="border-start-0"><?php echo $asignacion->proyecto?></td>
+                            <td colspan="5" class="border-start-0 align-middle"><?php echo $asignacion->proyecto?></td>
                         </tr>
                         <tr>
                             <th scope="row" colspan="5"></th>
                         </tr>
                         <tr>
-                            <th>CANTIDAD</th>
-                            <th>UNIDAD DE MEDIDA</th>
-                            <th>DESCRIPCIÓN</th>
-                            <th>PRECIO</th>
-                            <th>VALOR TOTAL</th>
+                            <th class="col-1 col-md-1">CANTIDAD</th>
+                            <th class="col-2 col-md-2">UNIDAD DE MEDIDA</th>
+                            <th class="col-5 col-md-5">DESCRIPCIÓN</th>
+                            <th class="col-2 col-md-2">PRECIO</th>
+                            <th class="col-2 col-md-2">VALOR TOTAL</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php for($i=0; $i<10;$i++):   ?>
+                        <?php for($i=0; $i<8;$i++):   ?>
                         <tr>
                             <td scope="row"><?php echo (isset($productosPagina[$i]->cantidad))?$productosPagina[$i]->cantidad:"<p></p>"; ?></td>
                             <td><?php echo (isset($productosPagina[$i]->unidad_medida))?$productosPagina[$i]->unidad_medida:""; ?></td>
@@ -169,6 +169,11 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*10, 10);
                             <td><?php echo (isset($productosPagina[$i]->total))?$productosPagina[$i]->total:""; ?></td>
                         </tr>
                         <?php endfor; ?>
+                        <tr>
+                            <td colspan="3"></td>
+                            <td class="fw-bold">Total</td>
+                            <td><?php echo $orden->total?></td>
+                        </tr>
                             <th>SON:</th>
                             <th colspan="4"><?php echo strtoupper(convertirNumeroLetra($orden->total))." ". convertDecimal($solicitud->valor_compra) ; ?> DÓLARES DE LOS ESTADOS UNIDOS</th>
                         </tr>
