@@ -18,21 +18,26 @@
                     <thead class="thead-dark">
                         <tr>
                             <th>ID</th>
-                            <th>Destino del bien</th>
-                            <th>Solicitante</th>
-                            <th>Autorizante</th>
-                            <th>Valor estimado</th>
+                            <th>N° de orden</th>
+                            <th>Programa</th>
+                            <!-- <th>Destino del bien</th>
+                            <th>Solicitante</th> -->
+                            <th>Nombre Proveedor</th>
+                            <!-- <th>Autorizante</th>
+                            <th>Valor estimado</th> -->
                             <th>Fecha de solicitud</th>
-                            <th>Ver Acta</th>
+                            <th>Ver Proceso</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="r in reportes | filter:buscar | limitTo:10">
                             <td>{{r.solicitud_id}}</td>
-                            <td>{{r.destino_de_bien}}</td>
-                            <td>{{r.nombre_solicitante}}</td>
-                            <td>{{r.nombre_autorizante}}</td>
-                            <td>{{r.valor_compra}}</td>
+                            <td>{{r.amsj}}</td>
+                             <td>{{r.destino_de_bien}}</td>
+                            <!--<td>{{r.nombre_solicitante}}</td> -->
+                            <td>{{r.nombre}}</td>
+                            <!-- <td>{{r.nombre_autorizante}}</td>
+                            <td>{{r.valor_compra}}</td> -->
                             <td>{{r.fecha}}</td>
                             
                             <td>

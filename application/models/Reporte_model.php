@@ -9,8 +9,9 @@
         // cambiar el valor solo de un campo
         $this->db->select("*");
         $this->db->from("solicitud_requerimientos");
-        //$this->db->join("proveedor", "proveedor.proveedorid = acta_reporte.proveedorid");
-        $this->db->order_by("solicitud_id", "desc");
+        $this->db->join("orden_de_compra", "orden_de_compra.solicitud_id = solicitud_requerimientos.solicitud_id");
+        $this->db->join("proveedor", "proveedor.proveedor_id = orden_de_compra.proveedor_id");
+        //$this->db->order_by("solicitud_id", "desc");
         $query=$this->db->get();
         return $query->result();
     }

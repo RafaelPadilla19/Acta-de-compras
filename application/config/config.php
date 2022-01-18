@@ -24,6 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = 'http://localhost/ModuloAlcaldiaSanJulian/';
+//$config['base_url'] = 'https://prueba-inii.000webhostapp.com/';
 //$config['base_url'] = 'https://adisingenieros.com/od_sanjulian/';
 /*
 |--------------------------------------------------------------------------
