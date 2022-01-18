@@ -175,7 +175,7 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*8, 8);
                             <td><?php echo $orden->total?></td>
                         </tr>
                             <th>SON:</th>
-                            <th colspan="4"><?php echo strtoupper(convertirNumeroLetra($orden->total))." ". convertDecimal($solicitud->valor_compra) ; ?> DÓLARES DE LOS ESTADOS UNIDOS</th>
+                            <th colspan="4"><?php echo strtoupper(convertirNumeroLetra($orden->total))." ". convertDecimal($orden->total) ; ?> DÓLARES DE LOS ESTADOS UNIDOS</th>
                         </tr>
                     </tbody>
                 </table>

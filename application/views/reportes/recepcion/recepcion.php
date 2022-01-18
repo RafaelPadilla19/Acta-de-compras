@@ -285,6 +285,9 @@
                                     <p>
                                         <?php echo $acta->nombre_solicitante?>
                                     </p>
+                                    <p>
+                                        Solicitante
+                                    </p>
                                 </div>                                
                             </div>
                         </td>

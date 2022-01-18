@@ -74,7 +74,7 @@
 </head>
 
 <body>
-<main style="margin: 20px 60px;">
+<main style="margin: 4px 35px;">
     <div class="d-flex justify-content-startrow g-0 text-center border">
         <div class="col-2 col-md-2">
         <img src="<?php echo base_url();?>assets/img/escudo.jpeg" style="width: 80px;" alt="" class="mt-3">
@@ -165,18 +165,18 @@
         <table class="table border-dark table-bordered text-center txt-table">
             <tbody class="aling">
                 <tr>
-                    <th scope="row" style="padding: 20px 0 20px 0;">JUSTIFICACIÓN</th>
-                    <td><?php echo $solicitud->destino_de_bien?></td>
+                    <th scope="row" style="padding: 10px 0 10px 0;">JUSTIFICACIÓN</th>
+                    <td class="align-middle"><?php echo $solicitud->destino_de_bien?></td>
                 </tr>
                 <tr>
-                    <th scope="row" style="padding: 15px 0 15px 0;">PROYECTO O PROGRAMA</th>
+                    <th scope="row" style="padding: 10px 0 10px 0;">PROYECTO O PROGRAMA</th>
                     <td class="align-middle"><?php echo $asignacion->proyecto?></td>
                 </tr>
             </tbody>
         </table>
         <p class="txt text-end">San Julián, <?php echo convertirFecha($solicitud->fecha);?></p>
     </div>
-    <div class="d-flex justify-content-startrow g-0 text-center">
+    <div class="d-flex justify-content-startrow g-0 text-center" style="margin-top:-24px;">
         <div class="col-4 col-md-4">
             <div class="centrado txt text-start">     
                 <p>
@@ -188,7 +188,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-8 col-md-8">
+        <div class="col-6 col-md-6">
             <div class="centrado txt">     
                 <p style="width: 999px;">
                     <div class="linea"></div>
@@ -200,9 +200,8 @@
             </div>
         </div>
     </div>
-    <div class="d-flex justify-content-startrow g-0 text-center">
-        <div class="col-4 col-md-4">
-            
+    <div class="d-flex justify-content-startrow g-0 text-center" style="margin-top:-10px;">
+        <div class="col-4 col-md-4">        
             <div class="centrado txt">     
                 <p>
                     <p class="txt text-start">DESE</p>
@@ -233,7 +232,7 @@
             </div>
         </div>
     </div>
-    <div class="table-responsive mb-1">
+    <div class="table-responsive">
         <table class="table border-dark table-sm table-bordered text-center txt-table align-middle">
             <thead>
                 <tr class="border-dark mx-auto" style="padding: 30px 0 30px 0;">
