@@ -22,7 +22,7 @@
                             <th>Programa</th>
                             <!-- <th>Destino del bien</th>
                             <th>Solicitante</th> -->
-                            <th>Nombre Proveedor</th>
+                           <!--  <th>Nombre Proveedor</th> -->
                             <!-- <th>Autorizante</th>
                             <th>Valor estimado</th> -->
                             <th>Fecha de solicitud</th>
@@ -35,7 +35,7 @@
                             <td>{{r.amsj}}</td>
                              <td>{{r.destino_de_bien}}</td>
                             <!--<td>{{r.nombre_solicitante}}</td> -->
-                            <td>{{r.nombre}}</td>
+                            <!-- <td>{{r.nombre}}</td> -->
                             <!-- <td>{{r.nombre_autorizante}}</td>
                             <td>{{r.valor_compra}}</td> -->
                             <td>{{r.fecha}}</td>
