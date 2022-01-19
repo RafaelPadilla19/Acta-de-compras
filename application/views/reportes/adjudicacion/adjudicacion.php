@@ -80,7 +80,7 @@ function convertirFecha($strFehca)
 </head>
 
 <body>
-    <main style="margin: 5px 40px;">
+    <main ng-app="app" ng-controller="app-controller" style="margin: 5px 40px;">
         <div class="d-flex justify-content-startrow g-0 text-center">
             <div class="col-2 col-md-2">
                 <img src="<?php echo base_url();?>assets/img/escudo.jpeg" style="width: 80px;" alt="" class="mt-3">
@@ -234,48 +234,121 @@ function convertirFecha($strFehca)
                 <div><?php echo $adjudicacion->cargo_de_representante?></div>
                 </p>
             </div>
-
-
         </div>
         <div class="ocultar d-flex justify-content-center my-3">
             <button id="imprimir" name="imprimir" class="btn btn-primary me-3">Imprimir</button>
-            <a class="btn btn-primary" href="<?php echo base_url(); ?>">Volver</a>
+            <a class="btn btn-primary me-3" href="<?php echo base_url(); ?>">Volver</a>
+            <button data-bs-toggle="modal" data-bs-target="#modal-adjudicacion" class="btn btn-primary">Actualizar</button>
         </div>
 
-     <!--    <nav aria-label="Page navigation example" class="ocultar mb-4">
-            <ul class="pagination justify-content-center">
-                <li class="page-item 
-                    <?php echo $_GET['pag']<=1 ? 'disabled':'' ?>">
+        <!--<nav aria-label="Page navigation example" class="ocultar mb-4">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item 
+                        <?php echo $_GET['pag']<=1 ? 'disabled':'' ?>">
 
 
-                    <a class="page-link"
-                        href="<?php echo base_url()."Reporte/adjudicacion/".$id."?pag=".$_GET["pag"]-1 ?>"
-                        tabindex="-1" aria-disabled="true">Anterior</a>
-                </li>
+                        <a class="page-link"
+                            href="<?php echo base_url()."Reporte/adjudicacion/".$id."?pag=".$_GET["pag"]-1 ?>"
+                            tabindex="-1" aria-disabled="true">Anterior</a>
+                    </li>
 
-                <?php for ($i = 1; $i <= $paginas; $i++) { ?>
-                <li class="page-item <?php echo $_GET['pag']==$i ? 'active':'' ?>"><a class="page-link"
-                        href="<?php echo base_url()."Reporte/adjudicacion/".$id."?pag=".$i ?>"><?php echo $i ?></a>
-                </li>
-                <?php } ?>
+                    <?php for ($i = 1; $i <= $paginas; $i++) { ?>
+                    <li class="page-item <?php echo $_GET['pag']==$i ? 'active':'' ?>"><a class="page-link"
+                            href="<?php echo base_url()."Reporte/adjudicacion/".$id."?pag=".$i ?>"><?php echo $i ?></a>
+                    </li>
+                    <?php } ?>
 
-                <li class="page-item 
-                    <?php echo $_GET['pag']>=$paginas ? 'disabled':'' ?>">
+                    <li class="page-item 
+                        <?php echo $_GET['pag']>=$paginas ? 'disabled':'' ?>">
 
-                    <a class="page-link"
-                        href="<?php echo base_url()."Reporte/adjudicacion/".$id."?pag=".$_GET["pag"]+1 ?>"
-                        tabindex="-1" aria-disabled="true">Siguiente</a>
-                </li>
-            </ul>
+                        <a class="page-link"
+                            href="<?php echo base_url()."Reporte/adjudicacion/".$id."?pag=".$_GET["pag"]+1 ?>"
+                            tabindex="-1" aria-disabled="true">Siguiente</a>
+                    </li>
+                </ul>
         </nav> -->
+         <!--modal adjudicacion-->
+         <div class="modal fade" id="modal-adjudicacion" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Adjudicación</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
 
+                                <div class="mb-3 col-12">
+                                    <label for="message-text" class="col-form-label">Nombre de administrador de orden
+                                        de compra:</label>
+                                    <input type="text" class="form-control" id="costo-unitario"
+                                        ng-model="adjudicacion.administrador_de_contrato_u_orden_de_compra">
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="mb-3 col-12">
+                                    <label for="message-text" class="col-form-label">Cargo administrador de orden
+                                        de compra:</label>
+                                    <input type="text" class="form-control" id="costo-unitario"
+                                        ng-model="adjudicacion.cargo_de_administrador_de_contrato">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 col-12">
+                                <label for="message-text" class="col-form-label">Nombre completo:</label>
+                                    <input type="text" class="form-control" id="representante_de_alcaldia"
+                                        ng-model="adjudicacion.representante_de_alcaldia">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 col-6">
+                                    <label for="message-text" class="col-form-label">Cargo:</label>
+                                    <input type="text" class="form-control" id="costo-unitario"
+                                        ng-model="adjudicacion.cargo_de_representante" placeholder="Ej: Alcalde, Interino">
+                                </div>
+                                <div class="mb-3 col-6">
+                                    <label for="fecha" class="form-label">Fecha:</label>
+                                    <input type="date" class="form-control" id="fecha"
+                                        ng-model="adjudicacion.fecha" required>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" ng-click="guardarAdjudicacion()">Agregar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
     <script>
-    //imprimir
-    document.getElementById('imprimir').onclick = function() {
-        window.print();
-    }
+        //imprimir
+        document.getElementById('imprimir').onclick = function() {
+            window.print();
+        }
+        angular.module("app", []).controller("app-controller", function($scope, $http, $compile) {
+            $scope.adjudicacion = {};
+            $scope.guardarAdjudicacion = function() {
+            if (!(validar_campos_adjudicacion() == false)) {
+                    $http({
+                        method: 'POST',
+                        url: '<?php echo base_url() . "Reporte/insertAdjudicacion/"; ?>',
+                        data: $scope.adjudicacion
+                    }).then(function(response) {
+                        alert("Se ha guardado la adjudicacion");
+                        $('#modal-adjudicacion').modal('hide');
+                        window.location.reload();
+                    });
+                }
+            }
+        });
+       
     </script>
 </body>
-
+<script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 </html>

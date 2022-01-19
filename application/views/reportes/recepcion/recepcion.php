@@ -90,10 +90,10 @@
             <table class="table border-dark table-sm table-bordered text-center txt-table">
                 <thead>
                     <tr>
-                        <th class="col-3">FECHA</th>
-                        <td class="col-4"><?php echo (convertirFecha($recepcion->fecha)!==null)?convertirFecha($recepcion->fecha):"";?></td>
-                        <th class="col-3">AMSJ-AR2021</th>
-                        <td class="col-2"><?php echo $acta->amsj;?></td>
+                        <th>FECHA</th>
+                        <td><?php echo (convertirFecha($recepcion->fecha)!==null)?convertirFecha($recepcion->fecha):"";?></td>
+                        <th>AMSJ-AR2021</th>
+                        <td><?php echo $acta->amsj;?></td>
                     </tr>
                 </thead>
                 <tbody>
@@ -210,12 +210,14 @@
                     <tr>
                         <th scope="row" colspan="12" style="height: 15px;"></th>
                     </tr>
-                    <tr class="col-12">
+                    <thead>
+                    <tr>
                         <th>ITEM</th>
                         <th>CANTIDAD</th>
                         <th>UNIDAD DE MEDIDA</th>
-                        <th>DESCRIPCIÓN</th>
+                        <th class="col-5">DESCRIPCIÓN</th>
                     </tr>
+                    </thead>
                     <tr>
                     <?php foreach($productosPagina as $clave=>$item ):   ?>
                         <th scope="row"><?php echo valorItem($clave+1) ?></th>
