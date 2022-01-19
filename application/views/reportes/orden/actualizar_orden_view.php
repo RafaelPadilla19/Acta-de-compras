@@ -171,6 +171,7 @@
 
 <script>
 angular.module("app", []).controller("app-controller", function($scope, $http, $compile) {
+
     $scope.proveedores = [];
 
     $scope.productos = [];
@@ -190,14 +191,14 @@ angular.module("app", []).controller("app-controller", function($scope, $http, $
         }
     }
 
-    function get_proveedores() {
+    (function() {
         $http.get("<?php echo base_url(); ?>Proveedor/getProveedores").then(function(response) {
             $scope.proveedores = response.data;
 
         });
-    }
+    })();
 
-    function getProductos() {
+    (function () {
         $http({
             method: 'GET',
             url: '<?php echo base_url()."Reporte/getProductosPorIdActa/".$id; ?>'
@@ -205,10 +206,18 @@ angular.module("app", []).controller("app-controller", function($scope, $http, $
             $scope.productos = response.data;
         });
 
-    }
+    })();
 
-    get_proveedores();
-    getProductos();
+    (function (){
+        $http({
+            method: 'GET',
+            url: '<?php echo base_url()."Reporte/getOrdenCompra/".$id; ?>'
+        }).then(function(response) {
+            $scope.orden_de_compra = response.data;
+            $scope.orden_de_compra.fecha_de_entrega = new Date($scope.orden_de_compra.fecha_de_entrega);
+        });
+    })();
+    
 
 
     const validar_campos_orden_compra = () => {
@@ -229,7 +238,7 @@ angular.module("app", []).controller("app-controller", function($scope, $http, $
         if (!(validar_campos_orden_compra() == false)) {
             $http({
                 method: 'POST',
-                url: '<?php echo base_url() . "Reporte/insertOrdenCompra/"; ?>',
+                url: '<?php echo base_url() . "Reporte/actualizarOrdenCompra/"; ?>',
                 data: $scope.orden_de_compra
             }).then(function successCallback(response) {
                 console.log('ex');

@@ -58,6 +58,12 @@
         return $this->db->insert_id();
     }
 
+    public function actualizarOrdenCompra($data, $id){
+        $this->db->where('solicitud_id', $id);
+        $this->db->update('orden_de_compra', $data);
+        return $id;
+    }
+
     public function insertAsiganacionPresupuestaria($data){
         $this->db->insert('asignacion_presupuestaria', $data);
         $this->db->insert_id();
@@ -139,6 +145,8 @@
         return $query->row();
     }
 
+    
+
     function insertActaDeRecepcion($data){
         $this->db->insert('acta_de_recepcion', $data);
         return $this->db->insert_id();
@@ -166,6 +174,12 @@
         $this->db->where("solicitud_id", $id_solicitud);
         $query=$this->db->get();
         return $query->row();
+    }
+
+    public function actualizarActaRecepcion($data, $id){
+        $this->db->where('solicitud_id', $id);
+        $this->db->update('acta_de_recepcion', $data);
+        return $data;
     }
 }
 ?>
