@@ -335,10 +335,8 @@ angular.module("app", []).controller("app-controller", function($scope, $http, $
     $scope.asignacion_presupuestaria = {};
     $scope.asignacion_presupuestaria.estado = "aprobado";
     $scope.asignacion_presupuestaria.recibo_en_presupuesto_por = "Edith Angelica Martinez Bonilla";
-
-    
-
     $scope.asignacion_presupuestaria.solicitud_id = <?php echo $id; ?>;
+
     $scope.orden;
     $scope.orden_de_compra = {};
     $scope.orden_de_compra.lugar = "Alcaldia Municipal de San Julian Cacaluta";

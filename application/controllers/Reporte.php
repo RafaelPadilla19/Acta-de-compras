@@ -104,6 +104,13 @@ class Reporte extends CI_Controller
 		$this->load->view('reportes/solicitud/solicitud',$data);
 	}
 
+	public function getAsignacionPresupuestaria($id)
+	{
+		$this->load->model('Reporte_model');
+		$asignacion= $this->Reporte_model->getAsignacionPresupuestaria($id);
+		echo json_encode($asignacion);
+	}
+
 	public function recibo($id_acta){
 		$this->load->model('Reporte_model');
 		$productos= $this->Reporte_model->getProductosPorSolicitud($id_acta);
@@ -159,6 +166,16 @@ class Reporte extends CI_Controller
 		$id=$assocArray['producto_id'];
 		$this->load->model('Reporte_model');
 		$response = $this->Reporte_model->actualizarProducto($assocArray,$id);
+		echo json_encode($response);
+	}
+
+	public function actualizarAsigancionPresupuestaria()
+	{
+		$dt = file_get_contents("php://input");
+		$assocArray = json_decode($dt, true);
+		$id=$assocArray['solicitud_id'];
+		$this->load->model('Reporte_model');
+		$response = $this->Reporte_model->actualizarAsigancionPresupuestaria($assocArray,$id);
 		echo json_encode($response);
 	}
 	
@@ -224,7 +241,18 @@ class Reporte extends CI_Controller
 		$response = $this->Reporte_model->insert_propuesta_orden_de_compras($assocArray);
 		echo json_encode($response);
 	}
-	
+
+	public function actualizarPropuesta(){
+		$dt = file_get_contents("php://input");
+		$assocArray = json_decode($dt, true);
+		$solicitud_id=$assocArray['solicitud_id'];
+		unset($assocArray['solicitud_id']);
+		$this->load->model('Reporte_model');
+		$response = $this->Reporte_model->actualizar_propuesta_orden_de_compras($assocArray,$solicitud_id);
+		echo json_encode($response);
+	}
+
+
 	public function insertProducto(){
 		$dt = file_get_contents("php://input");
 		$assocArray = json_decode($dt, true);
@@ -308,6 +336,54 @@ class Reporte extends CI_Controller
 					return redirect("Usuario/logear");
 				}
 		}
+	}
+
+	public function actualizarSolicitud($id){
+		$this->validarSessionReporte();
+		$data=[
+			'id' => $id,
+		];
+
+		$this->load->view('templates/header');
+		$this->load->view('templates/menu');
+		$this->load->view('reportes/solicitud/actualizar_solicitud',$data);
+		$this->load->view('templates/footer');
+	}
+
+	public function actualizarOrden($id)
+	{
+		$this->validarSessionReporte();
+		$data=[
+			'id' => $id,
+		];
+
+		$this->load->view('templates/header');
+		$this->load->view('templates/menu');
+		$this->load->view('reportes/orden/actualizar_orden_view',$data);
+		$this->load->view('templates/footer');
+	}
+
+	public function getSolicitudRequerimientoPorId($id){
+		$this->load->model('Reporte_model');
+		$response = $this->Reporte_model->getSolicitudRequerimientoPorId($id);
+		echo json_encode($response);
+	}
+
+	public function getPropuestaOrdenCompra($id){
+		$this->load->model('Reporte_model');
+		$response = $this->Reporte_model->getPropuestaOrdenCompra($id);
+		echo json_encode($response);
+		
+	}
+
+	public function actualizareSolicitud(){
+		$dt = file_get_contents("php://input");
+		$assocArray = json_decode($dt, true);
+		$id=$assocArray['solicitud_id'];
+		unset($assocArray['solicitud_id']);
+		$this->load->model('Reporte_model');
+		$response = $this->Reporte_model->actualizar_solicitud($assocArray,$id);
+		echo json_encode($response);
 	}
 
 }

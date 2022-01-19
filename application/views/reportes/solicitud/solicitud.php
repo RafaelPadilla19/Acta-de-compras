@@ -262,7 +262,11 @@ function valorItem($item)
         </table>
         <div class="ocultar d-flex justify-content-center my-3">
             <button id="imprimir" name="imprimir" class="btn btn-primary me-3">Imprimir</button>
-            <a class="btn btn-primary" href="<?php echo base_url() . "Reporte/documentacionCompra/" . $id; ?>">Volver</a>
+            <a class="btn btn-primary me-3" href="<?php echo base_url() . "Reporte/documentacionCompra/" . $id; ?>">Volver</a>
+            <?php if (!empty($asignacion)) { ?>
+            <a class="btn btn-primary" target="_blank" href="<?php echo base_url() . "Reporte/actualizarSolicitud/" . $id; ?>">Actualizar</a>
+            <?php } ?>
+            
         </div>
         <nav aria-label="Page navigation example" class="ocultar mb-4">
             <ul class="pagination justify-content-center">

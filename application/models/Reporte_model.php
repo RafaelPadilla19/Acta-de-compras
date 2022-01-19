@@ -9,9 +9,10 @@
         // cambiar el valor solo de un campo
         $this->db->select("*");
         $this->db->from("solicitud_requerimientos");
-        $this->db->join("orden_de_compra", "orden_de_compra.solicitud_id = solicitud_requerimientos.solicitud_id");
-        $this->db->join("proveedor", "proveedor.proveedor_id = orden_de_compra.proveedor_id");
-        //$this->db->order_by("solicitud_id", "desc");
+   /*      $this->db->join("orden_de_compra", "orden_de_compra.solicitud_id = solicitud_requerimientos.solicitud_id");
+        $this->db->join("proveedor", "proveedor.proveedor_id = orden_de_compra.proveedor_id"); */
+        
+        $this->db->order_by("solicitud_requerimientos.solicitud_id", "desc");
         $query=$this->db->get();
         return $query->result();
     }
@@ -21,9 +22,24 @@
     	return $this->db->insert_id();
     }
 
+    public function actualizar_solicitud($data, $id){
+        $this->db->where('solicitud_id', $id);
+        $this->db->update('solicitud_requerimientos', $data);
+        
+        return $id;
+    }
+
+
     public function insert_propuesta_orden_de_compras($data){
     	$this->db->insert('propuesta_orden_de_compras', $data);
     	return $this->db->insert_id();
+    }
+
+    public function actualizar_propuesta_orden_de_compras($data, $id){
+        $this->db->where('solicitud_id', $id);
+        $this->db->update('propuesta_orden_de_compras', $data);
+        
+        return $id;
     }
 
     public function guardarProducto($data){
@@ -55,8 +71,15 @@
 
         return $this->db->insert_id();
         
-        
     }
+
+    public function actualizarAsigancionPresupuestaria($data, $id){
+        $this->db->where('solicitud_id', $id);
+        $this->db->update('asignacion_presupuestaria', $data);
+        return $id;
+    }
+    
+    
 
     // traer todos los productos de una acta_reporte
     public function getProductosPorSolicitud($idSolicitud){
@@ -135,6 +158,14 @@
         $query=$this->db->get();
         return $query->row();
     
+    }
+
+    function getSolicitudRequerimientoPorId($id_solicitud){
+        $this->db->select("*");
+        $this->db->from("solicitud_requerimientos");
+        $this->db->where("solicitud_id", $id_solicitud);
+        $query=$this->db->get();
+        return $query->row();
     }
 }
 ?>
