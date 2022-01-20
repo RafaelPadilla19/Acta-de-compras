@@ -43,10 +43,11 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="<?php echo base_url(); ?>assets/js/angular.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/recepcion.css">
-    <script src="<?php echo base_url(); ?>assets/js/angular.min.js"></script>
+    
     <title>Acta de recepcion</title>
     <style>
     /** ocultar los botones al imprimir**/
@@ -111,7 +112,7 @@
                                 En la Alcaldía Municipal de San Julián, ubicada entre 1a y 3a Calle Poniente, Barrio el
                                 Centro, Municipio de San Julián,
                                 Departamento de Sonsonate A las: <span
-                                    class="fw-bold text-decoration-underline"><?php echo substr(($recepcion->hora),11);?></span>
+                                    class="fw-bold text-decoration-underline"><?php echo $recepcion->hora;?></span>
                                 del día: <span
                                     class="fw-bold text-decoration-underline"><?php echo (convertirFecha($recepcion->fecha)!==null)?convertirFecha($recepcion->fecha):"";?></span>
                             </p>
@@ -392,6 +393,8 @@
 
         $scope.acta_de_recepcion = {};
 
+        //imprimir hora desde angular 
+
         (function() {
             $http({
                 method: 'GET',
@@ -399,24 +402,28 @@
             }).then(function successCallback(response) {
                 $scope.acta_de_recepcion = response.data;
                 //convertir a input time
-                $scope.acta_de_recepcion.hora = $scope.acta_de_recepcion.hora.split("T");
-                $scope.acta_de_recepcion.hora = new Date(1970, 0, 1, $scope.acta_de_recepcion.hora[1].split(":")[0], $scope.acta_de_recepcion.hora[1].split(":")[1], 0, 0);
-                
+                $scope.acta_de_recepcion.hora =$scope.acta_de_recepcion.hora.split(':');
+                $scope.acta_de_recepcion.hora = new Date(1970, 0, 1, $scope.acta_de_recepcion.hora[0], $scope.acta_de_recepcion.hora[1], 0, 0);
+                //fecha cliente
 
-                $scope.acta_de_recepcion.fecha= new Date($scope.acta_de_recepcion.fecha);
-                console.log($scope.acta_de_recepcion);
+                $scope.acta_de_recepcion.fecha =$scope.acta_de_recepcion.fecha.split('-');
+                $scope.acta_de_recepcion.fecha = new Date($scope.acta_de_recepcion.fecha[0], $scope.acta_de_recepcion.fecha[1], $scope.acta_de_recepcion.fecha[2]);
+
+                //console.log($scope.acta_de_recepcion);
             }, function errorCallback(response) {
                 console.log(response);
             })
         })();
 
         $scope.actualizarActa= ()=>{
+            //mandar hora y minutos a una variable de tipo time
+            $scope.acta_de_recepcion.hora = $scope.acta_de_recepcion.hora.toTimeString().split(' ')[0];;      
             $http({
                 method: 'POST',
                 url: '<?php echo base_url().'/Reporte/actualizarActaRecepcion'; ?>',
                 data: $scope.acta_de_recepcion
             }).then(function successCallback(response) {
-
+                
                 console.log( $scope.acta_de_recepcion);
                 
                 window.location.reload();

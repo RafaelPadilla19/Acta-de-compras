@@ -421,6 +421,8 @@ angular.module("app", []).controller("app-controller", function($scope, $http, $
     }
 
     $scope.guardarActaRecepcion = function() {
+        //solo la hora minutos y segundos
+       
         if (!(validar_campos_acta_de_recepcion() == false)) {
             $http({
                 method: 'POST',
