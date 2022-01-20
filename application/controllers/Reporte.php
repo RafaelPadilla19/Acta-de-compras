@@ -197,7 +197,39 @@ class Reporte extends CI_Controller
 		];
 		$this->load->view('reportes/recepcion/recepcion',$data);
 	}
+	public function getActaDeRecepcion($id)
+	{
+		$this->load->model('Reporte_model');
+		$recepcion = $this->Reporte_model->getActaDeRecepcion($id);
+		echo json_encode($recepcion);	
+		
+	}
 
+	public function actualizarActaRecepcion()
+	{
+		$dt = file_get_contents("php://input");
+		$assocArray = json_decode($dt, true);
+		$id=$assocArray['solicitud_id'];
+		$this->load->model('Reporte_model');
+		$response = $this->Reporte_model->actualizarActaRecepcion($assocArray,$id);
+		echo json_encode($response);
+	}
+	public function getAdjudicacion($id)
+	{
+		$this->load->model('Reporte_model');
+		$recepcion = $this->Reporte_model->getAdjudicacion($id);
+		echo json_encode($recepcion);	
+		
+	}
+	public function actualizarAdjudicacion()
+	{
+		$dt = file_get_contents("php://input");
+		$assocArray = json_decode($dt, true);
+		$id=$assocArray['solicitud_id'];
+		$this->load->model('Reporte_model');
+		$response = $this->Reporte_model->actualizarAdjudicacion($assocArray,$id);
+		echo json_encode($response);
+	}
 	public function declaracion($id_acta){
 		$this->load->model('Reporte_model');
 		$acta= $this->Reporte_model->getSolicitudRequeimiento_OrdenCompra_Proveedor($id_acta);
@@ -383,6 +415,23 @@ class Reporte extends CI_Controller
 		unset($assocArray['solicitud_id']);
 		$this->load->model('Reporte_model');
 		$response = $this->Reporte_model->actualizar_solicitud($assocArray,$id);
+		echo json_encode($response);
+	}
+
+	public function getOrdenCompra($id)
+	{
+		$this->load->model('Reporte_model');
+		$response = $this->Reporte_model->getOrdenCompra($id);
+		echo json_encode($response);
+	}
+
+	public function actualizarOrdenCompra()
+	{
+		$dt = file_get_contents("php://input");
+		$assocArray = json_decode($dt, true);
+		$id=$assocArray['solicitud_id'];
+		$this->load->model('Reporte_model');
+		$response = $this->Reporte_model->actualizarOrdenCompra($assocArray,$id);
 		echo json_encode($response);
 	}
 

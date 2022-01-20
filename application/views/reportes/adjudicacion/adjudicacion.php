@@ -66,6 +66,7 @@ function convertirFecha($strFehca)
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/adjudicacion.css">
+    <script src="<?php echo base_url(); ?>assets/js/angular.min.js"></script>
 
     <title>adjudicacion</title>
     <style>
@@ -283,7 +284,7 @@ function convertirFecha($strFehca)
                                 <div class="mb-3 col-12">
                                     <label for="message-text" class="col-form-label">Nombre de administrador de orden
                                         de compra:</label>
-                                    <input type="text" class="form-control" id="costo-unitario"
+                                    <input type="text" class="form-control" id=""
                                         ng-model="adjudicacion.administrador_de_contrato_u_orden_de_compra">
 
                                 </div>
@@ -293,21 +294,21 @@ function convertirFecha($strFehca)
                                 <div class="mb-3 col-12">
                                     <label for="message-text" class="col-form-label">Cargo administrador de orden
                                         de compra:</label>
-                                    <input type="text" class="form-control" id="costo-unitario"
+                                    <input type="text" class="form-control" id=""
                                         ng-model="adjudicacion.cargo_de_administrador_de_contrato">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="mb-3 col-12">
                                 <label for="message-text" class="col-form-label">Nombre completo:</label>
-                                    <input type="text" class="form-control" id="representante_de_alcaldia"
+                                    <input type="text" class="form-control" id=""
                                         ng-model="adjudicacion.representante_de_alcaldia">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="mb-3 col-6">
                                     <label for="message-text" class="col-form-label">Cargo:</label>
-                                    <input type="text" class="form-control" id="costo-unitario"
+                                    <input type="text" class="form-control" id=""
                                         ng-model="adjudicacion.cargo_de_representante" placeholder="Ej: Alcalde, Interino">
                                 </div>
                                 <div class="mb-3 col-6">
@@ -320,35 +321,53 @@ function convertirFecha($strFehca)
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary" ng-click="guardarAdjudicacion()">Agregar</button>
+                        <button type="button" class="btn btn-primary" ng-click="actualizarAdjudicacion()">Actualizar</button>
                     </div>
                 </div>
             </div>
         </div>
     </main>
     <script>
-        //imprimir
-        document.getElementById('imprimir').onclick = function() {
-            window.print();
-        }
         angular.module("app", []).controller("app-controller", function($scope, $http, $compile) {
+            //imprimir
+            document.getElementById('imprimir').onclick = function() {
+                window.print();
+            }
+
             $scope.adjudicacion = {};
-            $scope.guardarAdjudicacion = function() {
-            if (!(validar_campos_adjudicacion() == false)) {
-                    $http({
-                        method: 'POST',
-                        url: '<?php echo base_url() . "Reporte/insertAdjudicacion/"; ?>',
-                        data: $scope.adjudicacion
-                    }).then(function(response) {
-                        alert("Se ha guardado la adjudicacion");
-                        $('#modal-adjudicacion').modal('hide');
-                        window.location.reload();
-                    });
-                }
+
+            (function() {
+                $http({
+                    method: 'GET',
+                    url: '<?php echo base_url().'/Reporte/getAdjudicacion/'.$id; ?>'
+                }).then(function successCallback(response) {
+                    $scope.adjudicacion = response.data;
+                    //convertir a input time
+
+                    $scope.adjudicacion.fecha= new Date($scope.adjudicacion.fecha);
+                  
+                    console.log($scope.adjudicacion);
+                }, function errorCallback(response) {
+                    console.log(response);
+                })
+            })();
+
+            $scope.actualizarAdjudicacion= ()=>{
+                $http({
+                    method: 'POST',
+                    url: '<?php echo base_url().'/Reporte/actualizarAdjudicacion'; ?>',
+                    data: $scope.adjudicacion
+                }).then(function successCallback(response) {
+
+                    console.log( $scope.adjudicacion);
+                    
+                    window.location.reload();
+                }, function errorCallback(response) {
+                    console.log(response);
+                })
             }
         });
-       
     </script>
+    <script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
-<script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 </html>
