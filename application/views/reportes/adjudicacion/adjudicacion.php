@@ -344,7 +344,8 @@ function convertirFecha($strFehca)
                     $scope.adjudicacion = response.data;
                     //convertir a input time
 
-                    $scope.adjudicacion.fecha= new Date($scope.adjudicacion.fecha);
+                    $scope.adjudicacion.fecha= $scope.adjudicacion.fecha.split("-");
+                    $scope.adjudicacion.fecha= new Date($scope.adjudicacion.fecha[0], $scope.adjudicacion.fecha[1]-1, $scope.adjudicacion.fecha[2]);
                   
                     console.log($scope.adjudicacion);
                 }, function errorCallback(response) {

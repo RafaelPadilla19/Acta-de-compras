@@ -351,13 +351,13 @@ angular.module("app", []).controller("app-controller", function($scope, $http, $
             url: '<?php echo base_url().'/Reporte/getSolicitudRequerimientoPorId/'.$id; ?>'
         }).then(function successCallback(response) {
             $scope.solicitud_requerimientos = response.data;
-            $scope.solicitud_requerimientos.fecha = new Date($scope.solicitud_requerimientos.fecha);
+            $scope.solicitud_requerimientos.fecha = $scope.solicitud_requerimientos.fecha.split("-");
+            $scope.solicitud_requerimientos.fecha = new Date($scope.solicitud_requerimientos.fecha[0], $scope.solicitud_requerimientos.fecha[1] - 1, $scope.solicitud_requerimientos.fecha[2]);
             console.log(response.data);
         }, function errorCallback(response) {
             console.log(response);
         })
     })();
-
 
 
     (function() {
@@ -366,6 +366,10 @@ angular.module("app", []).controller("app-controller", function($scope, $http, $
             url: '<?php echo base_url().'/Reporte/getPropuestaOrdenCompra/'.$id; ?>'
         }).then(function successCallback(response) {
             $scope.propuesta_orden_de_compras = response.data;
+            if($scope.propuesta_orden_de_compras.fecha_recibido!=""){
+                $scope.propuesta_orden_de_compras.fecha_recibido = $scope.propuesta_orden_de_compras.fecha_recibido.split("-");
+                $scope.propuesta_orden_de_compras.fecha_recibido = new Date($scope.propuesta_orden_de_compras.fecha_recibido[0], $scope.propuesta_orden_de_compras.fecha_recibido[1] - 1, $scope.propuesta_orden_de_compras.fecha_recibido[2]);
+            }
             console.log(response.data);
         }, function errorCallback(response) {
             console.log(response);
@@ -378,8 +382,10 @@ angular.module("app", []).controller("app-controller", function($scope, $http, $
             url: '<?php echo base_url().'/Reporte/getAsignacionPresupuestaria/'.$id; ?>'
         }).then(function successCallback(response) {
             $scope.asignacion_presupuestaria = response.data;
-            if($scope.asignacion_presupuestaria.fecha_asignacion != ""){
-                $scope.asignacion_presupuestaria.fecha = new Date($scope.asignacion_presupuestaria.fecha);
+            if($scope.asignacion_presupuestaria.fecha != ""){
+                $scope.asignacion_presupuestaria.fecha = $scope.asignacion_presupuestaria.fecha.split("-");
+                $scope.asignacion_presupuestaria.fecha = new Date($scope.asignacion_presupuestaria.fecha[0], $scope.asignacion_presupuestaria.fecha[1]-1, $scope.asignacion_presupuestaria.fecha[2]);
+                console.log('entro');
             }
 
             console.log(response.data);
