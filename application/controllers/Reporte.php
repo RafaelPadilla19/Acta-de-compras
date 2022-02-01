@@ -248,7 +248,8 @@ class Reporte extends CI_Controller
 		$asignacion= $this->Reporte_model->getAsignacionPresupuestaria($id_acta);
 		$adjudicacion=$this->Reporte_model->getAdjudicacion($id_acta);
 		$orden=$this->Reporte_model->getOrdenCompra($id_acta);
-
+		$propuesta=$this->Reporte_model->getPropuestaOrdenCompra($id_acta);
+		
 		$data=[
 			'id'=>$id_acta,
 			'productos'=>$productos,
@@ -256,6 +257,7 @@ class Reporte extends CI_Controller
 			'asignacion'=>$asignacion,
 			'adjudicacion'=>$adjudicacion,
 			'orden'=>$orden,
+			'propuesta'=>$propuesta,
 		];
 		$this->load->view('reportes/adjudicacion/adjudicacion',$data);
 	}

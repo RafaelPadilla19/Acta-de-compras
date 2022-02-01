@@ -27,7 +27,7 @@
     <h6 class="text-center mb-2 fw-bold">
         DECLARACIÓN JURADA
     </h6>
-    <div class="d-flex justify-content-startrow g-0 text-center pt-2">
+    <div style="font-size:14px;" class="d-flex justify-content-startrow g-0 text-center pt-2">
         <div class="col-2">
             <p class="text-end">Yo</p>
             <p class="text-end">NIT: </p>
@@ -42,7 +42,7 @@
             <p>con:</p>
         </div>
     </div>
-    <div class="col-12">
+    <div class="col-12" style="font-size:14px;">
         <p class="text-wrap">
             Declaro estar solvente de las obligaciones fiscales, municipales, de 
             seguridad social y previsional y dando cumplimiento a lo establecido
@@ -95,9 +95,9 @@
                                     
     </div>
     <p class="row">
-        <div>Nombre: <span><?php echo $acta->nombre?></span></div></p>
+        <div style="font-size:14px;">Nombre: <span><?php echo $acta->nombre?></span></p>
         <p class="text-start">DUI O NCR: <?php echo $acta->ncr_dui?></p>
-        <p class="text-start">NIT: <?php echo $acta->nit?>
+        <p class="text-start">NIT: <?php echo $acta->nit?></div>
     </p>    
     <div class="ocultar d-flex justify-content-center my-3">
         <button id="imprimir" name="imprimir" class="btn btn-primary me-3">Imprimir</button>

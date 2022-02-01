@@ -213,19 +213,20 @@ function convertirFecha($strFehca)
         <?php echo strtoupper(convertirNumeroLetra($orden->total))." ". convertDecimal($orden->total) ; ?> DÓLARES DE LOS ESTADOS UNIDOS
         </p>
         <p class="text-start txt">
-            A la persona natural: <span class="fw-bold ms-1"> <?php echo $acta->nombre?></span>
+            A la persona natural o jurídica: <span class="fw-bold ms-1"> <?php echo $acta->nombre?></span>
         </p>
         <p class="text-start txt">
             NIT: <span class="fw-bold"><ins style="margin-right:20px;"><?php echo $acta->nit?></ins></span> NCR O DUI: <span
                 class="fw-bold"><ins><ins><?php echo $acta->ncr_dui?></ins></span>
         </p>
         <div class="d-flex justify-content-startrow pt-2">
-            <div class="centrado txt">
+            <div class="centrado txt col-6">
                 <div class="linea"></div>
                 <p>
                     <!-- <div>//Fredy Alberto Perez</div> -->
-                    <div><?php echo $adjudicacion->administrador_de_contrato_u_orden_de_compra?></div>
-                    <div>Administrador de Contrato u Orden de Compra</div>
+                    <div><?php echo $propuesta->nombre_administrador_contrato; //$adjudicacion->administrador_de_contrato_u_orden_de_compra?></div>
+                    <!-- <div>Administrador de Contrato u Orden de Compra</div> -->
+                    <div><?php echo $propuesta->cargo_administrador_contrato;?></div>
                 </p>
             </div>
             <div class="centrado txt col-6">
@@ -279,7 +280,7 @@ function convertirFecha($strFehca)
                     </div>
                     <div class="modal-body">
                         <form>
-                            <div class="row">
+                            <div class="row" style="display:none;">
 
                                 <div class="mb-3 col-12">
                                     <label for="message-text" class="col-form-label">Nombre de administrador de orden
@@ -290,7 +291,7 @@ function convertirFecha($strFehca)
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row" style="display:none;">
                                 <div class="mb-3 col-12">
                                     <label for="message-text" class="col-form-label">Cargo administrador de orden
                                         de compra:</label>
