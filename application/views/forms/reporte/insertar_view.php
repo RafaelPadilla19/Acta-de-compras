@@ -98,7 +98,7 @@ $year_actual = $year_actual->format('Y');
                 </div>
                 <div class="mb-3 col-4">
                     <label for="cargo_de_recibido" class="form-label">Fecha que recibe (Opcional):</label>
-                    <input type="date" class="form-control" id="fecha_recibido" ng-model="propuesta_orden_de_compras.fecha_recibido" >
+                    <input type="date" class="form-control" id="fecha_recibido" ng-model="propuesta_orden_de_compras.fecha_recibido">
                 </div>
 
                 <div class="row">
@@ -120,10 +120,10 @@ $year_actual = $year_actual->format('Y');
                             <th>Nombre</th>
                             <th>Cantidad</th>
                             <th>Unidad</th>
-                            
-                            
-                            
-                            
+
+
+
+
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -132,8 +132,8 @@ $year_actual = $year_actual->format('Y');
                             <td>{{p.nombre_producto}}</td>
                             <td>{{p.cantidad}}</td>
                             <td>{{p.unidad_medida}}</td>
-                            
-                            
+
+
                             <td>
                                 <button type="button" class="btn btn-danger" ng-click="borrar(p)">
                                     <i class="fas fa-trash-alt"></i>
@@ -198,12 +198,12 @@ $year_actual = $year_actual->format('Y');
         $scope.productos = [];
         $scope.producto = {};
         $scope.solicitud_requerimientos = {};
-     
+
         $scope.propuesta_orden_de_compras = {};
         $scope.propuesta_orden_de_compras.nombre_recibido_por = "Lcda. Lorena Beatriz Romero de Aviles";
         $scope.propuesta_orden_de_compras.cargo_de_recibido = "Jefe de UACI";
 
-        
+
         $scope.solicitud_requerimientos.nombre_autorizante = "Lcdo. Juan Carlos Cárcamo Quijano";
         $scope.solicitud_requerimientos.cargo_autorizante = "Secretario Municipal";
         $scope.solicitud_requerimientos.dependencia_autorizante = "Concejo Municipal";
@@ -215,6 +215,14 @@ $year_actual = $year_actual->format('Y');
             console.log($scope.solicitud_requerimientos);
             console.log($scope.propuesta_orden_de_compras);
             console.log($scope.productos);
+        }
+
+        const validarProductos = () => {
+            if ($scope.productos.length <= 0) {
+
+
+                return false;
+            }
         }
 
         const validarCamposVacios = () => {
@@ -238,8 +246,8 @@ $year_actual = $year_actual->format('Y');
                 $scope.propuesta_orden_de_compras.cargo_de_recibido == null) {
 
                 alert("Por favor llene todos los campos");
-                console.log($scope.solicitud_requerimientos);
-                console.log($scope.propuesta_orden_de_compras);
+                //console.log($scope.solicitud_requerimientos);
+                //console.log($scope.propuesta_orden_de_compras);
 
 
                 return false;
@@ -252,45 +260,49 @@ $year_actual = $year_actual->format('Y');
             if (validarCamposVacios() == false) {
                 console.log("no se puede guardar");
             } else {
-
-                $http({
-                    method: 'POST',
-                    url: '<?php echo base_url(); ?>Reporte/insertSolicitud',
-                    data: $scope.solicitud_requerimientos
-                }).then(function succes(response) {
-                    let id = parseInt(response.data);
-                    //guardar todos lo productos con el id del acta
-                    // console.log($scope.productos);
-                    // console.log(id);
-                    // console.log($scope.productos.length);
-                    // console.log($scope.productos[0]);
-                    $scope.propuesta_orden_de_compras.solicitud_id = id;
+                if (validarProductos() == false) {
+                    alert("Por favor ingrese un producto, para poder guardar la solicitud tiene que haber por lo menos un producto registrado");
+                } else {
                     $http({
                         method: 'POST',
-                        url: '<?php echo base_url(); ?>Reporte/insertPropuesta',
-                        data: $scope.propuesta_orden_de_compras
+                        url: '<?php echo base_url(); ?>Reporte/insertSolicitud',
+                        data: $scope.solicitud_requerimientos
                     }).then(function succes(response) {
-                        console.log(response.data);
-                    });
-                    for (let i = 0; i < $scope.productos.length; i++) {
-                        $scope.productos[i].solicitud_id = id;
+                        let id = parseInt(response.data);
+                        //guardar todos lo productos con el id del acta
+                        // console.log($scope.productos);
+                        // console.log(id);
+                        // console.log($scope.productos.length);
+                        // console.log($scope.productos[0]);
+                        $scope.propuesta_orden_de_compras.solicitud_id = id;
                         $http({
                             method: 'POST',
-                            url: '<?php echo base_url(); ?>Reporte/insertProducto',
-                            data: $scope.productos[i]
+                            url: '<?php echo base_url(); ?>Reporte/insertPropuesta',
+                            data: $scope.propuesta_orden_de_compras
                         }).then(function succes(response) {
                             console.log(response.data);
-                            if (i == parseInt($scope.productos.length) - 1) {
-                                window.location.href = "<?php echo base_url(); ?>Reporte/documentacionCompra/" +
-                                    id;
-                            }
                         });
-                    }
+                        for (let i = 0; i < $scope.productos.length; i++) {
+                            $scope.productos[i].solicitud_id = id;
+                            $http({
+                                method: 'POST',
+                                url: '<?php echo base_url(); ?>Reporte/insertProducto',
+                                data: $scope.productos[i]
+                            }).then(function succes(response) {
+                                console.log(response.data);
+                                if (i == parseInt($scope.productos.length) - 1) {
+                                    window.location.href = "<?php echo base_url(); ?>Reporte/documentacionCompra/" +
+                                        id;
+                                }
+                            });
+                        }
 
-                    //$scope.acta_reporte = {};
-                    //abrir otra vista
+                        //$scope.acta_reporte = {};
+                        //abrir otra vista
 
-                })
+                    })
+                }
+
             }
 
 
@@ -307,7 +319,7 @@ $year_actual = $year_actual->format('Y');
 
             //sumar a monto total
 
-           // $scope.solicitud_requerimientos.valor_compra = $scope.productos.reduce((total, producto) => total + parseFloat(producto.total), 0).toFixed(2);
+            // $scope.solicitud_requerimientos.valor_compra = $scope.productos.reduce((total, producto) => total + parseFloat(producto.total), 0).toFixed(2);
             //cerrar modal
 
             $('#modal-prod').modal('hide');
