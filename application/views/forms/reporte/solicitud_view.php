@@ -235,7 +235,7 @@
                     </div>
                     <div class="modal-body">
                         <form>
-                            <div class="row">
+                            <div class="row" style="display:none;">
 
                                 <div class="mb-3 col-12">
                                     <label for="message-text" class="col-form-label">Nombre de administrador de orden
@@ -246,7 +246,7 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row" style="display:none;">
                                 <div class="mb-3 col-12">
                                     <label for="message-text" class="col-form-label">Cargo administrador de orden
                                         de compra:</label>
@@ -256,7 +256,7 @@
                             </div>
                             <div class="row">
                                 <div class="mb-3 col-12">
-                                <label for="message-text" class="col-form-label">Nombre completo:</label>
+                                <label for="message-text" class="col-form-label">Nombre completo (Alcalde):</label>
                                     <input type="text" class="form-control" id="representante_de_alcaldia"
                                         ng-model="adjudicacion.representante_de_alcaldia">
                                 </div>
@@ -330,6 +330,8 @@
 </main>
 <script>
 angular.module("app", []).controller("app-controller", function($scope, $http, $compile) {
+
+    $scope.propuesta_orden_de_compras = {};
 
 
     $scope.asignacion_presupuestaria = {};
@@ -537,7 +539,14 @@ angular.module("app", []).controller("app-controller", function($scope, $http, $
 
     $scope.existActaRecepcion();
 
-
+    (function () {
+        $http.get("<?php echo base_url().'Reporte/getPropuestaOrdenCompra/'.$id; ?>").then(function(response) {
+            $scope.propuesta_orden_de_compras = response.data;
+            $scope.adjudicacion.administrador_de_contrato_u_orden_de_compra = $scope.propuesta_orden_de_compras.nombre_administrador_contrato;
+            $scope.adjudicacion.cargo_de_administrador_de_contrato = $scope.propuesta_orden_de_compras.cargo_administrador_contrato;
+            console.log($scope.propuesta_orden_de_compras);
+        });
+    })();
 
     $scope.proveedores = [];
 
