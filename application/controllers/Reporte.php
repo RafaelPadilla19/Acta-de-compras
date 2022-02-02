@@ -420,6 +420,13 @@ class Reporte extends CI_Controller
 		echo json_encode($response);
 	}
 
+	public function eliminarProceso($id)
+	{
+		$this->load->model('Reporte_model');
+    	$this->Reporte_model->eliminar_solicitud($id);
+		redirect('/');
+	}
+
 	public function getOrdenCompra($id)
 	{
 		$this->load->model('Reporte_model');

@@ -7,6 +7,15 @@
 
     public function getProveedores(){
         $this->db->from("proveedor");
+        $this->db->where('estado', 1);
+        $this->db->order_by("proveedor_id", "desc");
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function getProveedoresInactivos(){
+        $this->db->from("proveedor");
+        $this->db->where('estado', 0);
         $this->db->order_by("proveedor_id", "desc");
         $query = $this->db->get();
         return $query->result();

@@ -27,6 +27,7 @@
                             <th>Valor estimado</th> -->
                             <th>Fecha de solicitud</th>
                             <th>Ver Proceso</th>
+                            <th>Eliminar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,10 +40,14 @@
                             <!-- <td>{{r.nombre_autorizante}}</td>
                             <td>{{r.valor_compra}}</td> -->
                             <td>{{r.fecha}}</td>
-                            
                             <td>
                                 <a href="<?php echo base_url()?>Reporte/documentacionCompra/{{r.solicitud_id}}" class="btn btn-primary">
                                     <i class="fas fa-copy"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="<?php echo base_url()?>Reporte/eliminarProceso/{{r.solicitud_id}}" class="btn btn-danger">
+                                <i class="fas fa-trash-alt"></i>
                                 </a>
                             </td>
                         </tr>
@@ -62,14 +67,7 @@ angular.module("app", []).controller("app-controller", function($scope, $http, $
             console.log($scope.reportes)
         });
     }
-
     get_reportes();
-
     //nuevo proveedor
-  
-
-    
-
-
 });
 </script>

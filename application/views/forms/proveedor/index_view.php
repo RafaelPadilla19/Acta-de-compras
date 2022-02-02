@@ -6,6 +6,8 @@
         <button data-bs-toggle="modal" data-bs-target="#modal-save"
             class="btn btn-success mb-3 text-white" ng-click="nuevo()">Nuevo</button>
 
+        <a href="<?php echo base_url(); ?>/Proveedor/eliminados" id="btnNuevo" class="btn btn-info mb-3">Ver
+        Eliminados</a>
         <!--buscar-->
         <div class="row">
             <div class="col-md-4 mb-4">
@@ -25,6 +27,7 @@
                             <th>Correo</th>
                             <th>NCR O DUI</th>
                             <th>NIT</th>
+                            <th style="display:none;">Estado</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -37,9 +40,13 @@
                             <td>{{p.correo}}</td>
                             <td>{{p.ncr_dui}}</td>
                             <td>{{p.nit}}</td>
+                            <td style="display:none;">{{p.estado}}</td>
                             <td>
                                 <button data-bs-toggle="modal" data-bs-target="#modal-save" class="btn btn-primary" ng-click="llenarModal(p)">Editar</button>
                                 <!-- <a href="" class="btn btn-danger">Eliminar</a> -->
+                                <a href="<?php echo base_url()?>Proveedor/eliminarProveedor/{{p.proveedor_id}}" class="btn btn-danger">
+                                <i class="fas fa-trash-alt"></i>
+                                </a>
                             </td>
                         </tr>
                     </tbody>

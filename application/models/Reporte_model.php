@@ -28,7 +28,12 @@
         
         return $id;
     }
+    public function eliminar_solicitud($id){
 
+        $this->db->where('solicitud_id', $id);
+        $this->db->delete('solicitud_requerimientos');
+        
+    }
 
     public function insert_propuesta_orden_de_compras($data){
     	$this->db->insert('propuesta_orden_de_compras', $data);
