@@ -27,7 +27,7 @@
                             <th>Valor estimado</th> -->
                             <th>Fecha de solicitud</th>
                             <th>Ver Proceso</th>
-                            <th>Eliminar</th>
+                            <th>Eliminar Proceso</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,7 +46,7 @@
                                 </a>
                             </td>
                             <td>
-                                <a href="<?php echo base_url()?>Reporte/eliminarProceso/{{r.solicitud_id}}" class="btn btn-danger">
+                                <a onclick="return confirm('¿Realmente desea eliminar?');" href="<?php echo base_url()?>Reporte/eliminarProceso/{{r.solicitud_id}}" class="btn btn-danger">
                                 <i class="fas fa-trash-alt"></i>
                                 </a>
                             </td>
@@ -56,6 +56,21 @@
 
             </div>
         </div>
+        <!-- <div class="modal fade" id="modal-save" aria-hidden="true"   tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content p-4">
+                    <div class="modal-header">
+                        <h5 class="text-center" id="exampleModalLabel">Realmente desea eliminar este proceso?</h5>
+                    </div>
+                    
+                    <div class="modal-footer justify-content-center">
+                    <a data-bs-toggle="modal" data-bs-target="#modal-save" ng-click="delete()" href="<?php echo base_url()?>Reporte/eliminarProceso/{{r.solicitud_id}}" class="btn btn-danger">Eliminar</a>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+
+                </div>
+            </div>
+        </div> -->
 </main>
 <script>
 angular.module("app", []).controller("app-controller", function($scope, $http, $compile) {
