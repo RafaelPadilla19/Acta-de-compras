@@ -26,7 +26,7 @@ $anio_actual = date('Y');
 $numeroProductos = count($productos);
 //echo "<p>" . $numeroProductos . " productos</p>";
 
-$paginas = ceil($numeroProductos / 4);
+$paginas = ceil($numeroProductos / 7);
 
 if (!isset($_GET['pag'])) {
     header("Location:" . base_url() . "Reporte/solicitudRequerimiento/" . $id . "?pag=1");
@@ -38,11 +38,11 @@ if ($_GET['pag'] > $paginas || $_GET['pag'] < 1) {
 
 
 //obtenemos los 5 productos de la pagina actual
-$productosPagina = array_slice($productos, ($_GET['pag'] - 1) * 4, 4);
+$productosPagina = array_slice($productos, ($_GET['pag'] - 1) * 7, 7);
 
 function valorItem($item)
 {
-    $valor = (($_GET['pag'] * 4) - 4) + $item;
+    $valor = (($_GET['pag'] * 7) - 7) + $item;
     return $valor;
 }
 
@@ -95,7 +95,7 @@ function valorItem($item)
                 <img src="<?php echo base_url(); ?>assets/img/logo.jpeg" style="width: 100px;" alt="">
             </div>
         </div>
-        <h6 class="text-center fw-bold" style="margin-top:-7px;font-size: 14px;">
+        <h6 class="text-center fw-bold" style="margin-top:-7px;font-size: 12px;">
             SOLICITUD DE REQUERIMIENTO DE OBRA , BIEN O SERVICIO
         </h6>
         <table class="m-2 table table-sm table-bordered border-dark text-center txt-table">
@@ -153,7 +153,7 @@ function valorItem($item)
                     <td class="fw-bold align-middle" colspan="5">OBRA, BIEN O SEVICIO SOLICITADO</td>
                     <td class="fw-bold align-middle" colspan="2">Cifra presupuestaria</td>
                 </tr>
-                <?php for ($i = 0; $i < 4; $i++) :   ?>
+                <?php for ($i = 0; $i < 7; $i++) :   ?>
                     <tr>
                         <td class="col-1 col-md-1 align-middle fw-bold"><?php echo valorItem($i + 1) ?></td>
                         <td class="col-1 col-md-1 align-middle"><?php echo (isset($productosPagina[$i]->cantidad)) ? $productosPagina[$i]->cantidad : ""; ?></td>

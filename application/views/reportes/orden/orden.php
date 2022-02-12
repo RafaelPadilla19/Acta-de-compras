@@ -165,14 +165,14 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*8, 8);
                             <td scope="row"><?php echo (isset($productosPagina[$i]->cantidad))?$productosPagina[$i]->cantidad:"<p></p>"; ?></td>
                             <td><?php echo (isset($productosPagina[$i]->unidad_medida))?$productosPagina[$i]->unidad_medida:""; ?></td>
                             <td><?php echo (isset($productosPagina[$i]->nombre_producto))?$productosPagina[$i]->nombre_producto:""; ?></td>
-                            <td><?php echo (isset($productosPagina[$i]->costo_unitario))?$productosPagina[$i]->costo_unitario:""; ?></td>
-                            <td><?php echo (isset($productosPagina[$i]->total))?$productosPagina[$i]->total:""; ?></td>
+                            <td><?php echo (isset($productosPagina[$i]->costo_unitario))?"$ ".$productosPagina[$i]->costo_unitario:""; ?></td>
+                            <td><?php echo (isset($productosPagina[$i]->total))?"$ ".$productosPagina[$i]->total:""; ?></td>
                         </tr>
                         <?php endfor; ?>
                         <tr>
                             <td colspan="3"></td>
                             <td class="fw-bold">Total</td>
-                            <td><?php echo $orden->total?></td>
+                            <td><?php echo "$ ".$orden->total?></td>
                         </tr>
                             <th>SON:</th>
                             <th colspan="4"><?php echo strtoupper(convertirNumeroLetra($orden->total))." ". convertDecimal($orden->total) ; ?> DÓLARES DE LOS ESTADOS UNIDOS</th>
@@ -183,7 +183,7 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*8, 8);
             <table class="table border-dark table-sm table-bordered text-center txt-table mb-3">
                 <tr>
                     <th class="col-4">OBSERVACIONES: </th>
-                    <td class="col-8"><?php echo $orden->observaciones?></td>
+                    <td class="col-8"><?php echo $solicitud->destino_de_bien//echo $orden->observaciones?></td>
                 </tr>
                 <tr>
                     <th class="col-4">LUGAR DE ENTREGA: </th>

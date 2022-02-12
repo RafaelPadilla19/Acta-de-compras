@@ -62,7 +62,7 @@
 
 <body ng-app="app" ng-controller="app-controller">
 
-    <main style="margin: 25px 60px;">
+    <main style="margin: 5px 60px;">
         <div class="d-flex justify-content-startrow g-0 text-center">
             <div class="col-2 col-md-2">
                 <img src="<?php echo base_url();?>assets/img/escudo.jpeg" style="width: 80px;" alt="" class="mt-3">
@@ -103,9 +103,7 @@
                         <th scope="row" class="col-3">PROYECTO PROGRAMA</th>
                         <td colspan="9"><?php echo $asignacion->proyecto;?></td>
                     </tr>
-                    <tr>
-                        <th scope="row" colspan="12" style="height: 15px;"></th>
-                    </tr>
+
                     <tr>
                         <td colspan="12" class="text-start txt">
                             <p class="txt">
@@ -214,9 +212,7 @@
                             </p>
                         </td>
                     </tr>
-                    <tr>
-                        <th scope="row" colspan="12" style="height: 15px;"></th>
-                    </tr>
+                   
                     <thead>
                     <tr>
                         <th>ITEM</th>
@@ -253,8 +249,8 @@
 
                             <div class="d-flex justify-content-startrow g-0 text-start fw-bold">
                                 <div class="col-1 col-md-1">
+                                    <p class="text-center"style="margin-left: 16px;">F.</p>
                                     <p>
-                                    <div class="linea" style="border-top:white;padding-top: 13px;"></div>
                                     <div>NOMBRE</div>
                                     <div>DUI</div>
                                     <div>NIT</div>
@@ -270,8 +266,8 @@
                                     </p>
                                 </div>
                                 <div class="col-1 col-md-1">
+                                    <p class="text-center">F.</p>
                                     <p>
-                                    <div class="linea" style="border-top:white;padding-top: 13px;"></div>
                                     <div>NOMBRE</div>
                                     <div>CARGO</div>
                                     </p>
