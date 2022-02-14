@@ -22,6 +22,9 @@
 
     function convertirFecha($strFehca)
     {
+        if ($strFehca == null) {
+            return null;
+        }
         $fechaAArray=explode('-',$strFehca);
         $miFecha=mktime(0,0,0,$fechaAArray[1],$fechaAArray[2],$fechaAArray[0]);
         setlocale(LC_TIME, 'spanish');

@@ -5,10 +5,17 @@
         <form>
             <div class="row">
 
-                <div class="mb-3 col-12">
+                <div class="mb-3 col-6">
                     <label for="message-text" class="col-form-label">Lugar:</label>
                     <input type="text" class="form-control" id="lugar" ng-model="orden_de_compra.lugar">
 
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="fecha_orden" class="mb-2">Fecha:</label>
+                        <input type="date" class="form-control" id="fecha_orden"
+                            ng-model="orden_de_compra.fecha_orden">
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -36,7 +43,7 @@
             </div>
             <div class="row">
                 <div class="mb-3 col-6">
-                    <label for="recipient-name" class="col-form-label">Observaciones:</label>
+                    <label for="recipient-name" class="col-form-label">Observaciones (Opcional):</label>
                     <input type="text" class="form-control" id="observaciones" ng-model="orden_de_compra.observaciones">
                 </div>
                 <div class="mb-3 col-6">
@@ -213,6 +220,7 @@ angular.module("app", []).controller("app-controller", function($scope, $http, $
 
     const validar_campos_orden_compra = () => {
         if ($scope.orden_de_compra.lugar == null ||
+            $scope.orden_de_compra.fecha_orden == null ||
             $scope.orden_de_compra.proveedor_id == null ||
             $scope.orden_de_compra.tipo_documento == null ||
             //$scope.orden_de_compra.observaciones == null ||

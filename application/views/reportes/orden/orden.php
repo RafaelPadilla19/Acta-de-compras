@@ -112,7 +112,7 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*8, 8);
             <tbody>
                 <tr>
                     <td>FECHA</td>
-                    <td><?php echo convertirFecha($solicitud->fecha);?></td>
+                    <td><?php echo convertirFecha($orden->fecha_orden);?></td>
                     <td><?php echo $solicitud->amsj;?></td>
                 </tr>
             </tbody>
