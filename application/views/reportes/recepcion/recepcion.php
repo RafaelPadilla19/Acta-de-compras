@@ -110,7 +110,7 @@
                                 En la Alcaldía Municipal de San Julián, ubicada entre 1a y 3a Calle Poniente, Barrio el
                                 Centro, Municipio de San Julián,
                                 Departamento de Sonsonate A las: <span
-                                    class="fw-bold text-decoration-underline"><?php echo $recepcion->hora;?></span>
+                                    class="fw-bold text-decoration-underline"><?php echo substr($recepcion->hora,11);?></span>
                                 del día: <span
                                     class="fw-bold text-decoration-underline"><?php echo (convertirFecha($recepcion->fecha)!==null)?convertirFecha($recepcion->fecha):"";?></span>
                             </p>
@@ -284,7 +284,7 @@
                             </div>
                             <div class="d-flex justify-content-startrow g-0 text-start fw-bold ">
                                 <div class="col-6"></div>
-                                <div class="col-1 fw-bold">NOMBRE:</div>
+                                <div class="col-1 fw-bold text-center">F.</div>
                                 <div class="col-5 col-md-5">
                                     <div class="linea" style="margin-left: 0;"></div>
                                     <p>
@@ -346,8 +346,9 @@
                             <div class="row">
 
                                 <div class="mb-3 col-12">
-                                    <label for="message-text" class="col-form-label">Hora:</label>
-                                    <input type="time" class="form-control" id="" ng-model="acta_de_recepcion.hora">
+                                    <label for="hora" class="col-form-label">Hora:</label>
+                                    <input type="time" class="form-control" id="hora" 
+                                    ng-model="acta_de_recepcion.hora">
                                 </div>
                             </div>
                             <div class="row">
