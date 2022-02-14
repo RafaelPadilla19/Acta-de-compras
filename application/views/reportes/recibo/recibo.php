@@ -24,7 +24,7 @@
     {
         $fechaAArray=explode('-',$strFehca);
         $miFecha=mktime(0,0,0,$fechaAArray[1],$fechaAArray[2],$fechaAArray[0]);
-        setlocale(LC_TIME, 'es_ES.UTF-8');
+        setlocale(LC_TIME, 'spanish');
         $formatoEsperado=strftime("%d de %B de %Y", $miFecha);
         return $formatoEsperado;
     }

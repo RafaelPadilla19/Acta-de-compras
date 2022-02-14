@@ -22,16 +22,27 @@
 //funcion fecha a letra
 function convertirFecha($strFehca)
 {
-    //validar si la fecha es null
     if ($strFehca == null || $strFehca=='0000-00-00') {
         return null;
     }
-    $fechaAArray = explode('-', $strFehca);
-    $miFecha = mktime(0, 0, 0, $fechaAArray[1], $fechaAArray[2], $fechaAArray[0]);
-    setlocale(LC_TIME, 'es_ES.UTF-8');
-    $formatoEsperado = strftime("%d de %B de %Y", $miFecha);
+    $fechaAArray=explode('-',$strFehca);
+    $miFecha=mktime(0,0,0,$fechaAArray[1],$fechaAArray[2],$fechaAArray[0]);
+    setlocale(LC_TIME, 'spanish');
+    $formatoEsperado=strftime("%d de %B de %Y", $miFecha);
     return $formatoEsperado;
 }
+// function convertirFecha($strFehca)
+// {
+//     //validar si la fecha es null
+//     if ($strFehca == null || $strFehca=='0000-00-00') {
+//         return null;
+//     }
+//     $fechaAArray = explode('-', $strFehca);
+//     $miFecha = mktime(0, 0, 0, $fechaAArray[1], $fechaAArray[2], $fechaAArray[0]);
+//     setlocale(LC_TIME, 'es_ES.UTF-8');
+//     $formatoEsperado = strftime("%d de %B de %Y", $miFecha);
+//     return $formatoEsperado;
+// }
 /* 
     $numeroProductos= count($productos);
     //echo "<p>" . $numeroProductos . " productos</p>";
