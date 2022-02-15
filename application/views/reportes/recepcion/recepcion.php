@@ -149,7 +149,7 @@ function valorItem($item)
                                 </p>
                                 <div class="col-2 col-md-2">
                                     <p class="text-center fw-bold">
-                                        <?php echo $recepcion->fecha !== null ? $recepcion->fecha : ""; ?>
+                                        <?php echo $orden->fecha_orden !== null ? $orden->fecha_orden : ""; ?>
                                     <div class="linea" style="max-width: 90%;margin-top: -10px;"></div>
                                     </p>
                                 </div>

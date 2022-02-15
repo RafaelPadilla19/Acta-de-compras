@@ -149,9 +149,6 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*8, 8);
                             <td colspan="5" class="border-start-0 align-middle"><?php echo $asignacion->proyecto?></td>
                         </tr>
                         <tr>
-                            <th scope="row" colspan="5"></th>
-                        </tr>
-                        <tr>
                             <th class="col-1 col-md-1">CANTIDAD</th>
                             <th class="col-2 col-md-2">UNIDAD DE MEDIDA</th>
                             <th class="col-5 col-md-5">DESCRIPCIÓN</th>
