@@ -424,8 +424,9 @@ angular.module("app", []).controller("app-controller", function($scope, $http, $
 
     $scope.guardarActaRecepcion = function() {
         //solo la hora minutos y segundos
-       
+        
         if (!(validar_campos_acta_de_recepcion() == false)) {
+            $scope.acta_de_recepcion.hora = $scope.acta_de_recepcion.hora.toTimeString().split(' ')[0];
             $http({
                 method: 'POST',
                 url: '<?php echo base_url() . "Reporte/insertActaRecepcion/"; ?>',
