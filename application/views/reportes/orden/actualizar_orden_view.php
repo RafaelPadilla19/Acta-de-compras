@@ -5,10 +5,17 @@
         <form>
             <div class="row">
 
-                <div class="mb-3 col-12">
+                <div class="mb-3 col-6">
                     <label for="message-text" class="col-form-label">Lugar:</label>
                     <input type="text" class="form-control" id="lugar" ng-model="orden_de_compra.lugar">
 
+                </div>
+                <div class="col-6">
+                    <div>
+                        <label class="mb-2" for="fecha_orden">Fecha:</label>
+                        <input type="date" class="form-control" id="fecha_orden"
+                            ng-model="orden_de_compra.fecha_orden" required>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -214,7 +221,12 @@ angular.module("app", []).controller("app-controller", function($scope, $http, $
             url: '<?php echo base_url()."Reporte/getOrdenCompra/".$id; ?>'
         }).then(function(response) {
             $scope.orden_de_compra = response.data;
-            $scope.orden_de_compra.fecha_de_entrega = new Date($scope.orden_de_compra.fecha_de_entrega);
+            $scope.orden_de_compra.fecha_orden= $scope.orden_de_compra.fecha_orden.split("-");
+            $scope.orden_de_compra.fecha_orden= new Date($scope.orden_de_compra.fecha_orden[0], $scope.orden_de_compra.fecha_orden[1]-1, $scope.orden_de_compra.fecha_orden[2]);
+            $scope.orden_de_compra.fecha_de_entrega= $scope.orden_de_compra.fecha_de_entrega.split("-");
+            $scope.orden_de_compra.fecha_de_entrega= new Date($scope.orden_de_compra.fecha_de_entrega[0], $scope.orden_de_compra.fecha_de_entrega[1]-1, $scope.orden_de_compra.fecha_de_entrega[2]);
+            //$scope.orden_de_compra.fecha_orden = new Date($scope.orden_de_compra.fecha_orden);
+            //$scope.orden_de_compra.fecha_de_entrega = new Date($scope.orden_de_compra.fecha_de_entrega);
         });
     })();
     
@@ -222,6 +234,7 @@ angular.module("app", []).controller("app-controller", function($scope, $http, $
 
     const validar_campos_orden_compra = () => {
         if ($scope.orden_de_compra.lugar == null ||
+            $scope.orden_de_compra.fecha_orden == null ||
             $scope.orden_de_compra.proveedor_id == null ||
             $scope.orden_de_compra.tipo_documento == null ||
             //$scope.orden_de_compra.observaciones == null ||

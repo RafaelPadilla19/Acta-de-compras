@@ -22,16 +22,19 @@
 
     function convertirFecha($strFehca)
     {
+        if ($strFehca == null) {
+            return null;
+        }
         $fechaAArray=explode('-',$strFehca);
         $miFecha=mktime(0,0,0,$fechaAArray[1],$fechaAArray[2],$fechaAArray[0]);
-        setlocale(LC_TIME, 'es_ES.UTF-8');
+        setlocale(LC_TIME, 'spanish');
         $formatoEsperado=strftime("%d de %B de %Y", $miFecha);
         return $formatoEsperado;
     }
     $numeroProductos= count($productos);
     //echo "<p>" . $numeroProductos . " productos</p>";
 
-    $paginas= ceil($numeroProductos/4);
+    $paginas= ceil($numeroProductos/8);
 
     if(!isset($_GET['pag'])){
         header("Location:" . base_url()."Reporte/recibo/".$id."?pag=1");
@@ -43,11 +46,11 @@
 
 
     //obtenemos los 5 productos de la pagina actual
-    $productosPagina= array_slice($productos, ($_GET['pag']-1)*4, 4);
+    $productosPagina= array_slice($productos, ($_GET['pag']-1)*8, 8);
 
-    $productosPagina= array_slice($productos, ($_GET['pag']-1)*4, 4);
+    $productosPagina= array_slice($productos, ($_GET['pag']-1)*8, 8);
     function valorItem($item){
-        $valor = (($_GET['pag'] * 4)-4) + $item;
+        $valor = (($_GET['pag'] * 8)-8) + $item;
         return $valor;
     }
 ?>
@@ -136,13 +139,13 @@
                 </tr>
             </thead>
             <tbody>
-            <?php for($i=0; $i<4;$i++):   ?>
+            <?php for($i=0; $i<8;$i++):   ?>
                 <tr>
                     <th scope="row"><?php echo (isset($productosPagina[$i]->cantidad))?$productosPagina[$i]->cantidad:"<p></p>"; ?></th>
                     <td><?php echo (isset($productosPagina[$i]->unidad_medida))?$productosPagina[$i]->unidad_medida:""; ?></td>
-                    <td><?php echo (isset($productosPagina[$i]->descripcion))?$productosPagina[$i]->descripcion:""; ?></td>
-                    <td>$ <?php echo (isset($productosPagina[$i]->costo_unitario))?$productosPagina[$i]->costo_unitario:""; ?></td>
-                    <td>$ <?php echo (isset($productosPagina[$i]->total))?$productosPagina[$i]->total:""; ?></td>
+                    <td><?php echo (isset($productosPagina[$i]->nombre_producto))?$productosPagina[$i]->nombre_producto:""; ?></td>
+                    <td><?php echo (isset($productosPagina[$i]->costo_unitario))?"$ ".$productosPagina[$i]->costo_unitario:""; ?></td>
+                    <td><?php echo (isset($productosPagina[$i]->total))?"$ ".$productosPagina[$i]->total:""; ?></td>
                 </tr>
                 <?php endfor; ?>
                
@@ -156,7 +159,7 @@
                     <th scope="row" class="col-2" colspan="2"></th>
                     <td rowspan="2" class="fw-bold">LIQUIDO A PAGAR</td>
                     <td></td>
-                    <td>$ <?php echo $orden->total?></td>
+                    <td><?php echo "$ ".$orden->total?></td>
                 </tr>
             </tbody>
         </table>

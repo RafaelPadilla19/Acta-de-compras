@@ -22,16 +22,27 @@
 //funcion fecha a letra
 function convertirFecha($strFehca)
 {
-    //validar si la fecha es null
     if ($strFehca == null || $strFehca=='0000-00-00') {
         return null;
     }
-    $fechaAArray = explode('-', $strFehca);
-    $miFecha = mktime(0, 0, 0, $fechaAArray[1], $fechaAArray[2], $fechaAArray[0]);
-    setlocale(LC_TIME, 'es_ES.UTF-8');
-    $formatoEsperado = strftime("%d de %B de %Y", $miFecha);
+    $fechaAArray=explode('-',$strFehca);
+    $miFecha=mktime(0,0,0,$fechaAArray[1],$fechaAArray[2],$fechaAArray[0]);
+    setlocale(LC_TIME, 'spanish');
+    $formatoEsperado=strftime("%d de %B de %Y", $miFecha);
     return $formatoEsperado;
 }
+// function convertirFecha($strFehca)
+// {
+//     //validar si la fecha es null
+//     if ($strFehca == null || $strFehca=='0000-00-00') {
+//         return null;
+//     }
+//     $fechaAArray = explode('-', $strFehca);
+//     $miFecha = mktime(0, 0, 0, $fechaAArray[1], $fechaAArray[2], $fechaAArray[0]);
+//     setlocale(LC_TIME, 'es_ES.UTF-8');
+//     $formatoEsperado = strftime("%d de %B de %Y", $miFecha);
+//     return $formatoEsperado;
+// }
 /* 
     $numeroProductos= count($productos);
     //echo "<p>" . $numeroProductos . " productos</p>";
@@ -86,7 +97,7 @@ function convertirFecha($strFehca)
             <div class="col-2 col-md-2">
                 <img src="<?php echo base_url();?>assets/img/escudo.jpeg" style="width: 80px;" alt="" class="mt-3">
             </div>
-            <div class="col-8 col-md-8">
+            <div class="col-8 col-md-8 txt-table">
                 <h6 class="m-2 text-center fw-bold txt-table">
                     ALCALDÍA MUNICIPAL DE SAN JULIÁN CACALUTA
                 </h6>
@@ -152,7 +163,7 @@ function convertirFecha($strFehca)
                         <th scope="row">1</th>
                         <td><?php echo $acta->nit?></td>
                         <td><?php echo $acta->nombre?></td>
-                        <td><?php echo $orden->total?></td>
+                        <td><?php echo "$ ".$orden->total?></td>
                     </tr>
                     <tr>
                         <th scope="row">2</th>
@@ -168,6 +179,30 @@ function convertirFecha($strFehca)
                     </tr>
                     <tr>
                         <th scope="row">4</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">6</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">7</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">8</th>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -194,7 +229,7 @@ function convertirFecha($strFehca)
                 <tbody>
                     <tr>
                         <td><?php echo $acta->nombre;?></td>
-                        <td><?php echo $orden->total?></td>
+                        <td><?php echo "$ ".$orden->total?></td>
                         <td><?php echo strtoupper(convertirNumeroLetra($orden->total))." ". convertDecimal($orden->total) ; ?> DÓLARES DE LOS ESTADOS UNIDOS</td>
                     </tr>
                 </tbody>
@@ -207,7 +242,7 @@ function convertirFecha($strFehca)
             pública. ADJUDIQUESE.
         </p>
         <p class="text-start txt">
-            El requerimiento AMSJ <span class="fw-bold"><?php echo $acta->amsj;?></span> con un monto de <span class="fw-bold">$ <?php echo $orden->total?></span>
+            El requerimiento AMSJ <span class="fw-bold"><?php echo $acta->amsj;?></span> con un monto de <span class="fw-bold"><?php echo "$ ".$orden->total?></span>
         </p>
         <p class="text-start txt px-4 ms-1">
         <?php echo strtoupper(convertirNumeroLetra($orden->total))." ". convertDecimal($orden->total) ; ?> DÓLARES DE LOS ESTADOS UNIDOS

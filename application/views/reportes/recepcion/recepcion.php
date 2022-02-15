@@ -8,7 +8,7 @@
      }
      $fechaAArray = explode('-', $strFehca);
      $miFecha = mktime(0, 0, 0, $fechaAArray[1], $fechaAArray[2], $fechaAArray[0]);
-     setlocale(LC_TIME, 'es_ES.UTF-8');
+     setlocale(LC_TIME, 'spanish');
      $formatoEsperado = strftime("%d de %B de %Y", $miFecha);
      return $formatoEsperado;
  }
@@ -62,7 +62,7 @@
 
 <body ng-app="app" ng-controller="app-controller">
 
-    <main style="margin: 25px 60px;">
+    <main style="margin: 5px 60px;">
         <div class="d-flex justify-content-startrow g-0 text-center">
             <div class="col-2 col-md-2">
                 <img src="<?php echo base_url();?>assets/img/escudo.jpeg" style="width: 80px;" alt="" class="mt-3">
@@ -103,16 +103,14 @@
                         <th scope="row" class="col-3">PROYECTO PROGRAMA</th>
                         <td colspan="9"><?php echo $asignacion->proyecto;?></td>
                     </tr>
-                    <tr>
-                        <th scope="row" colspan="12" style="height: 15px;"></th>
-                    </tr>
+
                     <tr>
                         <td colspan="12" class="text-start txt">
                             <p class="txt">
                                 En la Alcaldía Municipal de San Julián, ubicada entre 1a y 3a Calle Poniente, Barrio el
                                 Centro, Municipio de San Julián,
                                 Departamento de Sonsonate A las: <span
-                                    class="fw-bold text-decoration-underline"><?php echo $recepcion->hora;?></span>
+                                    class="fw-bold text-decoration-underline"><?php echo substr($recepcion->hora,11);?></span>
                                 del día: <span
                                     class="fw-bold text-decoration-underline"><?php echo (convertirFecha($recepcion->fecha)!==null)?convertirFecha($recepcion->fecha):"";?></span>
                             </p>
@@ -214,9 +212,7 @@
                             </p>
                         </td>
                     </tr>
-                    <tr>
-                        <th scope="row" colspan="12" style="height: 15px;"></th>
-                    </tr>
+                   
                     <thead>
                     <tr>
                         <th>ITEM</th>
@@ -253,8 +249,8 @@
 
                             <div class="d-flex justify-content-startrow g-0 text-start fw-bold">
                                 <div class="col-1 col-md-1">
+                                    <p class="text-center"style="margin-left: 16px;">F.</p>
                                     <p>
-                                    <div class="linea" style="border-top:white;padding-top: 13px;"></div>
                                     <div>NOMBRE</div>
                                     <div>DUI</div>
                                     <div>NIT</div>
@@ -270,8 +266,8 @@
                                     </p>
                                 </div>
                                 <div class="col-1 col-md-1">
+                                    <p class="text-center">F.</p>
                                     <p>
-                                    <div class="linea" style="border-top:white;padding-top: 13px;"></div>
                                     <div>NOMBRE</div>
                                     <div>CARGO</div>
                                     </p>
@@ -288,7 +284,7 @@
                             </div>
                             <div class="d-flex justify-content-startrow g-0 text-start fw-bold ">
                                 <div class="col-6"></div>
-                                <div class="col-1 fw-bold">NOMBRE:</div>
+                                <div class="col-1 fw-bold text-center">F.</div>
                                 <div class="col-5 col-md-5">
                                     <div class="linea" style="margin-left: 0;"></div>
                                     <p>
@@ -350,8 +346,9 @@
                             <div class="row">
 
                                 <div class="mb-3 col-12">
-                                    <label for="message-text" class="col-form-label">Hora:</label>
-                                    <input type="time" class="form-control" id="" ng-model="acta_de_recepcion.hora">
+                                    <label for="hora" class="col-form-label">Hora:</label>
+                                    <input type="time" class="form-control" id="hora" 
+                                    ng-model="acta_de_recepcion.hora">
                                 </div>
                             </div>
                             <div class="row">
