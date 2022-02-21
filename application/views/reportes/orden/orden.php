@@ -166,14 +166,17 @@ $productosPagina= array_slice($productos, ($_GET['pag']-1)*8, 8);
                             <td><?php echo (isset($productosPagina[$i]->total))?"$ ".$productosPagina[$i]->total:""; ?></td>
                         </tr>
                         <?php endfor; ?>
+                        <?php if($_GET['pag']==$paginas){ ?>
                         <tr>
                             <td colspan="3"></td>
                             <td class="fw-bold">Total</td>
                             <td><?php echo "$ ".$orden->total?></td>
                         </tr>
+                        <tr>
                             <th>SON:</th>
                             <th colspan="4"><?php echo strtoupper(convertirNumeroLetra($orden->total))." ". convertDecimal($orden->total) ; ?> DÓLARES DE LOS ESTADOS UNIDOS</th>
                         </tr>
+                        <?php }?>
                     </tbody>
                 </table>
             </div>

@@ -155,12 +155,14 @@
                     <td></td>
                     <td></td>
                 </tr>
+                <?php if($_GET['pag']==$paginas){ ?>
                 <tr>
                     <th scope="row" class="col-2" colspan="2"></th>
                     <td rowspan="2" class="fw-bold">LIQUIDO A PAGAR</td>
                     <td></td>
                     <td><?php echo "$ ".$orden->total?></td>
                 </tr>
+                <?php }?>
             </tbody>
         </table>
     </div>
